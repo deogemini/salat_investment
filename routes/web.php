@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-    return view('dashboard');
+    return view('layouts/dashboard');
 });
+
+
+Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
+
+Route::post('/categories/store',[ProductCategoryController::class,'store'])->name('categories.create');
