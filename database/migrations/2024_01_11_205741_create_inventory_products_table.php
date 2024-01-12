@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('inventory_products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            $table->string('product_description');
-            $table->string('product_category_id');
-            $table->string('retails_price');
-            $table->string('whole_sale');
-            $table->string('quantity');
+            $table->text('product_description');
+            $table->unsignedBigInteger('product_category_id'); // Foreign key column
+            $table->decimal('retail_price', 10, 2);
+            $table->decimal('whole_sale_price', 10, 2);
+            $table->integer('quantity');
             $table->timestamps();
+
+            // Define the foreign key constraint
+            $table->foreign('product_category_id')->references('id')->on('product_categories');
         });
     }
 

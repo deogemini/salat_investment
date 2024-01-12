@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::get('/', function () {
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 
 Route::post('/categories/store',[ProductCategoryController::class,'store'])->name('categories.create');
+
+Route::get('/inventory/index', [InventoryController::class,'index'])->name('inventory.index');
+
+Route::post('/inventory/store',[InventoryController::class,'store'])->name('inventory.create');

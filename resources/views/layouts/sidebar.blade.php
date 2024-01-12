@@ -7,8 +7,7 @@
             Dashboard
           </a>
         </li>
-
-                <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('categories.index') }}">
                 <span data-feather="shopping-cart"></span>
                 Products Category
@@ -16,11 +15,25 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('inventory.index')}}">
+              <span data-feather="bar-chart-2"></span>
+              Inventory Management
+            </a>
+          </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="#">
             <span data-feather="file"></span>
-            Orders
+            Purchases
           </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Sales
+            </a>
+          </li>
 
         <li class="nav-item">
           <a class="nav-link" href="#">
@@ -28,18 +41,8 @@
             Customers
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="bar-chart-2"></span>
-            Reports
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="layers"></span>
-            Integrations
-          </a>
-        </li>
+
+
       </ul>
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
