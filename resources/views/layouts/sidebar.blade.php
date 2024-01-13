@@ -1,11 +1,11 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
-        <li class="nav-item {{ request()->is('dashboard*') ? 'active' : '' }}">
-          <a class="nav-link" aria-current="page" href=" {{ route('dashboard.index')}} ">
-            <span data-feather="home"></span>
-            Dashboard
-          </a>
+        <li class="nav-item {{ request()->is(route('dashboard.index') . '*') ? 'active' : '' }}">
+            <a class="nav-link" aria-current="page" href="{{ route('dashboard.index') }}">
+                <span data-feather="home"></span>
+                Dashboard
+            </a>
         </li>
         <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('categories.index') }}">

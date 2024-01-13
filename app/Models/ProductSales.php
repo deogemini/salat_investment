@@ -19,6 +19,6 @@ class ProductSales extends Model
     // Define the relationship to ProductCategory
     public function productInventory(): BelongsTo
     {
-        return $this->belongsTo(ProductCategory::class, 'product_inventory_id');
+        return $this->belongsTo(InventoryProduct::class, 'product_inventory_id');
     }
 }

@@ -14,7 +14,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $products_sales = ProductSales::orderby('created_at', 'ASC')->get();
+        $products_sales = ProductSales::orderby('created_at', 'ASC')->with('productInventory')->get();
         $categories = ProductCategory::orderby('created_at', 'ASC')->get();
         $products = InventoryProduct::orderby('created_at', 'ASC')->get();
 
@@ -52,17 +52,33 @@ class SalesController extends Controller
             $totalCost = $productCost * $quantity;
 
             // Create a new instance of the ProductPurchase model and fill it with data
-            $productPurchase = new ProductSales();
-            $productPurchase->product_inventory_id = $productInventoryId;
-            $productPurchase->product_cost = $productCost;
-            $productPurchase->quantity = $quantity;
-            $productPurchase->total_cost = $totalCost;
+            $productSales = new ProductSales();
+            $productSales->product_inventory_id = $productInventoryId;
+            $productSales->product_cost = $productCost;
+            $productSales->quantity = $quantity;
+            $productSales->total_cost = $totalCost;
+
 
             // Save the data to the database
-            $productPurchase->save();
+            $productSales->save();
+
+                        // Update the quantity in the InventoryProduct record
+            $inventoryRecord = InventoryProduct::find($productInventoryId);
+
+            if ($inventoryRecord) {
+                // Adjust the quantity
+                $inventoryRecord->quantity_now =  $inventoryRecord->quantity_in - $quantity;
+
+                // Save the updated record
+                $inventoryRecord->save();
+            } else {
+                // Handle the case where the InventoryProduct record is not found
+                // (You might want to add appropriate error handling or log a message)
+           }
+
 
         // Redirect or return a response as needed
-        return redirect()->route('purchase.index')->with('success', 'Category added successfully');
+        return redirect()->route('sales.index')->with('success', 'Category added successfully');
     }
 
     /**
