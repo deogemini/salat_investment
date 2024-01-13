@@ -27,7 +27,7 @@ class InventoryProduct extends Model
     {
         return $this->hasMany(ProductPurchase::class, 'product_inventory_id');
     }
-    public function purchasedSales(): HasMany
+    public function productSales(): HasMany
     {
         return $this->hasMany(ProductSales::class, 'product_inventory_id');
     }

@@ -39,13 +39,13 @@ class SalesController extends Controller
         // Validation
         $request->validate([
             'product_inventory_id' => 'required|string|max:255',
-             'product_cost' => 'required|string|max:255',
+             'product_price' => 'required|string|max:255',
              'quantity'  => 'required|string|max:255',
         ]);
 
                 // Retrieve validated data from the request
             $productInventoryId = $request->input('product_inventory_id');
-            $productCost = $request->input('product_cost');
+            $productCost = $request->input('product_price');
             $quantity = $request->input('quantity');
 
             // Calculate total_cost based on product_cost and quantity

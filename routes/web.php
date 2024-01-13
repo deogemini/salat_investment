@@ -39,6 +39,7 @@ Route::post('/categories/store',[ProductCategoryController::class,'store'])->nam
 Route::get('/inventory/index', [InventoryController::class,'index'])->name('inventory.index');
 
 Route::post('/inventory/store',[InventoryController::class,'store'])->name('inventory.create');
+Route::get('/product/getPrices/{id}',[InventoryController::class,'getPrices']);
 
 Route::get('/purchase/index', [PurchasesController::class,'index'])->name('purchase.index');
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InventoryProduct;
+use App\Models\ProductPurchase;
+use App\Models\ProductSales;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -11,7 +14,14 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        return view('reports.sales');
+        $productSales = ProductSales::all();
+        $total_sales = ProductSales::sum('total_cost');
+        $total_purchases = ProductPurchase::sum('total_cost');
+        $total_profit = $total_sales - $total_purchases;
+
+        $inventoryProducts = InventoryProduct::with('productSales')->get();
+
+        return view('reports.sales',  compact('inventoryProducts','productSales', 'total_profit', 'total_sales'));
     }
 
     /**

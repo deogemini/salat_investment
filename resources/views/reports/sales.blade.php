@@ -9,10 +9,19 @@
         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
         <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
       </div>
-      <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-        <span data-feather="calendar"></span>
-        This week
-      </button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <span data-feather="calendar"></span>
+          This week
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Today</a></li>
+          <li><a class="dropdown-item" href="#">This week</a></li>
+          <li><a class="dropdown-item" href="#">This month</a></li>
+          <li><a class="dropdown-item" href="#">This year</a></li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
@@ -21,125 +30,29 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Initial Stock (items)</th>
+        <th scope="col" >Current Stock (items)</th>
+        <th scope="col" >Sold Quantity (items)</th>
+        <th scope="col">Total Sold Cost</th>
+        <th scope="col">Total Remaining Cost</th>
+        <th scope="col">Total Initial Cost</th>
       </tr>
     </thead>
     <tbody>
+        @foreach ($inventoryProducts as $inventoryProduct)
       <tr>
-        <td>1,001</td>
-        <td>random</td>
-        <td>data</td>
-        <td>placeholder</td>
-        <td>text</td>
+        <td>{{ $inventoryProduct->id }}</td>
+        <td>{{ $inventoryProduct->product_name }}</td>
+        <td>{{ $inventoryProduct->quantity_in }}</td>
+        <td>{{ $inventoryProduct->quantity_now }}</td>
+        <td>{{ $inventoryProduct->productSales->sum('quantity') }}</td>
+        <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
+        <td>{{ ($inventoryProduct->quantity_now - $inventoryProduct->productSales->sum('quantity')) * $inventoryProduct->retail_price }}</td>
+        <td>{{ $inventoryProduct->quantity_in * $inventoryProduct->retail_price }}</td>
       </tr>
-      <tr>
-        <td>1,002</td>
-        <td>placeholder</td>
-        <td>irrelevant</td>
-        <td>visual</td>
-        <td>layout</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>data</td>
-        <td>rich</td>
-        <td>dashboard</td>
-        <td>tabular</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>information</td>
-        <td>placeholder</td>
-        <td>illustrative</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,004</td>
-        <td>text</td>
-        <td>random</td>
-        <td>layout</td>
-        <td>dashboard</td>
-      </tr>
-      <tr>
-        <td>1,005</td>
-        <td>dashboard</td>
-        <td>irrelevant</td>
-        <td>text</td>
-        <td>placeholder</td>
-      </tr>
-      <tr>
-        <td>1,006</td>
-        <td>dashboard</td>
-        <td>illustrative</td>
-        <td>rich</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,007</td>
-        <td>placeholder</td>
-        <td>tabular</td>
-        <td>information</td>
-        <td>irrelevant</td>
-      </tr>
-      <tr>
-        <td>1,008</td>
-        <td>random</td>
-        <td>data</td>
-        <td>placeholder</td>
-        <td>text</td>
-      </tr>
-      <tr>
-        <td>1,009</td>
-        <td>placeholder</td>
-        <td>irrelevant</td>
-        <td>visual</td>
-        <td>layout</td>
-      </tr>
-      <tr>
-        <td>1,010</td>
-        <td>data</td>
-        <td>rich</td>
-        <td>dashboard</td>
-        <td>tabular</td>
-      </tr>
-      <tr>
-        <td>1,011</td>
-        <td>information</td>
-        <td>placeholder</td>
-        <td>illustrative</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,012</td>
-        <td>text</td>
-        <td>placeholder</td>
-        <td>layout</td>
-        <td>dashboard</td>
-      </tr>
-      <tr>
-        <td>1,013</td>
-        <td>dashboard</td>
-        <td>irrelevant</td>
-        <td>text</td>
-        <td>visual</td>
-      </tr>
-      <tr>
-        <td>1,014</td>
-        <td>dashboard</td>
-        <td>illustrative</td>
-        <td>rich</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,015</td>
-        <td>random</td>
-        <td>tabular</td>
-        <td>information</td>
-        <td>text</td>
-      </tr>
+      @endforeach
+
     </tbody>
   </table>
 </div>
