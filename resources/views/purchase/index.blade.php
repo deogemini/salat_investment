@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Products Categories</h4>
+        <h4 class="card-title mb-0 text-center">Management Purchases</h4>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
             <div class="col-sm-auto text-right">
                 <div>
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
-                            <i class="ri-add-line align-bottom me-1"></i> Add Product Category
+                            <i class="ri-add-line align-bottom me-1"></i> Record Purchases
                         </button>
 
                 </div>
@@ -24,17 +24,23 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Category Name</th>
-                  <th scope="col">Description</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Product Cost</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total Cost</th>
+                  <th scope="col">Time in</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($categories as $category)
+                @foreach ($purchases as $purchase)
 
                 <tr>
-                    <td>{{ $category->id}}</td>
-                    <td>{{ $category->category_name}}</td>
-                    <td>{{ $category->description}}</td>
+                    <td>{{ $purchase->id}}</td>
+                    <td>{{$purchase->productInventory->product_name}}</td>
+                    <td>{{ $purchase->product_cost}}</td>
+                    <td>{{ $purchase->quantity}}</td>
+                    <td>{{ $purchase->total_cost}}</td>
+                    <td>{{ $purchase->created_at}}</td>
                   </tr>
                   @endforeach
               </tbody>
@@ -54,21 +60,31 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product Purchases </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
                 <div class="card-body form-steps">
-                    <form id="registration_form" action="{{ route('categories.create') }}" method="post">
+                    <form id="registration_form" action="{{ route('purchase.create') }}" method="post">
                         @csrf
                         <div>
+
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Category Name <span id="required-field">*</span></label>
-                                <input type="text" class="form-control" name="category_name" placeholder="Enter Category Name">
+                                <label class="form-label" for="hospital">Product Inventories <span id="required-field">*</span></label>
+                                <select name="product_inventory_id" class="form-select">
+                                    <option value="" selected>Please Select Product</option>
+                                    @foreach ($products as $item)
+                                        <option value="{{ $item->id }}">{{ $item->product_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Description</label>
-                                <input type="text" class="form-control" name="description" placeholder="Enter Description">
+                                <label class="form-label" for="category_name">Product Cost <span id="required-field">*</span></label>
+                                <input type="number" class="form-control" name="product_cost" placeholder="Enter Product Purchased Price">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Quantity</label>
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity of products">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">

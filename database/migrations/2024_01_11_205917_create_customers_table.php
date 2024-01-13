@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('supplier_name');
-            $table->string('supplier_location');
+            $table->string('customer_name');
+            $table->string('customer_location');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }

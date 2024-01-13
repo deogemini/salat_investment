@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customers extends Model
+class Supplier extends Model
 {
     use HasFactory;
-    protected $table = "customers";
-    protected $fillable = ['customer_name', 'customer_location', 'phone_number'];
+
+    protected $table = "product_suppliers";
+    protected $fillable = ['supplier_name', 'supplier_location', 'supplier_phone_number'];
     protected $guarded = ['id'];
     public $timestamps = true;
 }
-

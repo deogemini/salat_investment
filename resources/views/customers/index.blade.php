@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Products Categories</h4>
+        <h4 class="card-title mb-0 text-center">Customers Management</h4>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
             <div class="col-sm-auto text-right">
                 <div>
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
-                            <i class="ri-add-line align-bottom me-1"></i> Add Product Category
+                            <i class="ri-add-line align-bottom me-1"></i> Register New Customer
                         </button>
 
                 </div>
@@ -24,17 +24,19 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Category Name</th>
-                  <th scope="col">Description</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Contacts</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($categories as $category)
+                @foreach ($customers as $customer)
 
                 <tr>
-                    <td>{{ $category->id}}</td>
-                    <td>{{ $category->category_name}}</td>
-                    <td>{{ $category->description}}</td>
+                    <td>{{ $customer->id}}</td>
+                    <td>{{ $customer->customer_name}}</td>
+                    <td>{{ $customer->customer_location}}</td>
+                    <td>{{ $customer->phone_number}}</td>
                   </tr>
                   @endforeach
               </tbody>
@@ -54,21 +56,25 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Register New Customer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
                 <div class="card-body form-steps">
-                    <form id="registration_form" action="{{ route('categories.create') }}" method="post">
+                    <form id="registration_form" action="{{ route('customers.create') }}" method="post">
                         @csrf
                         <div>
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Category Name <span id="required-field">*</span></label>
-                                <input type="text" class="form-control" name="category_name" placeholder="Enter Category Name">
+                                <label class="form-label" for="customer_name">Customer Full Name <span id="required-field">*</span></label>
+                                <input type="text" class="form-control" name="customer_name" placeholder="Enter Category Name">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Description</label>
-                                <input type="text" class="form-control" name="description" placeholder="Enter Description">
+                                <label class="form-label" for="description">Location</label>
+                                <input type="text" class="form-control" name="customer_location" placeholder="Enter Description">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Contacts</label>
+                                <input type="text" class="form-control" name="phone_number" placeholder="Enter Description">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">

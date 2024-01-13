@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('product_purchases', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->string('price_per_item');
-            $table->string('item_amounts');
-            $table->string('price_total');
+            $table->unsignedBigInteger('product_inventory_id');
+            $table->double('product_cost');
+            $table->double('quantity');
+            $table->double('total_cost');
             $table->timestamps();
+
+
+            $table->foreign('product_inventory_id')->references('id')->on('inventory_products');
+
         });
+
+
     }
 
     /**

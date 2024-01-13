@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Management Sales</h4>
+        <h4 class="card-title mb-0 text-center">Suppliers Management</h4>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
             <div class="col-sm-auto text-right">
                 <div>
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
-                            <i class="ri-add-line align-bottom me-1"></i> Record Sales
+                            <i class="ri-add-line align-bottom me-1"></i> Add Product Suppliers
                         </button>
 
                 </div>
@@ -24,23 +24,19 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Product Cost</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total Cost</th>
-                  <th scope="col">Time in</th>
+                  <th scope="col">Supplier Name</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Contacts</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($products_sales as $product_sales)
+                @foreach ($suppliers as $supplier)
 
                 <tr>
-                    <td>{{ $product_sales->id}}</td>
-                    <td>{{$product_sales->productInventory->product_name}}</td>
-                    <td>{{ $product_sales->product_cost}}</td>
-                    <td>{{ $product_sales->quantity}}</td>
-                    <td>{{ $product_sales->total_cost}}</td>
-                    <td>{{ $product_sales->created_at}}</td>
+                    <td>{{ $supplier->id}}</td>
+                    <td>{{ $supplier->supplier_name}}</td>
+                    <td>{{ $supplier->supplier_location}}</td>
+                    <td>{{ $supplier->supplier_phone_number}}</td>
                   </tr>
                   @endforeach
               </tbody>
@@ -60,31 +56,25 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Shop Sales </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Register New Customer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
                 <div class="card-body form-steps">
-                    <form id="registration_form" action="{{ route('sales.create') }}" method="post">
+                    <form id="registration_form" action="{{ route('suppliers.create') }}" method="post">
                         @csrf
                         <div>
-
                             <div class="mb-3">
-                                <label class="form-label" for="hospital">Product Inventories <span id="required-field">*</span></label>
-                                <select name="product_inventory_id" class="form-select">
-                                    <option value="" selected>Please Select Product</option>
-                                    @foreach ($products as $item)
-                                        <option value="{{ $item->id }}">{{ $item->product_name }}</option>
-                                    @endforeach
-                                </select>
+                                <label class="form-label" for="category_name">Customer Full Name <span id="required-field">*</span></label>
+                                <input type="text" class="form-control" name="supplier_name" placeholder="Enter Category Name">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Product Cost <span id="required-field">*</span></label>
-                                <input type="number" class="form-control" name="product_cost" placeholder="Enter Product Purchased Price">
+                                <label class="form-label" for="description">Location</label>
+                                <input type="text" class="form-control" name="supplier_location" placeholder="Enter Description">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Quantity</label>
-                                <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity of products">
+                                <label class="form-label" for="description">Contacts</label>
+                                <input type="text" class="form-control" name="supplier_phone_number" placeholder="Enter Description">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">
