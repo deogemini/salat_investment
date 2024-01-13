@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\profitLossReportExport;
 use App\Exports\SalesReportExport;
 use App\Models\InventoryProduct;
 use App\Models\ProductPurchase;
@@ -55,13 +56,46 @@ class ReportsController extends Controller
 
             return Excel::download(new SalesReportExport($data, $headings, $title), 'Sales Report.xlsx');
         }
+        public function profitLossReportExport()
+        {
+            $data = InventoryProduct::all()->map(function ($inventoryProduct) {
+                return [
+                    '#' => $inventoryProduct->id,
+                    'Product Name' => $inventoryProduct->product_name,
+                    'Total Cost Purchase' => $inventoryProduct->purchasedProducts->sum('total_cost'),
+                    'Total Sales' => $inventoryProduct->productSales->sum('total_cost'),
+                    'Profit/Loss' => ($inventoryProduct->productSales->sum('total_cost')) - ($inventoryProduct->purchasedProducts->sum('total_cost')),
+                ];
+            });
+
+            $headings = [
+                '#',
+                'Product Name',
+                'Total Cost Purchase',
+                'Total Sales',
+                'Profit/Loss',
+            ];
+
+            $title = 'Salat Investment';
+
+
+            return Excel::download(new ProfitLossReportExport($data, $headings, $title), 'Profit and Loss Report.xlsx');
+        }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function profitLossReport()
     {
-        //
+
+        $productSales = ProductSales::all();
+        $total_sales = ProductSales::sum('total_cost');
+        $total_purchases = ProductPurchase::sum('total_cost');
+        $total_profit = $total_sales - $total_purchases;
+
+        $inventoryProducts = InventoryProduct::with('productSales')->get();
+
+        return view('reports.profitloss',  compact('inventoryProducts','productSales', 'total_profit', 'total_sales'));
     }
 
     /**

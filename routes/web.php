@@ -30,8 +30,10 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard/index', [DashboardController::class,'index'])->name('dashboard.index');
-Route::get('/sales_report/index', [ReportsController::class,'index'])->name('sales_report.index');
+Route::get('/sales_report', [ReportsController::class,'index'])->name('sales_report');
+Route::get('/profit_loss_report', [ReportsController::class,'profitLossReport'])->name('profit_loss_report');
 Route::get('/export/sales/report', [ReportsController::class,'salesReport'])->name('export.sales.report');
+Route::get('/export/profitloss/report', [ReportsController::class,'profitLossReportExport'])->name('export.profitloss.report');
 
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 

@@ -60,13 +60,13 @@
       </h6>
       <ul class="nav flex-column mb-2">
         <li class="nav-item {{ Request::is('sales_report*') ? 'active' : '' }}">
-          <a class="nav-link" href="{{ route('sales_report.index')}}">
+          <a class="nav-link" href="{{ route('sales_report')}}">
             <span data-feather="file-text"></span>
              Sales Report
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{ route ('profit_loss_report')}}">
             <span data-feather="file-text"></span>
              Profit Report
           </a>
