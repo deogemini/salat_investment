@@ -26,10 +26,35 @@ class ReportsController extends Controller
         return view('reports.sales',  compact('inventoryProducts','productSales', 'total_profit', 'total_sales'));
     }
 
-    public function salesReport(){
+        public function salesReport()
+        {
+            $data = InventoryProduct::all()->map(function ($inventoryProduct) {
+                return [
+                    '#' => $inventoryProduct->id,
+                    'Product Name' => $inventoryProduct->product_name,
+                    'Initial Stock (items)' => $inventoryProduct->quantity_in,
+                    'Total Cost Purchase' => $inventoryProduct->purchasedProducts->sum('total_cost'),
+                    'Sold Quantity (items)' => $inventoryProduct->productSales->sum('quantity'),
+                    'Total Sales' => $inventoryProduct->productSales->sum('total_cost'),
+                    'Stock Remained' => $inventoryProduct->quantity_now,
+                ];
+            });
 
-            return Excel::download(new SalesReportExport, 'sales_report.xlsx');
-    }
+            $headings = [
+                '#',
+                'Product Name',
+                'Initial Stock (items)',
+                'Total Cost Purchase',
+                'Sold Quantity (items)',
+                'Total Sales',
+                'Stock Remained',
+            ];
+
+            $title = 'Salat Investment';
+
+
+            return Excel::download(new SalesReportExport($data, $headings, $title), 'Sales Report.xlsx');
+        }
 
     /**
      * Show the form for creating a new resource.

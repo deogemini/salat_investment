@@ -34,11 +34,10 @@
         <th scope="col">#</th>
         <th scope="col">Product Name</th>
         <th scope="col">Initial Stock (items)</th>
-        <th scope="col" >Current Stock (items)</th>
+        <th scope="col">Total Cost Purchase </th>
         <th scope="col" >Sold Quantity (items)</th>
-        <th scope="col">Total Sold Cost</th>
-        <th scope="col">Total Remaining Cost</th>
-        <th scope="col">Total Initial Cost</th>
+        <th scope="col">Total Sales</th>
+        <th scope="col" >Current Stock (items)</th>
       </tr>
     </thead>
     <tbody>
@@ -47,11 +46,10 @@
         <td>{{ $inventoryProduct->id }}</td>
         <td>{{ $inventoryProduct->product_name }}</td>
         <td>{{ $inventoryProduct->quantity_in }}</td>
-        <td>{{ $inventoryProduct->quantity_now }}</td>
+        <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
         <td>{{ $inventoryProduct->productSales->sum('quantity') }}</td>
         <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
-        <td>{{ ($inventoryProduct->quantity_now - $inventoryProduct->productSales->sum('quantity')) * $inventoryProduct->retail_price }}</td>
-        <td>{{ $inventoryProduct->quantity_in * $inventoryProduct->retail_price }}</td>
+        <td>{{ $inventoryProduct->quantity_now }}</td>
       </tr>
       @endforeach
 
