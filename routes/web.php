@@ -31,6 +31,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard/index', [DashboardController::class,'index'])->name('dashboard.index');
 Route::get('/sales_report/index', [ReportsController::class,'index'])->name('sales_report.index');
+Route::get('/export/sales/report', [ReportsController::class,'salesReport'])->name('export.sales.report');
 
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 

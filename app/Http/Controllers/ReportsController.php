@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SalesReportExport;
 use App\Models\InventoryProduct;
 use App\Models\ProductPurchase;
 use App\Models\ProductSales;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportsController extends Controller
 {
@@ -22,6 +24,11 @@ class ReportsController extends Controller
         $inventoryProducts = InventoryProduct::with('productSales')->get();
 
         return view('reports.sales',  compact('inventoryProducts','productSales', 'total_profit', 'total_sales'));
+    }
+
+    public function salesReport(){
+
+            return Excel::download(new SalesReportExport, 'sales_report.xlsx');
     }
 
     /**
