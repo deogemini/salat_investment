@@ -41,7 +41,6 @@ class InventoryController extends Controller
             'product_category_id' => 'required|string|max:255',
             'retail_price' => 'required|string|max:255',
             'whole_sale_price' => 'required|string|max:255',
-            'quantity' => 'required|string|max:255',
         ]);
 
 

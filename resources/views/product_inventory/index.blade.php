@@ -29,7 +29,8 @@
                   <th scope="col">Product Category</th>
                   <th scope="col">Retails</th>
                   <th scope="col">Whole Sale Price</th>
-                  <th scope="col">Quantity In</th>
+                  <th scope="col">Initial Stock Quantity</th>
+                  <th scope="col">Remaining Quantity</th>
                   <th scope="col">Time In</th>
                 </tr>
               </thead>
@@ -43,7 +44,8 @@
                     <td>{{$inventory->productCategory->category_name}}</td>
                     <td>{{$inventory->retail_price}}</td>
                     <td>{{$inventory->whole_sale_price}}</td>
-                    <td>{{$inventory->quantity}}</td>
+                    <td>{{$inventory->quantity_in}}</td>
+                    <td>{{$inventory->quantity_now}}</td>
                     <td>{{$inventory->created_at}}</td>
                   </tr>
                   @endforeach
@@ -64,7 +66,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product in Stock</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
@@ -87,10 +89,6 @@
                             <div class="mb-3">
                                 <label class="form-label" for="description">Wholesale price</label>
                                 <input type="number" class="form-control" name="whole_sale_price" placeholder="set whole sale price">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="description">Quantity In</label>
-                                <input type="number" class="form-control" name="quantity" placeholder="Enter exacty quantity">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="hospital">Product Categories <span id="required-field">*</span></label>
