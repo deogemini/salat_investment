@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductSales;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,8 +12,28 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('main');
+
+        $showchart = $this->showChart();
+        return $showchart;
     }
+public function showChart()
+{
+    // Fetch sales data from the database
+    $salesData = ProductSales::select('created_at', 'total_cost')->get();
+
+    // Group sales data by day
+    $groupedSalesData = $salesData->groupBy(function($date) {
+        return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
+    });
+
+    // Calculate total sales for each day
+    $dailySales = $groupedSalesData->map(function ($group) {
+        return $group->sum('total_cost');
+    });
+
+    return view('main', ['dailySales' => $dailySales]);
+}
+
 
     /**
      * Show the form for creating a new resource.
