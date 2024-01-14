@@ -6,7 +6,6 @@
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.84.0">
     <title>Salat Invenstment</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
 
 
@@ -55,19 +54,5 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/dashboard.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-
-
-    <script>
-        $(document).ready(function(){
-          $(".nav-link").on("click", function(){
-            // Remove active class from all nav-links
-            $(".nav-link").removeClass("active");
-
-            // Add active class to the clicked nav-link
-            $(this).addClass("active");
-          });
-        });
-      </script>
 </body>
 </html>

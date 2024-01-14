@@ -1,20 +1,20 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
-        <li class="nav-item {{ request()->is(route('dashboard.index') . '*') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->is('dashboard.index') ? 'active' : '' }}">
             <a class="nav-link" aria-current="page" href="{{ route('dashboard.index') }}">
                 <span data-feather="home"></span>
                 Dashboard
             </a>
         </li>
-        <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('categories.index') }}">
+        <li class="nav-item {{ request()->fullUrlIs('categories/index*') ? 'active' : '' }}">
+            <a class="nav-link " href="{{ route('categories.index') }}">
                 <span data-feather="shopping-cart"></span>
                 Products Category
             </a>
         </li>
 
-        <li class="nav-item {{ Request::is('inventory*') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('inventory/index') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('inventory.index')}}">
               <span data-feather="bar-chart-2"></span>
               Inventory Management
@@ -68,19 +68,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route ('profit_loss_report')}}">
             <span data-feather="file-text"></span>
-             Profit Report
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Loss Report
-                  </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Overall Report
+             Profit/Loss Report
           </a>
         </li>
       </ul>
