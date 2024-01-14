@@ -41,19 +41,45 @@
       </tr>
     </thead>
     <tbody>
-        @foreach ($inventoryProducts as $inventoryProduct)
-      <tr>
-        <td>{{ $inventoryProduct->id }}</td>
-        <td>{{ $inventoryProduct->product_name }}</td>
-        <td>{{ $inventoryProduct->quantity_in }}</td>
-        <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
-        <td>{{ $inventoryProduct->productSales->sum('quantity') }}</td>
-        <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
-        <td>{{ $inventoryProduct->quantity_now }}</td>
-      </tr>
-      @endforeach
+        @php
+            $grandTotalPurchased = 0;
+            $grandTotalSoldQuantity = 0;
+            $grandTotalSoldCost = 0;
+            $grandTotalQuantityIn = 0;
+            $grandTotalQuantityNow = 0;
+        @endphp
 
+        @foreach ($inventoryProducts as $inventoryProduct)
+            <tr>
+                <td>{{ $inventoryProduct->id }}</td>
+                <td>{{ $inventoryProduct->product_name }}</td>
+                <td>{{ $inventoryProduct->quantity_in }}</td>
+                <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
+                <td>{{ $inventoryProduct->productSales->sum('quantity') }}</td>
+                <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
+                <td>{{ $inventoryProduct->quantity_now }}</td>
+            </tr>
+
+            @php
+                $grandTotalPurchased += $inventoryProduct->purchasedProducts->sum('total_cost');
+                $grandTotalSoldQuantity += $inventoryProduct->productSales->sum('quantity');
+                $grandTotalSoldCost += $inventoryProduct->productSales->sum('total_cost');
+                $grandTotalQuantityIn += $inventoryProduct->quantity_in;
+                $grandTotalQuantityNow += $inventoryProduct->quantity_now;
+            @endphp
+        @endforeach
+
+        <tr style="border-bottom:2px solid #F0C356;">
+            <th>Grand Total</th>
+            <td></td>
+            <td>{{ $grandTotalQuantityIn }}</td>
+            <td>{{ $grandTotalPurchased }}</td>
+            <td>{{ $grandTotalSoldQuantity }}</td>
+            <td>{{ $grandTotalSoldCost }}</td>
+            <td>{{$grandTotalQuantityNow}}</td>
+        </tr>
     </tbody>
+
   </table>
 </div>
 @endsection

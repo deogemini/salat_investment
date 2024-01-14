@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Management Purchases</h4>
+        <h4 class="card-title mb-0 text-center">Management of Purchases</h4>
     </div>
 
     <div class="card-body">
@@ -26,7 +26,7 @@
                   <th scope="col">#</th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Product Cost</th>
-                  <th scope="col">Other Product Cost</th>
+                  <th scope="col">Other Cost</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Cost</th>
                   <th scope="col">Time in</th>

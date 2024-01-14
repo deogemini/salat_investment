@@ -66,14 +66,23 @@ class SalesController extends Controller
             $inventoryRecord = InventoryProduct::find($productInventoryId);
 
             if ($inventoryRecord) {
-                // Adjust the quantity
+                if(!$inventoryRecord->quantity_now){
+                      // Adjust the quantity
                 $inventoryRecord->quantity_now =  $inventoryRecord->quantity_in - $quantity;
 
                 // Save the updated record
                 $inventoryRecord->save();
+
+                }else
+                {
+                      // Adjust the quantity
+                $inventoryRecord->quantity_now =  $inventoryRecord->quantity_now - $quantity;
+
+                // Save the updated record
+                $inventoryRecord->save();
+                }
             } else {
-                // Handle the case where the InventoryProduct record is not found
-                // (You might want to add appropriate error handling or log a message)
+
            }
 
 
