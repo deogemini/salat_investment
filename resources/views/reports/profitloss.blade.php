@@ -62,7 +62,7 @@
       </tr>
       @endforeach
 
-      <tr>
+      <tr style="border-bottom:2px solid #F0C356;">
         <th>Grand Total</th>
         <td></td>
         <td>{{ $grandTotalPurchased }}</td>

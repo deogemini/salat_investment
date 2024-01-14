@@ -46,6 +46,7 @@
             $grandTotalSoldQuantity = 0;
             $grandTotalSoldCost = 0;
             $grandTotalQuantityIn = 0;
+            $grandTotalQuantityNow = 0;
         @endphp
 
         @foreach ($inventoryProducts as $inventoryProduct)
@@ -64,17 +65,18 @@
                 $grandTotalSoldQuantity += $inventoryProduct->productSales->sum('quantity');
                 $grandTotalSoldCost += $inventoryProduct->productSales->sum('total_cost');
                 $grandTotalQuantityIn += $inventoryProduct->quantity_in;
+                $grandTotalQuantityNow += $inventoryProduct->quantity_now;
             @endphp
         @endforeach
 
-        <tr>
+        <tr style="border-bottom:2px solid #F0C356;">
             <th>Grand Total</th>
             <td></td>
             <td>{{ $grandTotalQuantityIn }}</td>
             <td>{{ $grandTotalPurchased }}</td>
             <td>{{ $grandTotalSoldQuantity }}</td>
             <td>{{ $grandTotalSoldCost }}</td>
-            <td></td>
+            <td>{{$grandTotalQuantityNow}}</td>
         </tr>
     </tbody>
 
