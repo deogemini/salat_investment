@@ -53,6 +53,17 @@
       </tr>
       @endforeach
 
+      <tr>
+        <th>Grand Total</th>
+        <td></td>
+        <td>"{{$total_quantity_in}}"</td>
+        <td>"{{$total_quantity_in}}"</td>
+        <td>"{{$total_quantity_in}}"</td>
+        <td>"{{$total_quantity_in}}"</td>
+        <td>"{{$total_quantity_in}}"</td>
+
+      </tr>
+
     </tbody>
   </table>
 </div>

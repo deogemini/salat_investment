@@ -49,6 +49,15 @@
       </tr>
       @endforeach
 
+      <tr>
+        <th>Grand Total</th>
+        <td></td>
+        <td>"{{0}}"</td>
+        <td>"{{0}}"</td>
+        <td>"{{0}}"</td>
+
+      </tr>
+
     </tbody>
   </table>
 </div>

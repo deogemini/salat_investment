@@ -28,7 +28,7 @@
                   <th scope="col">Product Description</th>
                   <th scope="col">Product Category</th>
                   <th scope="col">Retails</th>
-                  <th scope="col">Whole Sale Price</th>
+                  {{-- <th scope="col">Whole Sale Price</th> --}}
                   <th scope="col">Initial Stock Quantity</th>
                   <th scope="col">Remaining Quantity</th>
                   <th scope="col">Time In</th>
@@ -43,7 +43,7 @@
                     <td>{{$inventory->product_description}}</td>
                     <td>{{$inventory->productCategory->category_name}}</td>
                     <td>{{$inventory->retail_price}}</td>
-                    <td>{{$inventory->whole_sale_price}}</td>
+                    {{-- <td>{{$inventory->whole_sale_price}}</td> --}}
                     <td>{{$inventory->quantity_in}}</td>
                     <td>{{$inventory->quantity_now}}</td>
                     <td>{{$inventory->created_at}}</td>
@@ -86,10 +86,10 @@
                                 <label class="form-label" for="description">Retail Price</label>
                                 <input type="number" class="form-control" name="retail_price" placeholder="set retail price ">
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="form-label" for="description">Wholesale price</label>
                                 <input type="number" class="form-control" name="whole_sale_price" placeholder="set whole sale price">
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label" for="hospital">Product Categories <span id="required-field">*</span></label>
                                 <select name="product_category_id" class="form-select">

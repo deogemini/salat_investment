@@ -23,8 +23,9 @@ class ReportsController extends Controller
         $total_profit = $total_sales - $total_purchases;
 
         $inventoryProducts = InventoryProduct::with('productSales')->get();
+        $total_quantity_in ='0';
 
-        return view('reports.sales',  compact('inventoryProducts','productSales', 'total_profit', 'total_sales'));
+        return view('reports.sales',  compact('total_quantity_in','inventoryProducts','productSales', 'total_profit', 'total_sales'));
     }
 
         public function salesReport()

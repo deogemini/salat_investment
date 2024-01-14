@@ -32,9 +32,9 @@ class InventoryController extends Controller
         $prices = InventoryProduct::where('id', $product_id)->first();
 
         $prices_output = array();
-        $prices_output[] = "<option value='' selected>Please Choose Price </option>";
+        $prices_output[] = "<option value='' selected>Please Select Price </option>";
         $prices_output[] = '<option value="' . $prices->retail_price . '">' . "Retail Price: Tsh" . $prices->retail_price . '</option>';
-        $prices_output[] = '<option value="' . $prices->whole_sale_price . '">' . "Wholesale Price: Tsh " . $prices->whole_sale_price . '</option>';
+        // $prices_output[] = '<option value="' . $prices->whole_sale_price . '">' . "Wholesale Price: Tsh " . $prices->whole_sale_price . '</option>';
 
         return $prices_output;
     }
@@ -52,7 +52,7 @@ class InventoryController extends Controller
             'product_description' => 'required|string|max:255',
             'product_category_id' => 'required|string|max:255',
             'retail_price' => 'required|string|max:255',
-            'whole_sale_price' => 'required|string|max:255',
+            // 'whole_sale_price' => 'required|string|max:255',
         ]);
 
 

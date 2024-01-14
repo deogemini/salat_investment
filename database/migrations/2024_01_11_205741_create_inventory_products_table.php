@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('product_description');
             $table->unsignedBigInteger('product_category_id'); // Foreign key column
             $table->decimal('retail_price', 10, 2);
-            $table->decimal('whole_sale_price', 10, 2);
+            $table->decimal('whole_sale_price', 10, 2)->nullable();
             $table->integer('quantity_in')->nullable();
             $table->integer('quantity_now')->nullable();
             $table->timestamps();
