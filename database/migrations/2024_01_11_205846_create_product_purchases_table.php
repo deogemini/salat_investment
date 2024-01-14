@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_inventory_id');
             $table->double('product_cost');
+            $table->double('other_product_cost')->nullable();
             $table->double('quantity');
             $table->double('total_cost');
             $table->timestamps();

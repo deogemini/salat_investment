@@ -26,6 +26,7 @@
                   <th scope="col">#</th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Product Cost</th>
+                  <th scope="col">Other Product Cost</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Cost</th>
                   <th scope="col">Time in</th>
@@ -38,6 +39,7 @@
                     <td>{{ $purchase->id}}</td>
                     <td>{{$purchase->productInventory->product_name}}</td>
                     <td>{{ $purchase->product_cost}}</td>
+                    <td>{{ $purchase->other_product_cost}}</td>
                     <td>{{ $purchase->quantity}}</td>
                     <td>{{ $purchase->total_cost}}</td>
                     <td>{{ $purchase->created_at}}</td>
@@ -81,6 +83,10 @@
                             <div class="mb-3">
                                 <label class="form-label" for="category_name">Product Cost <span id="required-field">*</span></label>
                                 <input type="number" class="form-control" name="product_cost" placeholder="Enter Product Purchased Price">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="category_name">Other Product Cost <span id="required-field">*</span></label>
+                                <input type="number" class="form-control" name="other_product_cost" placeholder="Enter Other Associated">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Quantity</label>

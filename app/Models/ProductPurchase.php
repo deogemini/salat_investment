@@ -10,7 +10,7 @@ class ProductPurchase extends Model
 {
     use HasFactory;
     protected $table = "product_purchases";
-    protected $fillable = ['product_inventory_id', 'product_cost', 'quantity', 'total_cost'];
+    protected $fillable = ['product_inventory_id', 'product_cost', 'other_product_cost', 'quantity', 'total_cost'];
     protected $guarded = ['id'];
     public $timestamps = true;
 

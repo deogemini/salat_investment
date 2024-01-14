@@ -71,18 +71,6 @@
              Profit/Loss Report
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Loss Report
-                  </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-            Overall Report
-          </a>
-        </li>
       </ul>
     </div>
   </nav>
