@@ -30,7 +30,10 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard/index', [DashboardController::class,'index'])->name('dashboard.index');
-Route::get('/sales_report/index', [ReportsController::class,'index'])->name('sales_report.index');
+Route::get('/sales_report', [ReportsController::class,'index'])->name('sales_report');
+Route::get('/profit_loss_report', [ReportsController::class,'profitLossReport'])->name('profit_loss_report');
+Route::get('/export/sales/report', [ReportsController::class,'salesReport'])->name('export.sales.report');
+Route::get('/export/profitloss/report', [ReportsController::class,'profitLossReportExport'])->name('export.profitloss.report');
 
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 
@@ -39,6 +42,7 @@ Route::post('/categories/store',[ProductCategoryController::class,'store'])->nam
 Route::get('/inventory/index', [InventoryController::class,'index'])->name('inventory.index');
 
 Route::post('/inventory/store',[InventoryController::class,'store'])->name('inventory.create');
+Route::get('/product/getPrices/{id}',[InventoryController::class,'getPrices']);
 
 Route::get('/purchase/index', [PurchasesController::class,'index'])->name('purchase.index');
 

@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h2 class="h2">Sales Report</h2>
+    <h2 class="h2">Profit and Loss Report</h2>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
         <div class="btn-group me-2">
-            <a href="{{ route('export.sales.report') }}" class="btn btn-sm btn-outline-secondary">Export</a>
+            <a href="{{ route('export.profitloss.report') }}" class="btn btn-sm btn-outline-secondary">Export</a>
         </div>
       </div>
       <div class="btn-group">
@@ -33,11 +33,9 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Product Name</th>
-        <th scope="col">Initial Stock (items)</th>
         <th scope="col">Total Cost Purchase </th>
-        <th scope="col" >Sold Quantity (items)</th>
         <th scope="col">Total Sales</th>
-        <th scope="col" >Current Stock (items)</th>
+        <th scope="col" >Profit/Loss</th>
       </tr>
     </thead>
     <tbody>
@@ -45,11 +43,9 @@
       <tr>
         <td>{{ $inventoryProduct->id }}</td>
         <td>{{ $inventoryProduct->product_name }}</td>
-        <td>{{ $inventoryProduct->quantity_in }}</td>
         <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
-        <td>{{ $inventoryProduct->productSales->sum('quantity') }}</td>
         <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
-        <td>{{ $inventoryProduct->quantity_now }}</td>
+        <td>{{ $inventoryProduct->productSales->sum('total_cost') - $inventoryProduct->purchasedProducts->sum('total_cost') }}</td>
       </tr>
       @endforeach
 

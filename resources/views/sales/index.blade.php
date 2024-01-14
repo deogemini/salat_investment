@@ -71,7 +71,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label" for="hospital">Product Inventories <span id="required-field">*</span></label>
-                                <select name="product_inventory_id" class="form-select">
+                                <select name="product_inventory_id"  id="product_inventory_id" class="form-select">
                                     <option value="" selected>Please Select Product</option>
                                     @foreach ($products as $item)
                                         <option value="{{ $item->id }}">{{ $item->product_name }}</option>
@@ -79,8 +79,10 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Product Cost <span id="required-field">*</span></label>
-                                <input type="number" class="form-control" name="product_cost" placeholder="Enter Product Purchased Price">
+                                <label class="form-label" for="hospital">Price Methods<span id="required-field">*</span></label>
+                                <select name="product_price" id="product_price" class="form-select">
+                                    <option value="" selected>Please Choose Price</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Quantity</label>
@@ -133,8 +135,33 @@
         </div>
     </div>
     </div>
-    <!-- container-fluid -->
 </div>
 
+
+
+
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#product_inventory_id').change(function(){
+            var product_id = $(this).val();  // Use $(this) instead of $('#product_inventory_id')
+            if(product_id !== ''){
+                $.ajax({
+                    url: "{{ url('/product/getPrices') }}" + '/' + product_id,
+                    method: 'GET',  // Use 'method' instead of '_method'
+                    dataType: 'json',
+                    success: function(data){
+                        $('#product_price').html(data);  // Assuming 'data' contains the HTML content
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);  // Log any errors to the console
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 

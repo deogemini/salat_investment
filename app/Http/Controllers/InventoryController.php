@@ -28,6 +28,18 @@ class InventoryController extends Controller
         //
     }
 
+    public function getPrices($product_id){
+        $prices = InventoryProduct::where('id', $product_id)->first();
+
+        $prices_output = array();
+        $prices_output[] = "<option value='' selected>Please Choose Price </option>";
+        $prices_output[] = '<option value="' . $prices->retail_price . '">' . "Retail Price: Tsh" . $prices->retail_price . '</option>';
+        $prices_output[] = '<option value="' . $prices->whole_sale_price . '">' . "Wholesale Price: Tsh " . $prices->whole_sale_price . '</option>';
+
+        return $prices_output;
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
