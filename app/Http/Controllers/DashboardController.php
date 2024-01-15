@@ -13,8 +13,8 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $showchart = $this->showChart();
-        return $showchart;
+
+        return view('main');
     }
 public function showChart()
 {
@@ -31,7 +31,10 @@ public function showChart()
         return $group->sum('total_cost');
     });
 
-    return view('main', ['dailySales' => $dailySales]);
+    return response()->json([
+        'labels' => $dailySales->keys(),
+        'data' => $dailySales->values(),
+    ]);
 }
 
 
