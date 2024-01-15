@@ -16,7 +16,11 @@ class SalesController extends Controller
     {
         $products_sales = ProductSales::orderby('created_at', 'ASC')->with('productInventory')->get();
         $categories = ProductCategory::orderby('created_at', 'ASC')->get();
-        $products = InventoryProduct::orderby('created_at', 'ASC')->get();
+        $products = InventoryProduct::whereNull('quantity_now')
+        ->orWhere('quantity_now', '!=', 0)
+        ->orderBy('created_at', 'ASC')
+        ->get();
+
 
 
 
