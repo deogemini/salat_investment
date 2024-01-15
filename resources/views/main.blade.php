@@ -6,18 +6,44 @@
 
   <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 
   <script>
+
+     // Function to update the chart with new data
+     function updateChart(labels, data) {
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = data;
+        chart.update();
+    }
+
+     // Function to fetch data from the server
+     function fetchData() {
+        $.ajax({
+            url: "{{ url('/showChart')}}", // Update with the actual route
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response.data);
+                // Assuming the response contains 'labels' and 'data'
+                updateChart(response.labels, response.data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
     var ctx = document.getElementById('myChart').getContext('2d');
 
     var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: {!! json_encode($dailySales->keys()) !!},
+            labels: [],
             datasets: [{
                 label: 'Daily Sales',
-                data: {!! json_encode($dailySales->values()) !!},
+                data: [],
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', // Set bar color
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
@@ -72,6 +98,12 @@
        }
 
     });
+
+      // Fetch data on page load
+      fetchData();
+
+// Optionally, you can set up a timer to refresh the data periodically
+setInterval(fetchData, 60000);
 
   </script>
   @endsection
