@@ -1,49 +1,49 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
-        <li class="nav-item {{ request()->is('dashboard.index') ? 'active' : '' }}">
-            <a class="nav-link" aria-current="page" href="{{ route('dashboard.index') }}">
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('dashboard.index') ? 'active':null}}" aria-current="page" href="{{ route('dashboard.index') }}">
                 <span data-feather="home"></span>
                 Dashboard
             </a>
         </li>
-        <li class="nav-item {{ request()->fullUrlIs('categories/index*') ? 'active' : '' }}">
-            <a class="nav-link " href="{{ route('categories.index') }}">
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }} " href="{{ route('categories.index') }}">
                 <span data-feather="shopping-cart"></span>
                 Products Category
             </a>
         </li>
 
-        <li class="nav-item {{ Request::is('inventory/index') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('inventory.index')}}">
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('inventory.index') ? 'active' : '' }}" href="{{ route('inventory.index')}}">
               <span data-feather="bar-chart-2"></span>
               Inventory Management
             </a>
           </li>
 
-        <li class="nav-item {{ Request::is('purchase*') ? 'active' : '' }}">
-          <a class="nav-link" href="{{ route('purchase.index')}}">
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('purchase.index') ? 'active' : '' }}" href="{{ route('purchase.index')}}">
             <span data-feather="file"></span>
             Purchases
           </a>
         </li>
 
-        <li class="nav-item {{ Request::is('sales*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('sales.index')}}">
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('sales.index') ? 'active' : '' }}" href="{{ route('sales.index')}}">
               <span data-feather="layers"></span>
               Sales
             </a>
           </li>
 
-        <li class="nav-item {{ Request::is('customers*') ? 'active' : '' }}">
-          <a class="nav-link"  href="{{ route('customers.index')}}">
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('customers.index') ? 'active' : '' }}"  href="{{ route('customers.index')}}">
             <span data-feather="users"></span>
             Customers
           </a>
         </li>
 
-        <li class="nav-item {{ Request::is('suppliers*') ? 'active' : '' }}">
-          <a class="nav-link"  href="{{ route('suppliers.index')}}">
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('suppliers.index') ? 'active' : '' }}"  href="{{ route('suppliers.index')}}">
             <span data-feather="users"></span>
             Suppliers
           </a>
@@ -59,14 +59,14 @@
         </a>
       </h6>
       <ul class="nav flex-column mb-2">
-        <li class="nav-item {{ Request::is('sales_report*') ? 'active' : '' }}">
-          <a class="nav-link" href="{{ route('sales_report')}}">
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('sales_report') ? 'active' : '' }}" href="{{ route('sales_report')}}">
             <span data-feather="file-text"></span>
              Sales Report
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route ('profit_loss_report')}}">
+          <a class="nav-link {{ request()->routeIs('profit_loss_report') ? 'active' : '' }}" href="{{ route ('profit_loss_report')}}">
             <span data-feather="file-text"></span>
              Profit/Loss Report
           </a>
