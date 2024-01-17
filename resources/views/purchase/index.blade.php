@@ -33,6 +33,12 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                    $grandTotalPurchasedCost = 0;
+                    $grandTotalPurchasedOtherCost = 0;
+                    $grandTotalPurchasedQuantity = 0;
+                    $grandTotalPurchasedTotal =0;
+                @endphp
                 @foreach ($purchases as $purchase)
 
                 <tr>
@@ -43,8 +49,25 @@
                     <td>{{ $purchase->quantity}}</td>
                     <td>{{ $purchase->total_cost}}</td>
                     <td>{{ $purchase->created_at}}</td>
+                    @php
+                    $grandTotalPurchasedCost += $purchase->product_cost;
+                    $grandTotalPurchasedOtherCost += $purchase->other_product_cost;
+                    $grandTotalPurchasedQuantity += $purchase->quantity;
+                    $grandTotalPurchasedTotal += $purchase->total_cost;
+
+                    @endphp
                   </tr>
                   @endforeach
+                  <tr style="border-bottom:2px solid #F0C356;">
+                    <th>Grand Total</th>
+                    <td></td>
+                    <td> {{$grandTotalPurchasedCost}}</td>
+                    <td> {{$grandTotalPurchasedOtherCost}}</td>
+                    <td> {{$grandTotalPurchasedQuantity}}</td>
+                    <td> {{$grandTotalPurchasedTotal}}</td>
+                    <td></td>
+
+                  </tr>
               </tbody>
 
 
