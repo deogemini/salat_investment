@@ -71,6 +71,12 @@
              Profit/Loss Report
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('deposition.index') ? 'active' : '' }}" href="{{ route ('deposition.index')}}">
+            <span data-feather="file-text"></span>
+             Sales Deposition
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
