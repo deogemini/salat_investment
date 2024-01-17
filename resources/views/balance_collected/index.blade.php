@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Management of Purchases</h4>
+        <h4 class="card-title mb-0 text-center">Manage Sales Deposition</h4>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
             <div class="col-sm-auto text-right">
                 <div>
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
-                            <i class="ri-add-line align-bottom me-1"></i> Record Purchases
+                            <i class="ri-add-line align-bottom me-1"></i> Add Sales Deposition
                         </button>
 
                 </div>
@@ -24,50 +24,25 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Product Cost</th>
-                  <th scope="col">Other Cost</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total Cost</th>
-                  <th scope="col">Time in</th>
+                  <th scope="col">Depositor Name</th>
+                  <th scope="col">Bank Name</th>
+                  <th scope="col">Account Number</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Day in Time</th>
                 </tr>
               </thead>
               <tbody>
-                @php
-                    $grandTotalPurchasedCost = 0;
-                    $grandTotalPurchasedOtherCost = 0;
-                    $grandTotalPurchasedQuantity = 0;
-                    $grandTotalPurchasedTotal =0;
-                @endphp
-                @foreach ($purchases as $purchase)
+                @foreach ($depositions as $deposition)
 
                 <tr>
-                    <td>{{ $purchase->id}}</td>
-                    <td>{{$purchase->productInventory->product_name}}</td>
-                    <td>{{ $purchase->product_cost}}</td>
-                    <td>{{ $purchase->other_product_cost}}</td>
-                    <td>{{ $purchase->quantity}}</td>
-                    <td>{{ $purchase->total_cost}}</td>
-                    <td>{{ $purchase->created_at}}</td>
-                    @php
-                    $grandTotalPurchasedCost += $purchase->product_cost;
-                    $grandTotalPurchasedOtherCost += $purchase->other_product_cost;
-                    $grandTotalPurchasedQuantity += $purchase->quantity;
-                    $grandTotalPurchasedTotal += $purchase->total_cost;
-
-                    @endphp
+                    <td>{{ $deposition->id}}</td>
+                    <td>{{ $deposition->depositer_name}}</td>
+                    <td>{{ $deposition->bank_name}}</td>
+                    <td>{{ $deposition->account_number}}</td>
+                    <td>{{ $deposition->amount}}</td>
+                    <td>{{ $deposition->created_at}}</td>
                   </tr>
                   @endforeach
-                  <tr style="border-bottom:2px solid #F0C356;">
-                    <th>Grand Total</th>
-                    <td></td>
-                    <td> {{$grandTotalPurchasedCost}}</td>
-                    <td> {{$grandTotalPurchasedOtherCost}}</td>
-                    <td> {{$grandTotalPurchasedQuantity}}</td>
-                    <td> {{$grandTotalPurchasedTotal}}</td>
-                    <td></td>
-
-                  </tr>
               </tbody>
 
 
@@ -85,35 +60,29 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product Purchases </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Sales Deposition</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
                 <div class="card-body form-steps">
-                    <form id="registration_form" action="{{ route('purchase.create') }}" method="post">
+                    <form id="registration_form" action="{{ route('deposition.create') }}" method="post">
                         @csrf
                         <div>
-
                             <div class="mb-3">
-                                <label class="form-label" for="hospital">Product Inventories <span id="required-field">*</span></label>
-                                <select name="product_inventory_id" class="form-select">
-                                    <option value="" selected>Please Select Product</option>
-                                    @foreach ($products as $item)
-                                        <option value="{{ $item->id }}">{{ $item->product_name }}</option>
-                                    @endforeach
-                                </select>
+                                <label class="form-label" for="category_name">Depositor Name <span id="required-field">*</span></label>
+                                <input type="text" class="form-control" name="depositer_name" placeholder="Enter Category Name">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Product Cost <span id="required-field">*</span></label>
-                                <input type="number" class="form-control" name="product_cost" placeholder="Enter Product Purchased Price">
+                                <label class="form-label" for="description">Bank Name</label>
+                                <input type="text" class="form-control" name="bank_name" placeholder="Enter Description">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Other Product Cost <span id="required-field">*</span></label>
-                                <input type="number" class="form-control" name="other_product_cost" placeholder="Enter Other Associated">
+                                <label class="form-label" for="description">Account Number</label>
+                                <input type="text" class="form-control" name="account_number" placeholder="Enter Description">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Quantity</label>
-                                <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity of products">
+                                <label class="form-label" for="description">Amount</label>
+                                <input type="number" class="form-control" name="amount" placeholder="Enter Description">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">

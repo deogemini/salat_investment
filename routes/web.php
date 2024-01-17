@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepositionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\PurchasesController;
@@ -64,4 +65,7 @@ Route::post('/customers/store',[CustomerController::class,'store'])->name('custo
 Route::get('/suppliers/index', [SuppliersController::class,'index'])->name('suppliers.index');
 
 Route::post('/suppliers/store',[SuppliersController::class,'store'])->name('suppliers.create');
+
+Route::get('/deposition/index',[DepositionController::class,'index'])->name('deposition.index');
+Route::post('/deposition/store',[DepositionController::class,'store'])->name('deposition.create');
 
