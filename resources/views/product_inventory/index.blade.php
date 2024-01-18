@@ -29,8 +29,8 @@
                   <th scope="col">Product Category</th>
                   <th scope="col">Retails</th>
                   {{-- <th scope="col">Whole Sale Price</th> --}}
-                  <th scope="col">Initial Stock Quantity</th>
-                  <th scope="col">Remaining Quantity</th>
+                  <th scope="col">Stock Purchased Quantity</th>
+                  <th scope="col">Remaining Stock Quantity</th>
                   <th scope="col">Time In</th>
                 </tr>
               </thead>
