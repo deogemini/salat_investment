@@ -33,7 +33,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Product Name</th>
-        <th scope="col">Initial Stock (items)</th>
+        <th scope="col">Purchased Stock (items)</th>
         <th scope="col">Total Cost Purchase </th>
         <th scope="col" >Sold Quantity (items)</th>
         <th scope="col">Total Sales</th>
