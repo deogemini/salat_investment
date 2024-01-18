@@ -29,6 +29,7 @@
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Cost</th>
                   <th scope="col">Time in</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,6 +42,9 @@
                     <td>{{ $product_sales->quantity}}</td>
                     <td>{{ $product_sales->total_cost}}</td>
                     <td>{{ $product_sales->created_at}}</td>
+                    <td>
+                        {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
+                        <button class="btn btn-info btn-sm" title="Edit" id="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
                   </tr>
                   @endforeach
               </tbody>

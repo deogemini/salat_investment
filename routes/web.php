@@ -55,6 +55,7 @@ Route::post('/purchase/store',[PurchasesController::class,'store'])->name('purch
 Route::get('/sales/index', [SalesController::class,'index'])->name('sales.index');
 
 Route::post('/sales/store',[SalesController::class,'store'])->name('sales.create');
+Route::post('/sales/edit/{{$id}}',[SalesController::class,'edit'])->name('sales.edit');
 
 
 Route::get('/customers/index', [CustomerController::class,'index'])->name('customers.index');
