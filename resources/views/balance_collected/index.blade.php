@@ -28,7 +28,7 @@
                   <th scope="col">Bank Name</th>
                   <th scope="col">Account Number</th>
                   <th scope="col">Amount</th>
-                  <th scope="col">Day in Time</th>
+                  <th scope="col">Day & Time</th>
                 </tr>
               </thead>
               <tbody>
