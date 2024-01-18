@@ -57,7 +57,7 @@ class PurchasesController extends Controller
 
                 if ($inventoryRecord) {
                     // Adjust the quantity
-                    $inventoryRecord->quantity_in += $quantity;
+                    $inventoryRecord->quantity_in = $quantity + $inventoryRecord->quantity_now;
 
                     // Save the updated record
                     $inventoryRecord->save();
