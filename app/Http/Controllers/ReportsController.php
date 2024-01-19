@@ -57,6 +57,37 @@ class ReportsController extends Controller
 
             return Excel::download(new SalesReportExport($data, $headings, $title), 'Sales Report.xlsx');
         }
+
+        // Assuming you have a model for InventoryProduct and PurchasedProduct
+
+        public function ProfitPerItem(){
+            // Retrieve all inventory products
+            $inventoryProducts = InventoryProduct::all();
+            $purchasedProducts = ProductPurchase::all();
+
+            // Store the profit data for each product
+            $inventorySales = [];
+
+            foreach ($inventoryProducts as $inventoryProduct) {
+
+                dd($inventoryProduct->productSales->quantity);
+
+                $totalCost = $inventoryProduct->purchasedProducts->total_cost;
+                $profit = ($inventoryProduct->retail_price - $totalCost) * $inventoryProduct->productSales->quantity;
+
+                $inventorySales[] = [
+                    'product_name' => $inventoryProduct->product_name,
+                    'product_cost' => $totalCost,
+                    'product_sale_price' => $inventoryProduct->retail_cost, 
+                    'profit_per_product' => $profit,
+                ];
+            }
+
+
+            // Pass the $inventorySales data to a blade view
+            return view('reports.salesperproduct', ['inventorySales' => $inventorySales]);
+        }
+
         public function profitLossReportExport()
         {
             $data = InventoryProduct::all()->map(function ($inventoryProduct) {

@@ -77,6 +77,14 @@
              Sales Deposition
           </a>
         </li>
+{{-- 
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('reports.salesperproduct') ? 'active' : '' }}" href="{{ route ('reports.salesperproduct')}}">
+            <span data-feather="file-text"></span>
+            Profit Per Products
+          </a>
+        </li> --}}
+
       </ul>
     </div>
   </nav>

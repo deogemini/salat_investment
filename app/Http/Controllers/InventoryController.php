@@ -66,9 +66,17 @@ class InventoryController extends Controller
         $inventoryRecord->product_category_id = $productCategoryId;
         $inventoryRecord->retail_price = $retailPrice;
 
-        $referenceNumber = 1000;
-        $inventoryRecord->reference_number = $referenceNumber + 1;
+        
+        $lastReferenceNumber = InventoryProduct::max('reference_number');
+
+
+                // Set the initial reference number to 1002 if there are no previous entries
+        $referenceNumber = ($lastReferenceNumber !== null) ? $lastReferenceNumber + 1 : 1000;
+
+        $inventoryRecord->reference_number = $referenceNumber;
         $inventoryRecord->save();
+  
+
 
 
         // Redirect or return a response as needed

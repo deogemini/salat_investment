@@ -38,6 +38,7 @@ Route::get('/sales_report', [ReportsController::class,'index'])->name('sales_rep
 Route::get('/profit_loss_report', [ReportsController::class,'profitLossReport'])->name('profit_loss_report');
 Route::get('/export/sales/report', [ReportsController::class,'salesReport'])->name('export.sales.report');
 Route::get('/export/profitloss/report', [ReportsController::class,'profitLossReportExport'])->name('export.profitloss.report');
+Route::get('reports/salesperproduct', [ReportsController::class,'ProfitPerItem'])->name('reports.salesperproduct');
 
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 
