@@ -40,9 +40,11 @@
       </tr>
     </thead>
     <tbody>
+        @php $i = 1; @endphp
       @foreach($inventorySales as $sale)
       <tr>
-        <td></td>
+        <td>{{ $i++ }}</td>
+
         <td> {{ $sale['product_name'] }}</td>
         <td>{{ $sale['product_cost'] }}</td>
         <td>{{ $sale['product_sale_price'] }}</td>
