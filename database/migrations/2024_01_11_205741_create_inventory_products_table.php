@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('whole_sale_price', 10, 2)->nullable();
             $table->integer('quantity_in')->nullable();
             $table->integer('quantity_now')->nullable();
+            $table->integer('reference_number')->nullable();
             $table->timestamps();
 
             // Define the foreign key constraint

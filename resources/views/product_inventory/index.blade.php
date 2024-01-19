@@ -39,7 +39,7 @@
 
                 <tr>
                     <td>{{$inventory->id}}</td>
-                    <td>{{$inventory->product_name}}</td>
+                    <td>{{ $inventory->product_name .' ->'.' ' . $inventory->reference_number }}</td>
                     <td>{{$inventory->product_description}}</td>
                     <td>{{$inventory->productCategory->category_name}}</td>
                     <td>{{$inventory->retail_price}}</td>

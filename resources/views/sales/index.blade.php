@@ -37,7 +37,7 @@
 
                 <tr>
                     <td>{{ $product_sales->id}}</td>
-                    <td>{{$product_sales->productInventory->product_name}}</td>
+                    <td>{{$product_sales->productInventory->product_name }}</td>
                     <td>{{ $product_sales->product_cost}}</td>
                     <td>{{ $product_sales->quantity}}</td>
                     <td>{{ $product_sales->total_cost}}</td>
@@ -78,7 +78,7 @@
                                 <select name="product_inventory_id"  id="product_inventory_id" class="form-select">
                                     <option value="" selected>Please Select Product</option>
                                     @foreach ($products as $item)
-                                        <option value="{{ $item->id }}">{{ $item->product_name }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->product_name .' -> '.$item->reference_number }}</option>
                                     @endforeach
                                 </select>
                             </div>

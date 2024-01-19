@@ -13,7 +13,7 @@ class InventoryProduct extends Model
     use HasFactory;
 
     protected $table = "inventory_products";
-    protected $fillable = ['product_name', 'product_description', 'product_category_id', 'retail_price'];
+    protected $fillable = ['product_name', 'product_description', 'product_category_id', 'retail_price', 'reference_number'];
     protected $guarded = ['id'];
     public $timestamps = true;
 

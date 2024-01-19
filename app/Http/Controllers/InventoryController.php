@@ -55,10 +55,20 @@ class InventoryController extends Controller
             // 'whole_sale_price' => 'required|string|max:255',
         ]);
 
+        $productName =  $request->input('product_name');
+        $productDescription = $request->input('product_description');
+        $productCategoryId = $request->input('product_category_id');
+        $retailPrice = $request->input('retail_price' );
 
-        // Save category to the database or perform other actions
-        // For simplicity, let's assume you have a Category model and table
-        $inede = InventoryProduct::create($request->all());
+        $inventoryRecord = new InventoryProduct();
+        $inventoryRecord->product_name = $productName;
+        $inventoryRecord->product_description = $productDescription;
+        $inventoryRecord->product_category_id = $productCategoryId;
+        $inventoryRecord->retail_price = $retailPrice;
+
+        $referenceNumber = 1000;
+        $inventoryRecord->reference_number = $referenceNumber + 1;
+        $inventoryRecord->save();
 
 
         // Redirect or return a response as needed
