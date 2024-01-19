@@ -60,33 +60,39 @@ class ReportsController extends Controller
 
         // Assuming you have a model for InventoryProduct and PurchasedProduct
 
-        public function ProfitPerItem(){
-            // Retrieve all inventory products
-            $inventoryProducts = InventoryProduct::all();
-            $purchasedProducts = ProductPurchase::all();
-
-            // Store the profit data for each product
+        public function ProfitPerItem()
+        {
+            // Retrieve all inventory products with related data
+            $inventoryProducts = InventoryProduct::with('productSales', 'purchasedProducts')->get();
             $inventorySales = [];
 
             foreach ($inventoryProducts as $inventoryProduct) {
+                // Assuming you have multiple ProductSales for each InventoryProduct
+                foreach ($inventoryProduct->purchasedProducts as $purchasedProduct) {
+                    $totalCost = $purchasedProduct->product_cost + $purchasedProduct->other_product_cost;
 
-                dd($inventoryProduct->productSales->quantity);
+                foreach ($inventoryProduct->productSales as $productSale) {
 
-                $totalCost = $inventoryProduct->purchasedProducts->total_cost;
-                $profit = ($inventoryProduct->retail_price - $totalCost) * $inventoryProduct->productSales->quantity;
 
-                $inventorySales[] = [
-                    'product_name' => $inventoryProduct->product_name,
-                    'product_cost' => $totalCost,
-                    'product_sale_price' => $inventoryProduct->retail_cost, 
-                    'profit_per_product' => $profit,
-                ];
+
+                    $profit = ($inventoryProduct->retail_price - $totalCost) * $productSale->quantity;
+
+                    $inventorySales[] = [
+                        'product_name'         => $inventoryProduct->product_name,
+                        'product_cost'         => $totalCost,
+                        'product_sale_price'   => $inventoryProduct->retail_price,
+                        'product_quantity_sold'   => $productSale->quantity,
+                        'profit_per_product'   => $profit,
+                    ];
+                }
             }
 
+            }
 
             // Pass the $inventorySales data to a blade view
             return view('reports.salesperproduct', ['inventorySales' => $inventorySales]);
         }
+
 
         public function profitLossReportExport()
         {

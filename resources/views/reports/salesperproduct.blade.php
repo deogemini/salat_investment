@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h2 class="h2">Sales Report</h2>
+    <h2 class="h2">Profit for Each Sales</h2>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -33,11 +33,10 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Product Name</th>
-        <th scope="col">Purchased Stock (items)</th>
-        <th scope="col">Total Cost Purchase </th>
-        <th scope="col" >Sold Quantity (items)</th>
-        <th scope="col">Total Sales</th>
-        <th scope="col" >Current Stock (items)</th>
+        <th scope="col">Product Purchased Cost  </th>
+        <th scope="col" >Sales Price</th>
+        <th scope="col">Quantity Sold Out</th>
+        <th scope="col" >Profit Made</th>
       </tr>
     </thead>
     <tbody>
@@ -45,11 +44,14 @@
       <tr>
         <td></td>
         <td> {{ $sale['product_name'] }}</td>
-        <td>{{ $sale['total_sales'] }}</td>
+        <td>{{ $sale['product_cost'] }}</td>
+        <td>{{ $sale['product_sale_price'] }}</td>
+        <td>{{ $sale['product_quantity_sold'] }}</td>
+        <td>{{ $sale['profit_per_product'] }}</td>
       </tr>
-      
+
       @endforeach
-      
+
     </tbody>
 
   </table>
