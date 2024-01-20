@@ -40,7 +40,10 @@
       </tr>
     </thead>
     <tbody>
-        @php $i = 1; @endphp
+        @php $i = 1;
+        $grandTotalPurchasedTotal =0;
+        $grandTotalPurchaseditems =0;
+        @endphp
       @foreach($inventorySales as $sale)
       <tr>
         <td>{{ $i++ }}</td>
@@ -50,9 +53,24 @@
         <td>{{ $sale['product_sale_price'] }}</td>
         <td>{{ $sale['product_quantity_sold'] }}</td>
         <td>{{ $sale['profit_per_product'] }}</td>
+
+        @php
+
+        $grandTotalPurchasedTotal += $sale['profit_per_product'];
+        $grandTotalPurchaseditems += $sale['product_quantity_sold'];
+
+        @endphp
       </tr>
 
       @endforeach
+      <tr style="border-bottom:2px solid #F0C356;">
+        <th>Grand Total</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td> {{ $grandTotalPurchaseditems}}</td>
+        <td> {{   $grandTotalPurchasedTotal}}</td>
+      </tr>
 
     </tbody>
 
