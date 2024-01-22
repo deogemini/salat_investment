@@ -27,11 +27,15 @@
                   <th scope="col">Depositor Name</th>
                   <th scope="col">Bank Name</th>
                   <th scope="col">Account Number</th>
+                  <th scope="col">Account Name</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Day & Time</th>
                 </tr>
               </thead>
               <tbody>
+                @php
+                    $grandTotalDeposited =0;
+                @endphp
                 @foreach ($depositions as $deposition)
 
                 <tr>
@@ -39,10 +43,24 @@
                     <td>{{ $deposition->depositer_name}}</td>
                     <td>{{ $deposition->bank_name}}</td>
                     <td>{{ $deposition->account_number}}</td>
+                    <td>{{ $deposition->account_name}}</td>
                     <td>{{ $deposition->amount}}</td>
                     <td>{{ $deposition->created_at}}</td>
+                    @php
+
+                    $grandTotalDeposited += $deposition->amount;
+                    @endphp
                   </tr>
                   @endforeach
+                  <tr style="border-bottom:2px solid #F0C356;">
+                    <th>Grand Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{  $grandTotalDeposited }}</td>
+                    <td></td>
+                  </tr>
               </tbody>
 
 
@@ -79,6 +97,10 @@
                             <div class="mb-3">
                                 <label class="form-label" for="description">Account Number</label>
                                 <input type="text" class="form-control" name="account_number" placeholder="Enter Description">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Account Name</label>
+                                <input type="text" class="form-control" name="account_name" placeholder="Enter Description">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Amount</label>

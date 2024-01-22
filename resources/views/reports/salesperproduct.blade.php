@@ -28,7 +28,7 @@
   </div>
 
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
+  <table class="table  table-hover table-striped table-sm">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -48,7 +48,7 @@
       <tr>
         <td>{{ $i++ }}</td>
 
-        <td> {{ $sale['product_name'] }}</td>
+        <td> {{ $sale['product_name'] .': '. $sale['reference_number'] }}</td>
         <td>{{ $sale['product_cost'] }}</td>
         <td>{{ $sale['product_sale_price'] }}</td>
         <td>{{ $sale['product_quantity_sold'] }}</td>

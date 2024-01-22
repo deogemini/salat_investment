@@ -32,6 +32,7 @@ class DepositionController extends Controller
             'amount' => 'nullable|string|max:255',
             'bank_name' => 'nullable|string|max:255',
             'account_number' => 'nullable|string|max:255',
+            'account_name' => 'nullable|string|max:255',
         ]);
 
         // Save category to the database or perform other actions

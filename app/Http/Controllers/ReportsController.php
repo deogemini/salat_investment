@@ -79,6 +79,7 @@ class ReportsController extends Controller
 
                     $inventorySales[] = [
                         'product_name'         => $inventoryProduct->product_name,
+                        'reference_number'         => $inventoryProduct->reference_number,
                         'product_cost'         => $totalCost,
                         'product_sale_price'   => $inventoryProduct->retail_price,
                         'product_quantity_sold'   => $productSale->quantity,

@@ -32,6 +32,7 @@
                   <th scope="col">Stock Purchased Quantity</th>
                   <th scope="col">Remaining Stock Quantity</th>
                   <th scope="col">Time In</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,6 +48,10 @@
                     <td>{{$inventory->quantity_in}}</td>
                     <td>{{$inventory->quantity_now}}</td>
                     <td>{{$inventory->created_at}}</td>
+                    <td>
+                        {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
+
                   </tr>
                   @endforeach
               </tbody>
@@ -116,7 +121,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Inventory Info</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
