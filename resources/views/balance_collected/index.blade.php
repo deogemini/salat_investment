@@ -44,7 +44,7 @@
                     <td>{{ $deposition->bank_name}}</td>
                     <td>{{ $deposition->account_number}}</td>
                     <td>{{ $deposition->account_name}}</td>
-                    <td>{{ $deposition->amount}}</td>
+                    <td>{{ formatAmount($deposition->amount)}}</td>
                     <td>{{ $deposition->created_at}}</td>
                     @php
 
@@ -58,7 +58,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{  $grandTotalDeposited }}</td>
+                    <td>{{  formatAmount($grandTotalDeposited) }}</td>
                     <td></td>
                   </tr>
               </tbody>

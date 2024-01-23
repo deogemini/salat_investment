@@ -52,7 +52,7 @@
         <td>{{ $sale['product_cost'] }}</td>
         <td>{{ $sale['product_sale_price'] }}</td>
         <td>{{ $sale['product_quantity_sold'] }}</td>
-        <td>{{ $sale['profit_per_product'] }}</td>
+        <td>{{ formatAmount($sale['profit_per_product'] )}}</td>
 
         @php
 
@@ -69,7 +69,7 @@
         <td></td>
         <td></td>
         <td> {{ $grandTotalPurchaseditems}}</td>
-        <td> {{   $grandTotalPurchasedTotal}}</td>
+        <td> {{   formatAmount($grandTotalPurchasedTotal)}}</td>
       </tr>
 
     </tbody>
