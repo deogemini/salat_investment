@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepositionController;
@@ -71,3 +72,5 @@ Route::post('/suppliers/store',[SuppliersController::class,'store'])->name('supp
 Route::get('/deposition/index',[DepositionController::class,'index'])->name('deposition.index');
 Route::post('/deposition/store',[DepositionController::class,'store'])->name('deposition.create');
 
+Route::get('/login',[AuthController::class,'login']);
+Route::get('/registration',[AuthController::class,'registration']);
