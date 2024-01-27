@@ -37,7 +37,7 @@
 
                 <tr>
                     <td>{{ $product_sales->id}}</td>
-                    <td>{{$product_sales->productInventory->product_name }}</td>
+                    <td>{{$product_sales->productInventory->product_name .":".$product_sales->productInventory->reference_number }}</td>
                     <td>{{ $product_sales->product_cost}}</td>
                     <td>{{ $product_sales->quantity}}</td>
                     <td>{{ $product_sales->total_cost}}</td>

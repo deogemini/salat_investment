@@ -43,12 +43,12 @@
 
                 <tr>
                     <td>{{ $purchase->id}}</td>
-                    <td>{{$purchase->productInventory->product_name .' -> '. $purchase->productInventory->reference_number}}</td>
+                    <td>{{$purchase->productInventory->product_name .':'. $purchase->productInventory->reference_number}}</td>
                     <td>{{ $purchase->product_cost}}</td>
                     <td>{{ $purchase->other_product_cost}}</td>
                     <td>{{ $purchase->quantity}}</td>
                     <td>{{ $purchase->total_cost}}</td>
-                    <td>{{ $purchase->created_at}}</td>
+                    <td>{{ $purchase->created_at->format('Y-m-d H:i')}}</td>
                     @php
                     $grandTotalPurchasedCost += $purchase->product_cost;
                     $grandTotalPurchasedOtherCost += $purchase->other_product_cost;

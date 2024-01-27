@@ -47,7 +47,7 @@
         @foreach ($inventoryProducts as $inventoryProduct)
       <tr>
         <td>{{ $inventoryProduct->id }}</td>
-        <td>{{ $inventoryProduct->product_name . ' -> '. $inventoryProduct->reference_number }}</td>
+        <td>{{ $inventoryProduct->product_name . ':'. $inventoryProduct->reference_number }}</td>
         <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
         <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
         <td>{{ $inventoryProduct->productSales->sum('total_cost') - $inventoryProduct->purchasedProducts->sum('total_cost') }}</td>
