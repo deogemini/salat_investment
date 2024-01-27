@@ -103,22 +103,15 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('profit_loss_report') ? 'active' : '' }}" href="{{ route ('profit_loss_report')}}">
+          <a class="nav-link {{ request()->routeIs('gharama_mashamba.index') ? 'active' : '' }}" href="{{ route ('gharama_mashamba.index')}}">
             <span data-feather="file-text"></span>
-             Profit/Loss Report
+             Gharama za Mashamba
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('deposition.index') ? 'active' : '' }}" href="{{ route ('deposition.index')}}">
             <span data-feather="file-text"></span>
-             Sales Deposition
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('reports.salesperproduct') ? 'active' : '' }}" href="{{ route ('reports.salesperproduct')}}">
-            <span data-feather="file-text"></span>
-            Profit Per Products
+            Viwanja
           </a>
         </li>
 
