@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepositionController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\MashambaController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\PurchasesController;
 use App\Http\Controllers\ReportsController;
@@ -74,3 +75,7 @@ Route::post('/deposition/store',[DepositionController::class,'store'])->name('de
 
 Route::get('/login',[AuthController::class,'login']);
 Route::get('/registration',[AuthController::class,'registration']);
+
+
+Route::get('/mashamba/index',[MashambaController::class,'index'])->name('mashamba.index');
+Route::post('/mashamba/create',[MashambaController::class,'store'])->name('mashamba.create');

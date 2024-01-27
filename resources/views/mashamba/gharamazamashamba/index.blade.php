@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Data za Mashamba </h4>
+        <h4 class="card-title mb-0 text-center">Gharama za Kuhudumia Mashamba </h4>
     </div>
 
     <div class="card-body">
@@ -42,7 +42,7 @@
                     <td>{{ $shamba->date_of_buying}}</td>
                     <td>
                         {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
                   </tr>
                   @endforeach
               </tbody>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Gharama ya kununua shamba</label>
-                                <input type="number" class="form-control" name="buying_cost" placeholder="andika gharama uliyonunulia shamba">
+                                <input type="text" class="form-control" name="buying_cost" placeholder="andika gharama uliyonunulia shamba">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Ukubwa wa Shamba</label>
