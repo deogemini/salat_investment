@@ -72,8 +72,23 @@ class MashambaController extends Controller
 
 
         public function ongezaGharama(Request $request){
+            $mashambaId = $request->input('mashamba_id');
+            $selectedParameter = $request->input('gharama_husika');
+            $thamani_yenyewe= $request->input('thamani_yenyewe');
 
-            return redirect()->route('mashamba.index')->with('success', 'Category added successfully');
+            $gharamazashamba = GharamazaMashamba::find($mashambaId);
+
+            if ($gharamazashamba) {
+                $gharamazashamba->total =   $gharamazashamba->total +  $thamani_yenyewe;
+
+                if ($gharamazashamba && in_array($selectedParameter, $gharamazashamba->getFillable())) {
+
+                    $gharamazashamba->$selectedParameter = $thamani_yenyewe +  $gharamazashamba->$selectedParameter;
+                    $gharamazashamba->save();
+                }
+            }
+
+            return redirect()->route('gharama_mashamba.index')->with('success', 'Category added successfully');
 
 
         }

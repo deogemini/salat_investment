@@ -186,7 +186,7 @@
                         id="close-modal"></button>
                 </div>
                 <div class="card-body form-steps">
-                    <form id="registration_form" action="{{ route('gharama_mashamba.create') }}" method="post">
+                    <form id="registration_form" action="{{ route('gharama_mashamba.ongezaGharama') }}" method="post">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="hospital">Mashamba Yaliyopo <span id="required-field">*</span></label>
