@@ -42,12 +42,27 @@
                   <th scope="col">Gharama za mbolea</th>
                   <th scope="col">Nauli za pikipiki</th>
                   <th scope="col">Wafanyakazi</th>
-                  <th scope="col">Mwaka wa Kilimo</th>
                   <th scope="col">Jumla ya Gharama</th>
+                  <th scope="col">Mwaka wa Kilimo</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
+
+                @php
+
+                $grandTotal =0;
+                $grandTotalNauliPikipiki =0;
+                $grandTotalpesaZaWafanyakazi =0;
+                $grandTotalpesaZaMbolea =0;
+                $grandTotalMifukoMbolea =0;
+                $grandTotalzaKupandaShamba =0;
+                $grandTotalzaKupaliliaShamba =0;
+                $grandTotalzaKusafishaShamba =0;
+                $grandTotalzaKulimaShamba =0;
+                $grandTotalzaMbeguzaShamba =0;
+
+                @endphp
                 @foreach ($gharama_za_mashamba as $shamba)
 
                 <tr>
@@ -62,27 +77,41 @@
                     <td>{{$shamba->gharama_za_mbolea }}</td>
                     <td>{{$shamba->nauli_pikipiki }}</td>
                     <td>{{$shamba->wafanyakazi }}</td>
-                    <td>{{$shamba->muda_msimu_mwaka }}</td>
                     <td>{{$shamba->total }}</td>
+                    <td>{{$shamba->muda_msimu_mwaka }}</td>
                     <td>
                         {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
+
+                        @php
+
+                        $grandTotal += $shamba->total;
+                        $grandTotalNauliPikipiki += $shamba->nauli_pikipiki;
+                        $grandTotalpesaZaWafanyakazi += $shamba->wafanyakazi;
+                        $grandTotalpesaZaMbolea += $shamba->gharama_za_mbolea;
+                        $grandTotalMifukoMbolea += $shamba->mifuko_ya_mbolea;
+                        $grandTotalzaKupandaShamba += $shamba->kupanda_shamba;
+                        $grandTotalzaKupaliliaShamba += $shamba->kupalilia_shamba;
+                        $grandTotalzaKusafishaShamba += $shamba->kusafisha_shamba;
+                        $grandTotalzaKulimaShamba += $shamba->kulima_shamba;
+                        $grandTotalzaMbeguzaShamba += $shamba->mbegu_za_shamba;
+
+                        @endphp
                   </tr>
                   @endforeach
                     <tr style="border-bottom:2px solid #F0C356;">
                         <th>Grand Total</th>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$grandTotalzaKusafishaShamba}}</td>
+                        <td>{{$grandTotalzaKulimaShamba}}</td>
+                        <td>{{$grandTotalzaMbeguzaShamba}}</td>
+                        <td>{{$grandTotalzaKupaliliaShamba}}</td>
+                        <td>{{$grandTotalzaKupandaShamba}}</td>
+                        <td>{{$grandTotalMifukoMbolea}}</td>
+                        <td>{{ $grandTotalpesaZaMbolea}}</td>
+                        <td>{{  $grandTotalNauliPikipiki}}</td>
+                        <td>{{ $grandTotalpesaZaWafanyakazi}}</td>
+                        <td> {{   $grandTotal }}</td>
 
                       </tr>
 
