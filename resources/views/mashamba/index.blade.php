@@ -78,12 +78,12 @@
                                 <input type="number" class="form-control" name="buying_cost" placeholder="andika gharama uliyonunulia shamba">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Ukubwa wa Shamba</label>
+                                <label class="form-label" for="description">Ukubwa wa Shamba(Hekari)</label>
                                 <input type="text" class="form-control" name="size" placeholder="Andika Ukubwa wa shamba">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Siku Shamba liliponuliwa</label>
-                                <input type="text" class="form-control" name="date_of_buying" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                <input type="date" class="form-control" name="date_of_buying" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">
