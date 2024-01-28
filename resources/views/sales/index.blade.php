@@ -40,8 +40,8 @@
                     <td>{{$product_sales->productInventory->product_name .":".$product_sales->productInventory->reference_number }}</td>
                     <td>{{ $product_sales->product_cost}}</td>
                     <td>{{ $product_sales->quantity}}</td>
-                    <td>{{ $product_sales->total_cost}}</td>
-                    <td>{{ $product_sales->created_at}}</td>
+                    <td>{{ formatAmount($product_sales->total_cost)}}</td>
+                    <td>{{ $product_sales->created_at->format('Y-m-d H:i')}}</td>
                     <td>
                         {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>

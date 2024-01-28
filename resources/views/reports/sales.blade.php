@@ -54,9 +54,9 @@
                 <td>{{ $inventoryProduct->id }}</td>
                 <td>{{ $inventoryProduct->product_name . ':' . $inventoryProduct->reference_number }}</td>
                 <td>{{ $inventoryProduct->quantity_in }}</td>
-                <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
+                <td>{{ formatAmount($inventoryProduct->purchasedProducts->sum('total_cost'))}}</td>
                 <td>{{ $inventoryProduct->productSales->sum('quantity') }}</td>
-                <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
+                <td>{{ formatAmount($inventoryProduct->productSales->sum('total_cost')) }}</td>
                 <td>{{ $inventoryProduct->quantity_now }}</td>
             </tr>
 
@@ -73,10 +73,10 @@
             <th>Grand Total</th>
             <td></td>
             <td>{{ $grandTotalQuantityIn }}</td>
-            <td>{{ $grandTotalPurchased }}</td>
-            <td>{{ $grandTotalSoldQuantity }}</td>
-            <td>{{ $grandTotalSoldCost }}</td>
-            <td>{{$grandTotalQuantityNow}}</td>
+            <td>{{ formatAmount($grandTotalPurchased) }}</td>
+            <td>{{ formatAmount($grandTotalSoldQuantity) }}</td>
+            <td>{{ formatAmount($grandTotalSoldCost) }}</td>
+            <td>{{ $grandTotalQuantityNow}}</td>
         </tr>
     </tbody>
 

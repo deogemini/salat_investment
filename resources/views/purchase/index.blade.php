@@ -47,7 +47,7 @@
                     <td>{{ $purchase->product_cost}}</td>
                     <td>{{ $purchase->other_product_cost}}</td>
                     <td>{{ $purchase->quantity}}</td>
-                    <td>{{ $purchase->total_cost}}</td>
+                    <td>{{ formatAmount($purchase->total_cost)}}</td>
                     <td>{{ $purchase->created_at->format('Y-m-d H:i')}}</td>
                     @php
                     $grandTotalPurchasedCost += $purchase->product_cost;

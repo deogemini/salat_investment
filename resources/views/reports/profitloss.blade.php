@@ -48,9 +48,9 @@
       <tr>
         <td>{{ $inventoryProduct->id }}</td>
         <td>{{ $inventoryProduct->product_name . ':'. $inventoryProduct->reference_number }}</td>
-        <td>{{ $inventoryProduct->purchasedProducts->sum('total_cost')}}</td>
-        <td>{{ $inventoryProduct->productSales->sum('total_cost') }}</td>
-        <td>{{ $inventoryProduct->productSales->sum('total_cost') - $inventoryProduct->purchasedProducts->sum('total_cost') }}</td>
+        <td>{{ formatAmount($inventoryProduct->purchasedProducts->sum('total_cost'))}}</td>
+        <td>{{ formatAmount($inventoryProduct->productSales->sum('total_cost')) }}</td>
+        <td>{{ formatAmount($inventoryProduct->productSales->sum('total_cost') - $inventoryProduct->purchasedProducts->sum('total_cost')) }}</td>
 
         @php
         $netTotal = $inventoryProduct->productSales->sum('total_cost') - $inventoryProduct->purchasedProducts->sum('total_cost');
@@ -65,9 +65,9 @@
       <tr style="border-bottom:2px solid #F0C356;">
         <th>Grand Total</th>
         <td></td>
-        <td>{{ $grandTotalPurchased }}</td>
-        <td>{{ $grandTotalSold }}</td>
-        <td>{{ $grandTotalSold - $grandTotalPurchased }}</td>
+        <td>{{ formatAmount($grandTotalPurchased)}}</td>
+        <td>{{ formatAmount($grandTotalSold) }}</td>
+        <td>{{ formatAmount($grandTotalSold - $grandTotalPurchased) }}</td>
 
       </tr>
 

@@ -50,7 +50,7 @@
 
         <td> {{ $sale['product_name'] .': '. $sale['reference_number'] }}</td>
         <td>{{ $sale['product_cost'] }}</td>
-        <td>{{ $sale['product_sale_price'] }}</td>
+        <td>{{ formatAmount($sale['product_sale_price']) }}</td>
         <td>{{ $sale['product_quantity_sold'] }}</td>
         <td>{{ formatAmount($sale['profit_per_product'] )}}</td>
 
