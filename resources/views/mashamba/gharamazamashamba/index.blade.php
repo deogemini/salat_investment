@@ -150,48 +150,48 @@
                         </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Gharama ya kusafisha shamba</label>
-                                <input type="number" class="form-control" name="kusafisha_shamba" placeholder="andika gharama ya kusafisha shamba">
+                                <input type="number" class="form-control" name="kusafisha_shamba" placeholder="Andika gharama ya kusafisha shamba">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Gharama ya Kulima shamba</label>
-                                <input type="number" class="form-control" name="kulima_shamba" placeholder="andika gharama ya kulima shamba">
+                                <input type="number" class="form-control" name="kulima_shamba" placeholder="Andika gharama ya kulima">
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="description">Gharama ya Mbegu</label>
-                                    <input type="number" class="form-control" name="mbegu_za_shamba" placeholder="andika gharama kununua mbegu">
+                                    <input type="number" class="form-control" name="mbegu_za_shamba" placeholder="andika gharama ya kununua mbegu">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="description">Gharama za kupanda</label>
-                                    <input type="number" class="form-control" name="kupanda_shamba" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                    <input type="number" class="form-control" name="kupanda_shamba" placeholder="Andika gharama ya kupanda">
                                 </div>
 
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Gharama za kupalilia</label>
-                                <input type="number" class="form-control" name="kupalilia_shamba" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                <input type="number" class="form-control" name="kupalilia_shamba" placeholder="Andika gharama ya kupalilia">
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="description">Idadi ya Mifuko ya Mbolea</label>
-                                    <input type="number" class="form-control" name="mifuko_ya_mbolea" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                    <input type="number" class="form-control" name="mifuko_ya_mbolea" placeholder="Andika idadi ya mifuko ya mbolea">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="description">Gharama za kuweka Mbolea</label>
-                                    <input type="number" class="form-control" name="gharama_za_mbolea" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                    <input type="number" class="form-control" name="gharama_za_mbolea" placeholder="Andika gharama ya kuweka mbolear">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Gharama za pikipiki</label>
-                                <input type="number" class="form-control" name="nauli_pikipiki" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                <input type="number" class="form-control" name="nauli_pikipiki" placeholder="Andika gharama za nauli ya pikipiki">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Gharama za wafanyakazi</label>
-                                <input type="number" class="form-control" name="wafanyakazi" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                <input type="number" class="form-control" name="wafanyakazi" placeholder="Andika gharama za wafanyakazi">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Msimu wa kilimo</label>
-                                <input type="text" class="form-control" name="muda_msimu_mwaka" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
+                                <input type="text" class="form-control" name="muda_msimu_mwaka" placeholder="Andika Mwaka/Msimu wa kilimo">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">
@@ -238,8 +238,7 @@
                                     <option value="gharama_za_mbolea">Gharama za Mifuko ya mbolea</option>
                                     <option value="nauli_pikipiki">Gharama za nauli za pikipiki</option>
                                     <option value="wafanyakazi">Gharama za wafanyakazi</option>
-                                    <option value="mifuko_ya_mboleaa">Gharama za wafanyakazi</option>
-                            </select>
+                        </select>
                         </div>
 
                             <div class="mb-3">
