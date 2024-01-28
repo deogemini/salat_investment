@@ -35,11 +35,12 @@
               <tbody>
                 @php
                     $grandTotalDeposited =0;
+                    $i = 1;
                 @endphp
                 @foreach ($depositions as $deposition)
 
                 <tr>
-                    <td>{{ $deposition->id}}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{ $deposition->depositer_name}}</td>
                     <td>{{ $deposition->bank_name}}</td>
                     <td>{{ $deposition->account_number}}</td>
