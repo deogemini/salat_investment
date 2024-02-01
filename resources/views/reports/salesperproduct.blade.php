@@ -28,7 +28,7 @@
   </div>
 
 <div class="table-responsive">
-  <table class="table  table-hover table-striped table-sm">
+  <table class="table  table-hover table-striped table-sm" id="myDataTable">
     <thead>
       <tr>
         <th scope="col">#</th>

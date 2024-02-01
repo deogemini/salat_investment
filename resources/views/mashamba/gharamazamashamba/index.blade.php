@@ -28,8 +28,8 @@
 
 
         <div class="table-responsive table-card mt-3 mb-1">
-            <table class="table table-striped table-sm">
-              <thead>
+            <table class="table table-striped table-sm" id="myDataTable">
+                <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Jina la Shamba</th>
