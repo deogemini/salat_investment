@@ -44,7 +44,7 @@
                   <th scope="col">Wafanyakazi</th>
                   <th scope="col">Jumla ya Gharama</th>
                   <th scope="col">Mwaka wa Kilimo</th>
-                  <th scope="col">Actions</th>
+                  {{-- <th scope="col">Actions</th> --}}
                 </tr>
               </thead>
               <tbody>
@@ -79,9 +79,8 @@
                     <td>{{$shamba->wafanyakazi }}</td>
                     <td>{{$shamba->total }}</td>
                     <td>{{$shamba->muda_msimu_mwaka }}</td>
-                    <td>
-                        {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
+                    {{-- <td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td> --}}
 
                         @php
 
