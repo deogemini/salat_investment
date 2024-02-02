@@ -92,4 +92,14 @@ class MashambaController extends Controller
 
 
         }
+
+        public function update(Request $request)
+        {
+            $mashamba = Mashamba::find($request->id);
+            $mashamba ->update($request->all());
+
+            return redirect()->route('mashamba.index')->with('success', 'Category added successfully');
+
+
+        }
 }

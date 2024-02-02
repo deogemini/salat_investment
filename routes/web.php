@@ -79,6 +79,7 @@ Route::get('/registration',[AuthController::class,'registration']);
 
 Route::get('/mashamba/index',[MashambaController::class,'index'])->name('mashamba.index');
 Route::post('/mashamba/create',[MashambaController::class,'store'])->name('mashamba.create');
+Route::post('/mashamba/update',[MashambaController::class,'update'])->name('mashamba.update');
 
 Route::get('/gharama_mashamba/index',[MashambaController::class,'indexGharamaZaMashamba'])->name('gharama_mashamba.index');
 Route::post('/gharama_mashamba/create',[MashambaController::class,'create'])->name('gharama_mashamba.create');

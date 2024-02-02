@@ -41,9 +41,12 @@
                     <td>{{ $shamba->size}}</td>
                     <td>{{ $shamba->date_of_buying}}</td>
                     <td>
-                        {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
-                  </tr>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
+                            onclick="populateEditModal({{ json_encode($shamba) }})">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+                    </td>
+                     </tr>
                   @endforeach
               </tbody>
 
@@ -70,19 +73,19 @@
                     <form id="registration_form" action="{{ route('mashamba.create') }}" method="post">
                         @csrf
                             <div class="mb-3">
-                                <label class="form-label" for="description">Eneo Shamba lilipo</label>
+                                <label class="form-label" for="location">Eneo Shamba lilipo</label>
                                 <input type="text" class="form-control" name="location" placeholder="andika jina la eneo shamba lilipo">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Gharama ya kununua shamba</label>
+                                <label class="form-label" for="buying_cost">Gharama ya kununua shamba</label>
                                 <input type="number" class="form-control" name="buying_cost" placeholder="andika gharama uliyonunulia shamba">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Ukubwa wa Shamba(Hekari)</label>
+                                <label class="form-label" for="size">Ukubwa wa Shamba(Hekari)</label>
                                 <input type="text" class="form-control" name="size" placeholder="Andika Ukubwa wa shamba">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Siku Shamba liliponuliwa</label>
+                                <label class="form-label" for="date_of_buying">Siku Shamba liliponuliwa</label>
                                 <input type="date" class="form-control" name="date_of_buying" placeholder="Andika Mwaka/Tarehe ya siku uliponunua shamba">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
@@ -97,29 +100,31 @@
     </div>
 
         {{-- edit modal --}}
-        <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel"
+      <!-- Edit Modal -->
+      <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Sales</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        id="close-modal"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Badilisha Taarifa za mashamba</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="edit_form">
+                <form action="{{ route('mashamba.update')}}" method="post">
+                    @csrf
+                    <!-- Modal Body -->
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="email-field" class="form-label">Name</label>
-                            <input type="text" id="full_name" class="form-control" name="name" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="email-field" class="form-label">Phone Number</label>
-                            <input type="number" id="phone_number" class="form-control" name="phone_number" required />
-                            <input type="hidden" name="user_id" id="user_id">
-                        </div>
-                        <div class="mb-3" id="update_alert">
+                        <label for="location" class="form-label">Jina la Eneo la Shamba</label>
+                        <input type="text" id="location" class="form-control" name="location" required />
+                        <input type="text" id="id" hidden class="form-control" name="id" required />
 
-                        </div>
+                        <label for="buying_cost" class="form-label">Gharama ya kununua shamba</label>
+                        <input type="number"  id="buying_cost" class="form-control" name="buying_cost" required />
+
+                        <label for="size" class="form-label">Ukubwa wa shamba</label>
+                        <input type="number" id="size" class="form-control" name="size" required />
+
+                        <label for="date_of_buying" class="form-label">Lini Limenunuliwa</label>
+                        <input type="date" id="date_of_buying" class="form-control" name="date_of_buying" required />
                     </div>
                     <div class="modal-footer">
                         <div class="hstack gap-2 justify-content-end">
@@ -131,10 +136,22 @@
             </div>
         </div>
     </div>
-    </div>
-</div>
 
 
+
+
+<script>
+    function populateEditModal(shambaData) {
+        // Populate modal fields with data
+        document.getElementById('id').value = shambaData.id;
+        document.getElementById('location').value = shambaData.location;
+        document.getElementById('buying_cost').value = shambaData.buying_cost;
+        document.getElementById('size').value = shambaData.size;
+        document.getElementById('date_of_buying').value = shambaData.date_of_buying;
+
+        // You can add more fields based on your shamba object properties
+    }
+</script>
 
 
 @endsection
