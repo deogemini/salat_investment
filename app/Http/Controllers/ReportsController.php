@@ -22,7 +22,10 @@ class ReportsController extends Controller
         $total_purchases = ProductPurchase::sum('total_cost');
         $total_profit = $total_sales - $total_purchases;
 
-        $inventoryProducts = InventoryProduct::with('productSales')->get();
+         // Get inventory products that are not in the product_sales table
+        $inventoryProducts = InventoryProduct::with('productSales')
+        ->whereIn('id', $productSales->pluck('product_inventory_id'))
+        ->get();
         $total_quantity_in ='0';
 
         return view('reports.sales',  compact('total_quantity_in','inventoryProducts','productSales', 'total_profit', 'total_sales'));
@@ -132,7 +135,9 @@ class ReportsController extends Controller
         $total_purchases = ProductPurchase::sum('total_cost');
         $total_profit = $total_sales - $total_purchases;
 
-        $inventoryProducts = InventoryProduct::with('productSales')->get();
+        $inventoryProducts = InventoryProduct::with('productSales')
+        ->whereIn('id', $productSales->pluck('product_inventory_id'))
+        ->get();
 
         return view('reports.profitloss',  compact('inventoryProducts','productSales', 'total_profit', 'total_sales'));
     }
