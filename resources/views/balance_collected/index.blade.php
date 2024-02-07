@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="card">
+<div class="card" style="margin-top: 20px;">
     <div class="card-header">
         <h4 class="card-title mb-0 text-center">Manage Sales Deposition</h4>
     </div>
@@ -72,6 +72,45 @@
 </div>
 
 </div>
+
+<div class="card" style="margin-top: 30px;">
+    <div class="card-header">
+        <h3 class="card-title mb-0 text-center">Summary of Accounts</h3>
+    </div>
+
+    <div class="card-body">
+
+
+   <div class="table-responsive table-card mt-3 mb-1">
+            <table class="table table-striped table-sm" id="myDataTable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Bank Name</th>
+                  <th scope="col">Account Name</th>
+                  <th scope="col">Account Number</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+              @php
+                   $i = 1;
+              @endphp
+               @foreach ($accountTotal as $accountNumber => $accountData)
+                <tr>
+                <td>{{$i++}}</td>
+                    <td>{{ $accountData['bank_name'] }}</td>
+                    <td>{{ $accountData['account_name'] }}</td>
+                    <td>{{ $accountNumber }}</td>
+                    <td>{{ $accountData['total_amount'] }}</td>
+                </tr>
+                 @endforeach
+              </tbody>
+
+            </table>
+    </div>
+    </div>
+    </div>
 
 
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"

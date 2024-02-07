@@ -13,7 +13,31 @@ class DepositionController extends Controller
     public function index()
     {
         $depositions = Deposition::orderby('created_at', 'DESC')->get();
-        return view('balance_collected.index', compact('depositions'));
+
+
+        $depositions = Deposition::orderBy('created_at', 'DESC')->get();
+
+        $accountTotal = [];
+
+        foreach ($depositions as $deposition) {
+            $accountNumber = $deposition->account_number;
+            $amount = $deposition->amount;
+            $accountName = $deposition->account_name;
+            $bankName = $deposition->bank_name;
+
+            if (array_key_exists($accountNumber, $accountTotal)) {
+                $accountTotal[$accountNumber]['total_amount'] += $amount;
+            } else {
+                $accountTotal[$accountNumber] = [
+                    'bank_name' => $bankName,
+                    'account_name' => $accountName,
+                    'total_amount' => $amount,
+                ];
+            }
+        }
+
+        return view('balance_collected.index', compact('depositions', 'accountTotal'));
+
     }
 
     /**
