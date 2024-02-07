@@ -28,7 +28,7 @@
                   <th scope="col">Product Cost</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Cost</th>
-                  <th scope="col">Time in</th>
+                  <th scope="col">Time Updated</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
