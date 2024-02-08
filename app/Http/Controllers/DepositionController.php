@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BankAccounts;
 use App\Models\Deposition;
 use Illuminate\Http\Request;
 
@@ -40,9 +41,25 @@ class DepositionController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function bankaccountIndex(){
+        $bankAccounts = BankAccounts::all();
+        return view('bank_account.index', compact('bankAccounts'));
+    }
+
+    public function bankaccountCreate(Request $request)
+    {
+        // Validation
+        $request->validate([
+            'bank_name' => 'nullable|string|max:255',
+            'account_number' => 'nullable|string|max:255',
+            'account_name' => 'nullable|string|max:255',
+        ]);
+
+         BankAccounts::create($request->all());
+
+        // Redirect or return a response as needed
+        return redirect()->route('bankaccount.index')->with('success', 'Category added successfully');
+    }
     public function create()
     {
         //

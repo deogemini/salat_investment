@@ -16,6 +16,12 @@
                         </button>
 
                 </div>
+                <div>
+                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
+                            <i class="ri-add-line align-bottom me-1"></i> Make withdrawal
+                        </button>
+
+                </div>
             </div>
         </div>
 

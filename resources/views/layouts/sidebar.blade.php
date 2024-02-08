@@ -77,6 +77,12 @@
              Sales Deposition
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('bankaccount.index') ? 'active' : '' }}" href="{{ route ('bankaccount.index')}}">
+            <span data-feather="file-text"></span>
+             Bank Details
+          </a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('reports.salesperproduct') ? 'active' : '' }}" href="{{ route ('reports.salesperproduct')}}">

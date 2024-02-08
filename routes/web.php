@@ -71,7 +71,9 @@ Route::get('/suppliers/index', [SuppliersController::class,'index'])->name('supp
 Route::post('/suppliers/store',[SuppliersController::class,'store'])->name('suppliers.create');
 
 Route::get('/deposition/index',[DepositionController::class,'index'])->name('deposition.index');
+Route::get('/bankaccount/index',[DepositionController::class,'bankaccountIndex'])->name('bankaccount.index');
 Route::post('/deposition/store',[DepositionController::class,'store'])->name('deposition.create');
+Route::post('/bankaccount/store',[DepositionController::class,'bankaccountCreate'])->name('bankaccount.create');
 
 Route::get('/login',[AuthController::class,'login']);
 Route::get('/registration',[AuthController::class,'registration']);
