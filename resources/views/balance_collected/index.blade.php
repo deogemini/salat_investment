@@ -137,16 +137,13 @@
                                 <input type="text" class="form-control" name="depositer_name" placeholder="Enter Category Name">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="description">Bank Name</label>
-                                <input type="text" class="form-control" name="bank_name" placeholder="Enter Description">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="description">Account Number</label>
-                                <input type="text" class="form-control" name="account_number" placeholder="Enter Description">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="description">Account Name</label>
-                                <input type="text" class="form-control" name="account_name" placeholder="Enter Description">
+                                <label class="form-label" for="hospital">Bank Account <span id="required-field">*</span></label>
+                                <select name="bankaccount_id" class="form-select">
+                                    <option value="" selected>Please Select Account</option>
+                                    @foreach ($bankAccounts as $item)
+                                        <option value="{{ $item->id }}">{{ $item->bank_name. ' '.$item->account_name .' ' .$item->account_number }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="description">Amount</label>

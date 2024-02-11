@@ -15,6 +15,8 @@ class DepositionController extends Controller
     {
         $depositions = Deposition::orderby('created_at', 'DESC')->get();
 
+        $bankAccounts = BankAccounts::all();
+
 
         $depositions = Deposition::orderBy('created_at', 'DESC')->get();
 
@@ -37,7 +39,7 @@ class DepositionController extends Controller
             }
         }
 
-        return view('balance_collected.index', compact('depositions', 'accountTotal'));
+        return view('balance_collected.index', compact('depositions', 'accountTotal', 'bankAccounts'));
 
     }
 
@@ -70,15 +72,19 @@ class DepositionController extends Controller
         // Validation
         $request->validate([
             'depositer_name' => 'required|string|max:255',
+            'bankaccount_id' => 'required|string|max:255',
             'amount' => 'nullable|string|max:255',
-            'bank_name' => 'nullable|string|max:255',
-            'account_number' => 'nullable|string|max:255',
-            'account_name' => 'nullable|string|max:255',
         ]);
 
-        // Save category to the database or perform other actions
-        // For simplicity, let's assume you have a Category model and table
-        Deposition::create($request->all());
+        $depositer_name =  $request->input('depositer_name');
+        $bank_account_id =  $request->input('bankaccount_id');
+        $amount =  $request->input('amount');
+
+        $depositions = new Deposition();
+        $depositions->amount =   $amount;
+        $depositions->bank_account_id = $bank_account_id;
+        $depositions->depositer_name = $depositer_name;
+         $depositions->save();
 
         // Redirect or return a response as needed
         return redirect()->route('deposition.index')->with('success', 'Category added successfully');

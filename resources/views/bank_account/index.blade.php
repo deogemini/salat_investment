@@ -66,15 +66,15 @@
                         <div>
                             <div class="mb-3">
                                 <label class="form-label" for="bank_name">Bank Name <span id="required-field">*</span></label>
-                                <input type="text" class="form-control" name="bank_name" placeholder="Enter Category Name">
+                                <input type="text" class="form-control" name="bank_name" placeholder="Enter Three Name">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="account_name">Account Name</label>
-                                <input type="text" class="form-control" name="account_name" placeholder="Enter Description">
+                                <input type="text" class="form-control" name="account_name" placeholder="Enter Account Name">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="account_number">Account Number</label>
-                                <input type="text" class="form-control" name="account_number" placeholder="Enter Description">
+                                <input type="text" class="form-control" name="account_number" placeholder="Enter Account">
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">
