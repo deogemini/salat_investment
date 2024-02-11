@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BankAccounts;
 use App\Models\Deposition;
+use App\Models\WithDraws;
 use Illuminate\Http\Request;
 
 class DepositionController extends Controller
@@ -85,6 +86,30 @@ class DepositionController extends Controller
         $depositions->bank_account_id = $bank_account_id;
         $depositions->depositer_name = $depositer_name;
          $depositions->save();
+
+        // Redirect or return a response as needed
+        return redirect()->route('deposition.index')->with('success', 'Category added successfully');
+    }
+
+
+    public function withdraw(Request $request)
+    {
+        // Validation
+        $request->validate([
+            'withdrawer_name' => 'required|string|max:255',
+            'bankaccount_id' => 'required|string|max:255',
+            'amount' => 'nullable|string|max:255',
+        ]);
+
+        $withdrawer_name =  $request->input('withdrawer_name');
+        $bank_account_id =  $request->input('bankaccount_id');
+        $amount =  $request->input('amount');
+
+        $withdraws = new WithDraws();
+        $withdraws->amount =   $amount;
+        $withdraws->bank_account_id = $bank_account_id;
+        $withdraws->withdrawer_name = $withdrawer_name;
+        $withdrawer_name->save();
 
         // Redirect or return a response as needed
         return redirect()->route('deposition.index')->with('success', 'Category added successfully');

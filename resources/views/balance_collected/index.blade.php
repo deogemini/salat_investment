@@ -9,20 +9,18 @@
     <div class="card-body">
 
         <div class="row g-4 mb-3 ">
-            <div class="col-sm-auto text-right">
-                <div>
+            <div class="col-md-6 text-right">
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
                             <i class="ri-add-line align-bottom me-1"></i> Add Sales Deposition
                         </button>
 
                 </div>
-                <div>
-                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
+                <div class="col-md-6">
+                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModalWithdraw" >
                             <i class="ri-add-line align-bottom me-1"></i> Make withdrawal
                         </button>
 
                 </div>
-            </div>
         </div>
 
         <div class="table-responsive table-card mt-3 mb-1">
@@ -158,8 +156,49 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 
+
+<div class="modal fade" id="showModalWithdraw" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-light p-3">
+                    <h5 class="modal-title" id="exampleModalLabel">Make with draw</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        id="close-modal"></button>
+                </div>
+                <div class="card-body form-steps">
+                    <form id="registration_form" action="{{ route('deposition.withdraw') }}" method="post">
+                        @csrf
+                        <div>
+                            <div class="mb-3">
+                                <label class="form-label" for="category_name">Withdrawer Name <span id="required-field">*</span></label>
+                                <input type="text" class="form-control" name="withdrawer_name" placeholder="Name of will with draw money">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="hospital">Bank Account <span id="required-field">*</span></label>
+                                <select name="bankaccount_id" class="form-select">
+                                    <option value="" selected>Please Select Account</option>
+                                    @foreach ($bankAccounts as $item)
+                                        <option value="{{ $item->id }}">{{ $item->bank_name. ' '.$item->account_name .' ' .$item->account_number }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Amount</label>
+                                <input type="number" class="form-control" name="amount" placeholder="Enter Description">
+                            </div>
+                            <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
+                            <div class="d-flex align-items-start gap-3 mt-4">
+                                <button type="submit" class="btn btn-success btn-label right ms-auto">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
         {{-- edit modal --}}
         <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
