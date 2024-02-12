@@ -17,8 +17,12 @@ class BankAccounts extends Model
     protected $guarded = ['id'];
     public $timestamps = true;
 
-    public function banckDeposits(): HasMany
+    public function depositions()
     {
-        return $this->hasMany(Deposition::class, 'product_category_id');
+        return $this->hasMany(Deposition::class,'bank_account_id');
+    }
+    public function withdraws()
+    {
+        return $this->hasMany(WithDraws::class,'bank_account_id');
     }
 }

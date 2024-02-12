@@ -13,6 +13,9 @@ class Deposition extends Model
     protected $guarded = ['id'];
     public $timestamps = true;
 
-
+    public function bankAccount()
+    {
+        return $this->belongsTo(BankAccounts::class, 'bank_account_id');
+    }
 
 }

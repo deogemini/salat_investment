@@ -15,12 +15,6 @@
                         </button>
 
                 </div>
-                <div class="col-md-6">
-                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModalWithdraw" >
-                            <i class="ri-add-line align-bottom me-1"></i> Make withdrawal
-                        </button>
-
-                </div>
         </div>
 
         <div class="table-responsive table-card mt-3 mb-1">
@@ -46,9 +40,9 @@
                 <tr>
                     <td>{{ $i++ }}</td>
                     <td>{{ $deposition->depositer_name}}</td>
-                    <td>{{ $deposition->bank_name}}</td>
-                    <td>{{ $deposition->account_number}}</td>
-                    <td>{{ $deposition->account_name}}</td>
+                    <td>{{ $deposition->bankAccount->bank_name}}</td>
+                    <td>{{ $deposition->bankAccount->account_number}}</td>
+                    <td>{{ $deposition->bankAccount->account_name}}</td>
                     <td>{{ formatAmount($deposition->amount)}}</td>
                     <td>{{ $deposition->created_at}}</td>
                     @php
@@ -73,48 +67,80 @@
 
     </div>
 
-</div>
+   </div>
 
 </div>
 
-<div class="card" style="margin-top: 30px;">
+<div class="card" style="margin-top: 20px;">
     <div class="card-header">
-        <h3 class="card-title mb-0 text-center">Summary of Accounts</h3>
+        <h4 class="card-title mb-0 text-center">Manage Withdraw</h4>
     </div>
 
     <div class="card-body">
 
+        <div class="row g-4 mb-3 ">
+                <div class="col-md-6 text-right">
+                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModalWithdraw" >
+                            <i class="ri-add-line align-bottom me-1"></i> Make withdrawal
+                        </button>
 
-   <div class="table-responsive table-card mt-3 mb-1">
+                </div>
+        </div>
+
+        <div class="table-responsive table-card mt-3 mb-1">
             <table class="table table-striped table-sm" id="myDataTable">
               <thead>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">Depositor Name</th>
                   <th scope="col">Bank Name</th>
-                  <th scope="col">Account Name</th>
                   <th scope="col">Account Number</th>
+                  <th scope="col">Account Name</th>
                   <th scope="col">Amount</th>
+                  <th scope="col">Day & Time</th>
                 </tr>
               </thead>
               <tbody>
-              @php
-                   $i = 1;
-              @endphp
-               @foreach ($accountTotal as $accountNumber => $accountData)
+                @php
+                    $grandTotalDeposited =0;
+                    $i = 1;
+                @endphp
+                @foreach ($withdraws as $withdraws)
+
                 <tr>
-                <td>{{$i++}}</td>
-                    <td>{{ $accountData['bank_name'] }}</td>
-                    <td>{{ $accountData['account_name'] }}</td>
-                    <td>{{ $accountNumber }}</td>
-                    <td>{{ $accountData['total_amount'] }}</td>
-                </tr>
-                 @endforeach
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $withdraws->withdrawer_name}}</td>
+                    <td>{{ $withdraws->bankAccount->bank_name}}</td>
+                    <td>{{ $withdraws->bankAccount->account_number}}</td>
+                    <td>{{ $withdraws->bankAccount->account_name}}</td>
+                    <td>{{ formatAmount($withdraws->amount)}}</td>
+                    <td>{{ $withdraws->created_at}}</td>
+                    @php
+
+                    $grandTotalDeposited += $withdraws->amount;
+                    @endphp
+                  </tr>
+                  @endforeach
+                  <tr style="border-bottom:2px solid #F0C356;">
+                    <th>Grand Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{  formatAmount($grandTotalDeposited) }}</td>
+                    <td></td>
+                  </tr>
               </tbody>
 
+
             </table>
+
     </div>
-    </div>
-    </div>
+
+   </div>
+
+</div>
+
 
 
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"

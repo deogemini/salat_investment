@@ -12,4 +12,10 @@ class WithDraws extends Model
     protected $fillable = ['withdrawer_name', 'bank_account_id', 'amount'];
     protected $guarded = ['id'];
     public $timestamps = true;
+
+
+    public function bankAccount()
+    {
+        return $this->belongsTo(BankAccounts::class, 'bank_account_id');
+    }
 }

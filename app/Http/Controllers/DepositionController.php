@@ -15,37 +15,22 @@ class DepositionController extends Controller
     public function index()
     {
         $depositions = Deposition::orderby('created_at', 'DESC')->get();
+        $withdraws = WithDraws::orderby('created_at', 'DESC')->get();
 
         $bankAccounts = BankAccounts::all();
 
-
-        $depositions = Deposition::orderBy('created_at', 'DESC')->get();
-
-        $accountTotal = [];
-
-        foreach ($depositions as $deposition) {
-            $accountNumber = $deposition->account_number;
-            $amount = $deposition->amount;
-            $accountName = $deposition->account_name;
-            $bankName = $deposition->bank_name;
-
-            if (array_key_exists($accountNumber, $accountTotal)) {
-                $accountTotal[$accountNumber]['total_amount'] += $amount;
-            } else {
-                $accountTotal[$accountNumber] = [
-                    'bank_name' => $bankName,
-                    'account_name' => $accountName,
-                    'total_amount' => $amount,
-                ];
-            }
-        }
-
-        return view('balance_collected.index', compact('depositions', 'accountTotal', 'bankAccounts'));
+        return view('balance_collected.index', compact('depositions', 'bankAccounts', 'withdraws'));
 
     }
 
     public function bankaccountIndex(){
-        $bankAccounts = BankAccounts::all();
+        $bankAccounts = BankAccounts::with('depositions')
+        ->withCount('depositions')
+        ->get();
+        // Calculate total deposited amount for each bank account
+        $bankAccounts->each(function ($account) {
+            $account->totalDeposited = $account->depositions->sum('amount');
+        });
         return view('bank_account.index', compact('bankAccounts'));
     }
 
@@ -109,7 +94,7 @@ class DepositionController extends Controller
         $withdraws->amount =   $amount;
         $withdraws->bank_account_id = $bank_account_id;
         $withdraws->withdrawer_name = $withdrawer_name;
-        $withdrawer_name->save();
+        $withdraws->save();
 
         // Redirect or return a response as needed
         return redirect()->route('deposition.index')->with('success', 'Category added successfully');
