@@ -52,7 +52,7 @@
 
 <div class="card" style="margin-top: 30px;">
     <div class="card-header">
-        <h3 class="card-title mb-0 text-center">Summary of Accounts</h3>
+        <h3 class="card-title mb-0 text-center">Accounts Summary</h3>
     </div>
 
     <div class="card-body">
@@ -64,7 +64,7 @@
                   <th scope="col">Bank Name</th>
                   <th scope="col">Account Name</th>
                   <th scope="col">Account Number</th>
-                  <th scope="col">Amount</th>
+                  <th scope="col">Total Deposited Amount</th>
                 </tr>
               </thead>
               <tbody>
