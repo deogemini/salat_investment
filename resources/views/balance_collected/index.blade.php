@@ -92,7 +92,7 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Depositor Name</th>
+                  <th scope="col">Withdrawer Name</th>
                   <th scope="col">Bank Name</th>
                   <th scope="col">Account Number</th>
                   <th scope="col">Account Name</th>

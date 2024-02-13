@@ -74,7 +74,7 @@
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('deposition.index') ? 'active' : '' }}" href="{{ route ('deposition.index')}}">
             <span data-feather="file-text"></span>
-             Sales Deposition
+             Deposition and Withdraws
           </a>
         </li>
         <li class="nav-item">
