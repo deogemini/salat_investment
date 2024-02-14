@@ -25,11 +25,15 @@ class DepositionController extends Controller
 
     public function bankaccountIndex(){
         $bankAccounts = BankAccounts::with('depositions')
+        ->with('withdraws')
+        ->withCount('withdraws')
         ->withCount('depositions')
         ->get();
         // Calculate total deposited amount for each bank account
         $bankAccounts->each(function ($account) {
             $account->totalDeposited = $account->depositions->sum('amount');
+            $account->totalWithDraw = $account->withdraws->sum('amount');
+            $account->balance =  $account->totalDeposited -  $account->totalWithDraw;
         });
         return view('bank_account.index', compact('bankAccounts'));
     }

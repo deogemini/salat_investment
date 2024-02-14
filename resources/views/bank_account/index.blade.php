@@ -65,6 +65,8 @@
                   <th scope="col">Account Name</th>
                   <th scope="col">Account Number</th>
                   <th scope="col">Total Deposited Amount</th>
+                  <th scope="col">Total Withdrawn Amount</th>
+                  <th scope="col">Total Account Balance Amount</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,6 +80,8 @@
                     <td>{{ $bankAccount->account_number }}</td>
                     <td>{{ $bankAccount->account_name }}</td>
                     <td>{{ $bankAccount->totalDeposited }}</td>
+                    <td>{{ $bankAccount->totalWithDraw }}</td>
+                    <td>{{ $bankAccount->balance }}</td>
                 </tr>
                  @endforeach
               </tbody>
