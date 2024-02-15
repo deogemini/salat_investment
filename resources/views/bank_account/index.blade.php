@@ -71,6 +71,9 @@
               </thead>
               <tbody>
               @php
+                $grandTotalDeposited =0;
+                $grandTotalWithdraw =0;
+                $grandTotalBalance =0;
                    $i = 1;
               @endphp
   @foreach($bankAccounts as $bankAccount)
@@ -82,8 +85,26 @@
                     <td>{{ $bankAccount->totalDeposited }}</td>
                     <td>{{ $bankAccount->totalWithDraw }}</td>
                     <td>{{ $bankAccount->balance }}</td>
+
+                    @php
+
+                    $grandTotalDeposited += $bankAccount->totalDeposited;
+                    $grandTotalWithdraw += $bankAccount->totalWithDraw;
+                    $grandTotalBalance += $bankAccount->balance;
+                    @endphp
                 </tr>
                  @endforeach
+
+                 <tr style="border-bottom:2px solid #F0C356;">
+                    <th>Grand Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{formatAmount($grandTotalDeposited)}}</td>
+                    <td>{{formatAmount($grandTotalWithdraw)}}</td>
+                    <td>{{  formatAmount($grandTotalBalance) }}</td>
+                    <td></td>
+                  </tr>
               </tbody>
 
             </table>
