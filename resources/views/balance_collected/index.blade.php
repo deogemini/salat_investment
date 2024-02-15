@@ -110,9 +110,9 @@
                 <tr>
                     <td>{{ $i++ }}</td>
                     <td>{{ $withdraws->withdrawer_name}}</td>
-                    <td>{{ $withdraws->bankAccount->bank_name}}</td>
-                    <td>{{ $withdraws->bankAccount->account_number}}</td>
-                    <td>{{ $withdraws->bankAccount->account_name}}</td>
+                    <td>{{ $withdraws->bankAccount->bank_name ?? '0'}}</td>
+                    <td>{{ $withdraws->bankAccount->account_number ?? '0'}}</td>
+                    <td>{{ $withdraws->bankAccount->account_name ?? '0'}}</td>
                     <td>{{ formatAmount($withdraws->amount)}}</td>
                     <td>{{ $withdraws->created_at}}</td>
                     @php
