@@ -40,9 +40,9 @@
                 <tr>
                     <td>{{ $i++ }}</td>
                     <td>{{ $deposition->depositer_name}}</td>
-                    <td>{{ $deposition->bankAccount->bank_name}}</td>
-                    <td>{{ $deposition->bankAccount->account_number}}</td>
-                    <td>{{ $deposition->bankAccount->account_name}}</td>
+                    <td>{{ $deposition->bankAccount->bank_name ?? '0'}}</td>
+                    <td>{{ $deposition->bankAccount->account_number ?? '0'}}</td>
+                    <td>{{ $deposition->bankAccount->account_name ?? '0'}}</td>
                     <td>{{ formatAmount($deposition->amount)}}</td>
                     <td>{{ $deposition->created_at}}</td>
                     @php
