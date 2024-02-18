@@ -30,10 +30,13 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                    $i = 1;
+                @endphp
                 @foreach ($bankAccounts as $bankAccount)
 
                 <tr>
-                    <td>{{ $bankAccount->id}}</td>
+                    <td>{{$i++}}</td>
                     <td>{{ $bankAccount->bank_name}}</td>
                     <td>{{ $bankAccount->account_name}}</td>
                     <td>{{ $bankAccount->account_number}}</td>
