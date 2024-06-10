@@ -26,6 +26,7 @@
                   <th scope="col">#</th>
                   <th scope="col">Category Name</th>
                   <th scope="col">Description</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,6 +36,10 @@
                     <td>{{ $category->id}}</td>
                     <td>{{ $category->category_name}}</td>
                     <td>{{ $category->description}}</td>
+                    <td><a class="btn btn-danger" href="#">
+                        <i class="bi bi-x-square-fill"></i>
+                         Delete</a>
+                          </td>
                   </tr>
                   @endforeach
               </tbody>
