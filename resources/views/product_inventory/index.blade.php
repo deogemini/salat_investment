@@ -49,8 +49,13 @@
                     <td>{{$inventory->quantity_now}}</td>
                     <td>{{$inventory->created_at->format('Y-m-d H:i')}}</td>
                     <td>
-                        {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" style="margin-right: 5px;">
+                            <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
+                        </button>
+                        <a class="btn btn-danger btn-sm" href="#" style="margin-right: 5px;">
+                            <i class="bi bi-x-square-fill" style="margin-right: 3px;"></i> Delete
+                        </a>
+                    </td>
 
                   </tr>
                   @endforeach

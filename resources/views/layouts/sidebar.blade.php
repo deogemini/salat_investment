@@ -9,14 +9,18 @@
             </a>
         </li>
         <li class="nav-item">
+
             <a class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }} " href="{{ route('categories.index') }}">
-                <span data-feather="shopping-cart"></span>
+                <i class="bi bi-card-list"></i>
+
+                <span data-feather="shopping-cart">              </span>
                 Products Category
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('inventory.index') ? 'active' : '' }}" href="{{ route('inventory.index')}}">
+                <i class="bi bi-shop"></i>
               <span data-feather="bar-chart-2"></span>
               Inventory Management
             </a>
@@ -24,6 +28,7 @@
 
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('purchase.index') ? 'active' : '' }}" href="{{ route('purchase.index')}}">
+            <i class="bi bi-bag-fill"></i>
             <span data-feather="file"></span>
             Purchases
           </a>
@@ -31,6 +36,10 @@
 
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('sales.index') ? 'active' : '' }}" href="{{ route('sales.index')}}">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <i class="fa-regular fa-money-bill-1-wave"></i>
+                <i class="fa-solid fa-money-bill-trend-up"></i>
+
               <span data-feather="layers"></span>
               Sales
             </a>
@@ -45,6 +54,7 @@
 
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('suppliers.index') ? 'active' : '' }}"  href="{{ route('suppliers.index')}}">
+            <i class="bi bi-truck"></i>
             <span data-feather="users"></span>
             Suppliers
           </a>
