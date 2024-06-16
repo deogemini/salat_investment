@@ -3,7 +3,6 @@
       <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('dashboard.index') ? 'active':null}}" aria-current="page" href="{{ route('dashboard.index') }}">
-                <i class="bi bi-bar-chart-line"></i>
                 <span data-feather="home"></span>
                 <i class="bi bi-house-door-fill"></i>
                 Dashboard
