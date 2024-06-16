@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepositionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MashambaController;
+use App\Http\Controllers\MatumiziController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\PurchasesController;
 use App\Http\Controllers\ReportsController;
@@ -69,6 +70,15 @@ Route::post('/customers/store',[CustomerController::class,'store'])->name('custo
 Route::get('/suppliers/index', [SuppliersController::class,'index'])->name('suppliers.index');
 
 Route::post('/suppliers/store',[SuppliersController::class,'store'])->name('suppliers.create');
+
+
+//-------------matumizi---------///
+Route::get('/matumizi/index', [MatumiziController::class,'index'])->name('matumizi.index');
+Route::post('/matumizi/create', [MatumiziController::class,'create'])->name('matumizi.create');
+
+Route::get('/ainamatumizi/index',[MatumiziController::class,'aina_matumizi'])->name('ainamatumizi.index');
+Route::post('/ainamatumizi/create',[MatumiziController::class,'aina_matumizi_create'])->name('ainamatumizi.create');
+//------------------------------//
 
 Route::get('/deposition/index',[DepositionController::class,'index'])->name('deposition.index');
 Route::post('/deposition/withdraw',[DepositionController::class,'withdraw'])->name('deposition.withdraw');

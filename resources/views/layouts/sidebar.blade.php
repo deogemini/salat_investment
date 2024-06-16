@@ -3,11 +3,13 @@
       <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('dashboard.index') ? 'active':null}}" aria-current="page" href="{{ route('dashboard.index') }}">
+                <i class="bi bi-bar-chart-line"></i>
                 <span data-feather="home"></span>
                 <i class="bi bi-house-door-fill"></i>
                 Dashboard
             </a>
         </li>
+        <hr>
         <li class="nav-item">
 
             <a class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }} " href="{{ route('categories.index') }}">
@@ -36,17 +38,16 @@
 
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('sales.index') ? 'active' : '' }}" href="{{ route('sales.index')}}">
-                <i class="fa fa-money" aria-hidden="true"></i>
-                <i class="fa-regular fa-money-bill-1-wave"></i>
-                <i class="fa-solid fa-money-bill-trend-up"></i>
-
-              <span data-feather="layers"></span>
+                <i class="bi bi-people"></i>
+               <span data-feather="layers"></span>
               Sales
             </a>
           </li>
 
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('customers.index') ? 'active' : '' }}"  href="{{ route('customers.index')}}">
+            <i class="bi bi-people"></i>
+
             <span data-feather="users"></span>
             Customers
           </a>
@@ -59,8 +60,21 @@
             Suppliers
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('matumizi.index') ? 'active' : '' }}"  href="{{ route('matumizi.index')}}">
+            <i class="bi bi-minecart-loaded"></i>
+            <span data-feather="users"></span>
+            Matumizi
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('ainamatumizi.index') ? 'active' : '' }}"  href="{{ route('ainamatumizi.index')}}">
+            <i class="bi bi-stack"></i>
+            <span data-feather="users"></span>
 
-
+           Aina za Matumizi
+          </a>
+        </li>
       </ul>
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
