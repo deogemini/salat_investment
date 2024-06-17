@@ -90,6 +90,13 @@
            Aina za Matumizi
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('cement.index') ? 'active' : '' }}"  href="{{ route('cement.index')}}">
+            <i class="bi bi-stack"></i>
+            <span data-feather="users"></span>
+           Stock Ya Cement
+          </a>
+        </li>
       </ul>
 
       <hr>

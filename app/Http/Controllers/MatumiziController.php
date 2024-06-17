@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Matofali;
 use App\Models\MatofaliSales;
+use App\Models\MatumiziCement;
 use App\Models\MatumiziInput;
 use App\Models\MatumiziType;
 use Illuminate\Support\Facades\DB;
@@ -48,6 +49,38 @@ class MatumiziController extends Controller
                  // Redirect or return a response as needed
                  return redirect()->route('matofali.index')->with('success', 'Umefanikiwa kuingiza Matofali kwenye Stock');
         }
+    public function ingizaStockCement(Request $request)
+        {
+                // Validation
+                 $request->validate([
+                     'buying_price' => 'required|string|max:255',
+                 ]);
+                // Check if an entry with the given bei_rejareja exists
+
+                    // If it does not exist, create a new entry
+                    $cementMpya = new MatumiziCement();
+                    $cementMpya->jina_cement = $request->cement_name;
+                    $cementMpya->quantity_in = $request->idadi_cement_mifuko;
+                    $cementMpya->buying_price = $request->buying_price;
+                    $cementMpya->total_cost = ($request->buying_price *  $request->idadi_cement_mifuko) ;
+                    $cementMpya->save();
+
+                 // Redirect or return a response as needed
+                 return redirect()->route('cement.index')->with('success', 'Umefanikiwa kuingiza cement kwenye Stock');
+        }
+    public function toaStockCement(Request $request)
+        {
+            $existingCement = MatumiziCement::where('id', $request->cement_id)->first();
+
+            if ($existingCement) {
+                // If it exists, update the idadi_matofali_stock
+                $existingCement->quantity_out += $request->idadi_cement_mifuko;
+                $existingCement->save();
+            }
+
+                 // Redirect or return a response as needed
+                 return redirect()->route('cement.index')->with('success', 'Umefanikiwa kutoa cement kwenye Stock');
+        }
 
         private function generateSpecialCode()
         {
@@ -73,6 +106,11 @@ class MatumiziController extends Controller
     {
         $matofali  = Matofali::all();
         return view('matofali.index',compact('matofali'));
+    }
+    public function indexCement()
+    {
+        $cements  = MatumiziCement::all();
+        return view('matumizi.cement.index',compact('cements'));
     }
     public function indexMatofaliMauzo()
     {

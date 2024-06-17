@@ -75,9 +75,12 @@ Route::post('/suppliers/store',[SuppliersController::class,'store'])->name('supp
 //-------------matumizi---------///
 Route::get('/matumizi/index', [MatumiziController::class,'index'])->name('matumizi.index');
 Route::get('/matofali/index', [MatumiziController::class,'indexMatofali'])->name('matofali.index');
+Route::get('/cement/index', [MatumiziController::class,'indexCement'])->name('cement.index');
 Route::get('/mauzoMatofali/index', [MatumiziController::class,'indexMatofaliMauzo'])->name('mauzoMatofali.index');
 Route::post('/matofaliMauzo/create', [MatumiziController::class,'UzaMatofali'])->name('matofaliMauzo.create');
 Route::post('/matofali/ingizaStock', [MatumiziController::class,'ingizaStock'])->name('matofali.ingizaStock');
+Route::post('/cement/ingizaStock', [MatumiziController::class,'ingizaStockCement'])->name('cement.ingizaStock');
+Route::post('/cement/toaStock', [MatumiziController::class,'toaStockCement'])->name('cement.toaStock');
 Route::post('/matumizi/create', [MatumiziController::class,'create'])->name('matumizi.create');
 
 Route::get('/ainamatumizi/index',[MatumiziController::class,'aina_matumizi'])->name('ainamatumizi.index');
