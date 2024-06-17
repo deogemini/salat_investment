@@ -65,7 +65,7 @@
                     $grandtotalCementCost += $cement->total_cost;
                     $grandtotalMifukondanistock += $cement->quantity_in;
                     $grandtotalUsed += $cement->quantity_out;
-                    $grandtotalRemaining += ($cement->quantity_in - $cement->quantity_out);
+                    $grandtotalRemaining += ($cement->quantity_in - $cement->quantity_out  );
                     @endphp
                      </tr>
                   @endforeach

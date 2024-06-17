@@ -40,8 +40,8 @@
                 <tr>
                     <td>{{ $i++}}</td>
                     <td>{{$matumizi->matumiziType->name }}</td>
-                    <td>{{$matumizi->created_at }}</td>
                     <td>{{$matumizi->amount }}</td>
+                    <td>{{$matumizi->created_at }}</td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                             onclick="populateEditModal({{ json_encode($ainamatumizi) }})">
