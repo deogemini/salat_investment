@@ -8,6 +8,8 @@ use App\Models\MatumiziCement;
 use App\Models\MatumiziInput;
 use App\Models\MatumiziType;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 use Illuminate\Http\Request;
 
@@ -42,7 +44,7 @@ class MatumiziController extends Controller
                     $newTofali = new Matofali();
                     $newTofali->bei_rejareja = $request->bei_rejareja;
                     $newTofali->idadi_matofali_stock = $request->idadi_matofali_stock;
-                    $newTofali->special_code = $this->generateSpecialCode(); // Call a method to generate the special code
+                    $newTofali->special_code = $this->generateSpecialCode();
                     $newTofali->save();
                             }
 
@@ -123,23 +125,39 @@ class MatumiziController extends Controller
             'quantity' => 'required|string|max:255',
         ]);
 
-        $price = Matofali::where('id', $request->matofali_stock_id)->value('bei_rejareja');
 
+        try {
+            $price = Matofali::where('id', $request->matofali_stock_id)->value('bei_rejareja');
+            Log::info('Price retrieved: ' . $price);
 
-            // Create a new sale record
             $mauzoMapya = new MatofaliSales();
             $mauzoMapya->matofali_stock_id = $request->matofali_stock_id;
             $mauzoMapya->quantity = $request->quantity;
             $mauzoMapya->total_cost = ($price * $mauzoMapya->quantity);
 
+            if ($mauzoMapya->save()) {
+                Log::info('Sale record saved.');
 
-            $update_stock = Matofali::where('id', $request->matofali_stock_id)
-            ->update([
-                'idadi_matofali_soldout' => DB::raw('idadi_matofali_soldout + ' . $request->quantity)
-            ]);
+                $update_stock = Matofali::where('id', $request->matofali_stock_id)->first();
+                $update_stock->idadi_matofali_soldout += $request->quantity;
+                $update_stock->save();
 
+                if ($update_stock) {
+                    Log::info('Stock updated.');
+                    return redirect()->route('mauzoMatofali.index')->with('success', 'Umefanikiwa kuingiza Mauzo ya Tofali');
+                } else {
+                    Log::error('Failed to update stock.');
+                    return redirect()->route('mauzoMatofali.index')->with('error', 'Imeshindwa kusasisha hesabu ya matofali');
+                }
+            } else {
+                Log::error('Failed to save sale record.');
+                return redirect()->route('mauzoMatofali.index')->with('error', 'Imefeli');
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('mauzoMatofali.index')->with('error', 'Kulikuwa na tatizo: ' . $e->getMessage());
+        }
 
-        return redirect()->route('mauzoMatofali.index')->with('success', 'Umefanikiwa kuingiza Mauzo ya Tofali');
 
     }
     public function aina_matumizi_create(Request $request)

@@ -38,12 +38,12 @@
                     $grandTotalPurchasedOtherCost = 0;
                     $grandTotalPurchasedQuantity = 0;
                     $grandTotalPurchasedTotal =0;
-                    $id=1;
+                    $i=1;
                 @endphp
                 @foreach ($purchases as $purchase)
 
                 <tr>
-                    <td>{{ $id++}}</td>
+                    <td>{{ $i++}}</td>
                     <td>{{$purchase->productInventory->product_name .':'. $purchase->productInventory->reference_number}}</td>
                     <td>{{ $purchase->product_cost}}</td>
                     <td>{{ $purchase->other_product_cost}}</td>
