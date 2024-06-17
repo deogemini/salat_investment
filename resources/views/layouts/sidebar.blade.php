@@ -139,6 +139,12 @@
             Profit Per Products
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('reports.produceInvoice') ? 'active' : '' }}" href="{{ route ('reports.produceInvoice')}}">
+            <span data-feather="file-text"></span>
+            Produce Invoice
+          </a>
+        </li>
 
       </ul>
 

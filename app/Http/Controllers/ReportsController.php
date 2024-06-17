@@ -97,6 +97,11 @@ class ReportsController extends Controller
             return view('reports.salesperproduct', ['inventorySales' => $inventorySales]);
         }
 
+        public function produceInvoice(Request $request){
+            return view('reports.invoice');
+
+        }
+
 
         public function profitLossReportExport()
         {
