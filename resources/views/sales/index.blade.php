@@ -33,6 +33,9 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                $grandtotalamount=0;
+                @endphp
                 @foreach ($products_sales as $product_sales)
 
                 <tr>
@@ -45,8 +48,22 @@
                     <td>
                         {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
-                  </tr>
+
+                        @php
+                        $grandtotalamount += $product_sales->total_cost;
+                        @endphp
+                    </tr>
                   @endforeach
+
+                  <tr style="border-bottom:2px solid #F0C356;">
+                    <th>Grand Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$grandtotalamount}}</td>
+                  </tr>
+
+
               </tbody>
 
 
