@@ -95,13 +95,13 @@
                             <label class="form-label" for="aina">Chagua stock ya Tofali <span id="required-field">*</span></label>
                             <select name="matofali_stock_id" class="form-select">
                                 @foreach ($tofalizote as $item)
-                                    <option value="{{ $item->id }}">{{ $item->special_code }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->special_code }} ni Tzs {{$item->bei_rejareja}}</option>
                                 @endforeach
                             </select>
                         </div>
                             <div class="mb-3">
                                 <label class="form-label" for="quantity">jaza kiasi</label>
-                                <input type="number" class="form-control" name="quantity" placeholder="andika idadi ya matofali unayoingiza">
+                                <input type="number" class="form-control" name="quantity" placeholder="andika idadi ya matofali uliyouza">
                             </div>
 
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
