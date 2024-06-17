@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MatofaliSales;
 use App\Models\ProductSales;
 use Illuminate\Http\Request;
 
@@ -20,11 +21,22 @@ public function showChart()
 {
     // Fetch sales data from the database
     $salesData = ProductSales::select('created_at', 'total_cost')->get();
+    $mauzoMatofali = MatofaliSales::select('created_at','total_cost')->get();
 
     // Group sales data by day
     $groupedSalesData = $salesData->groupBy(function($date) {
         return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
     });
+
+    // Group Matofali Sales data by day
+    $groupedSalesTofali = $mauzoMatofali->groupBy(function($date){
+         return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
+    });
+    // Calculate total mauzo tofali for each day
+    $dailyTofaliSales = $groupedSalesTofali->map(function($group){
+        return $group->sum('total_cost');
+    });
+
 
     // Calculate total sales for each day
     $dailySales = $groupedSalesData->map(function ($group) {
