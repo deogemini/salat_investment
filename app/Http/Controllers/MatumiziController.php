@@ -125,9 +125,6 @@ class MatumiziController extends Controller
 
         $price = Matofali::where('id', $request->matofali_stock_id)->value('bei_rejareja');
 
-        try {
-            // Start a transaction
-            DB::beginTransaction();
 
             // Create a new sale record
             $mauzoMapya = new MatofaliSales();
@@ -135,22 +132,11 @@ class MatumiziController extends Controller
             $mauzoMapya->quantity = $request->quantity;
             $mauzoMapya->total_cost = ($price * $mauzoMapya->quantity);
 
-            if ($mauzoMapya->save()) {
-                // If save is successful, update the stock
-                $update_stock = Matofali::where('id', $request->matofali_stock_id)
-                    ->increment('idadi_matofali_soldout', $request->quantity);
 
-                // Commit the transaction
-                DB::commit();
-            } else {
-                // Rollback the transaction if save fails
-                DB::rollBack();
-            }
-        } catch (\Exception $e) {
-            // Rollback the transaction in case of any errors
-            DB::rollBack();
-            // Optionally, handle the exception (e.g., log the error, return an error response, etc.)
-        }
+            $update_stock = Matofali::where('id', $request->matofali_stock_id)
+            ->update([
+                'idadi_matofali_soldout' => DB::raw('idadi_matofali_soldout + ' . $request->quantity)
+            ]);
 
 
         return redirect()->route('mauzoMatofali.index')->with('success', 'Umefanikiwa kuingiza Mauzo ya Tofali');

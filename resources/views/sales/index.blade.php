@@ -35,11 +35,12 @@
               <tbody>
                 @php
                 $grandtotalamount=0;
+                $id=1;
                 @endphp
                 @foreach ($products_sales as $product_sales)
 
                 <tr>
-                    <td>{{ $product_sales->id}}</td>
+                    <td>{{ $id++}}</td>
                     <td>{{$product_sales->productInventory->product_name .":".$product_sales->productInventory->reference_number }}</td>
                     <td>{{ $product_sales->product_cost}}</td>
                     <td>{{ $product_sales->quantity}}</td>
