@@ -30,10 +30,13 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                $id=1;
+                @endphp
                 @foreach ($categories as $category)
 
                 <tr>
-                    <td>{{ $category->id}}</td>
+                    <td>{{ $id++}}</td>
                     <td>{{ $category->category_name}}</td>
                     <td>{{ $category->description}}</td>
                     <td><a class="btn btn-danger" href="#">
