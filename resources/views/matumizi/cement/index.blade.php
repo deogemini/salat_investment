@@ -40,9 +40,10 @@
               <tbody>
                 @php
                 $i=1;
-                $grandtotalndanistock=0;
-                $grandtotalIliyouzwa=0;
-                $grandtotalIliyobakia=0;
+                $grandtotalCementCost = 0;
+                $grandtotalMifukondanistock=0;
+                $grandtotalUsed=0;
+                $grandtotalRemaining=0;
                 @endphp
                 @foreach ($cements as $cement)
 
@@ -61,8 +62,10 @@
                         </button>
                     </td>
                     @php
-                    $grandtotalndanistock += $cement->idadi_matofali_stock;
-                    $grandtotalIliyouzwa += $cement->idadi_matofali_soldout;
+                    $grandtotalCementCost += $cement->total_cost;
+                    $grandtotalMifukondanistock += $cement->quantity_in;
+                    $grandtotalUsed += $cement->quantity_out;
+                    $grandtotalRemaining += ($cement->quantity_in - $cement->quantity_out);
                     @endphp
                      </tr>
                   @endforeach
@@ -71,9 +74,10 @@
                     <th>Grand Total</th>
                     <td></td>
                     <td></td>
-                    <td>{{$grandtotalndanistock}}</td>
-                    <td>{{$grandtotalIliyouzwa}}</td>
-                    <td>{{$grandtotalIliyobakia}}</td>
+                    <td>{{$grandtotalMifukondanistock}}</td>
+                    <td>{{$grandtotalCementCost}}</td>
+                    <td>{{$grandtotalUsed}}</td>
+                    <td>{{$grandtotalRemaining}}</td>
                   </tr>
               </tbody>
 
