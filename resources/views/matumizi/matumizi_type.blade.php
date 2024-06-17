@@ -73,11 +73,11 @@
                         @csrf
                             <div class="mb-3">
                                 <label class="form-label" for="name">Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="andika jina ya aina ya matumizi">
+                                <input type="text" class="form-control" name="name" placeholder="andika jina ya aina ya matumizi" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="date_of_buying">Maelezo ya Matumizi</label>
-                                <input type="text" class="form-control" name="description" placeholder="Andika Maelezo yake">
+                                <input type="text" class="form-control" name="description" placeholder="Andika Maelezo yake" required>
                             </div>
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>
                             <div class="d-flex align-items-start gap-3 mt-4">

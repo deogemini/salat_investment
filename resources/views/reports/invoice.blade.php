@@ -2,6 +2,6 @@
 
 @section('content')
 
-<p>Comming Soon!....</p>
+<p>Coming Soon!....</p>
 
 @endsection
