@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title mb-0 text-center">Data za Matumizi </h4>
+        <h4 class="card-title mb-0 text-center">Data za Matofali </h4>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
             <div class="col-sm-auto text-right">
                 <div>
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
-                            <i class="ri-add-line align-bottom me-1"></i> Sajili Matumizi
+                            <i class="ri-add-line align-bottom me-1"></i> Ingiza Stock ya Matofali
                         </button>
 
                 </div>
@@ -24,32 +24,40 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Aina ya Matumizi</th>
-                  <th scope="col">Kiasi</th>
-                  <th scope="col">Muda</th>
+                  <th scope="col">Maelezo</th>
+                  <th scope="col">Bei ya kuuza</th>
+                  <th scope="col">Idadi ndani ya Stock</th>
+                  <th scope="col">Idadi iliyouzwa</th>
+                  <th scope="col">Idadi iliyobakia</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 @php
                 $i=1;
-                $grandtotalamount=0;
+                $grandtotalndanistock=0;
+                $grandtotalIliyouzwa=0;
+                $grandtotalIliyobakia=0;
                 @endphp
-                @foreach ($matumizijumla as $matumizi)
+                @foreach ($matofali as $matofali)
 
                 <tr>
                     <td>{{ $i++}}</td>
-                    <td>{{$matumizi->matumiziType->name }}</td>
-                    <td>{{$matumizi->created_at }}</td>
-                    <td>{{$matumizi->amount }}</td>
+                    <td>{{$matofali->special_code }}</td>
+                    <td>{{$matofali->bei_rejareja }}</td>
+                    <td>{{$matofali->idadi_matofali_stock }}</td>
+                    <td>{{$matofali->idadi_matofali_soldout ?? 0}} </td>
+                    <td>{{ $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout }}</td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
-                            onclick="populateEditModal({{ json_encode($ainamatumizi) }})">
+                            onclick="populateEditModal({{ json_encode($matofali) }})">
                             <i class="bx bx-edit"></i> Edit
                         </button>
                     </td>
                     @php
-                    $grandtotalamount += $matumizi->amount;
+                    $grandtotalndanistock += $matofali->idadi_matofali_stock;
+                    $grandtotalIliyouzwa += $matofali->idadi_matofali_soldout;
+                    $grandtotalIliyobakia += ( $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout);
                     @endphp
                      </tr>
                   @endforeach
@@ -57,7 +65,10 @@
                   <tr style="border-bottom:2px solid #F0C356;">
                     <th>Grand Total</th>
                     <td></td>
-                    <td>{{$grandtotalamount}}</td>
+                    <td></td>
+                    <td>{{$grandtotalndanistock}}</td>
+                    <td>{{$grandtotalIliyouzwa}}</td>
+                    <td>{{$grandtotalIliyobakia}}</td>
                   </tr>
               </tbody>
 
@@ -76,24 +87,20 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Sajili Matumizi</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Sajili Matofali</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
                 <div class="card-body form-steps">
-                    <form id="registration_form" action="{{ route('matumizi.create') }}" method="post">
+                    <form id="registration_form" action="{{ route('matofali.ingizaStock') }}" method="post">
                         @csrf
-                        <div class="mb-3">
-                            <label class="form-label" for="aina">Chagua aina ya matumizi <span id="required-field">*</span></label>
-                            <select name="matumizi_type_id" class="form-select">
-                                @foreach ($ainamatumizi as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                             <div class="mb-3">
-                                <label class="form-label" for="amount">Amount</label>
-                                <input type="number" class="form-control" name="amount" placeholder="andika jina ya aina ya matumizi">
+                                <label class="form-label" for="bei_rejareja">Bei ya Kuuza</label>
+                                <input type="number" class="form-control" name="bei_rejareja" placeholder="1050">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="idadi_matofali_stock">jaza kiasi</label>
+                                <input type="number" class="form-control" name="idadi_matofali_stock" placeholder="andika idadi ya matofali unayoingiza">
                             </div>
 
                             <p style="margin-top: 15px;"><b>NOTE: Fields marked with <span id="required-field">*</span> are mandatory</b></p>

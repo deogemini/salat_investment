@@ -37,7 +37,7 @@
 
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('sales.index') ? 'active' : '' }}" href="{{ route('sales.index')}}">
-                <i class="bi bi-people"></i>
+                <i class="bi bi-cash"></i>
                <span data-feather="layers"></span>
               Sales
             </a>
@@ -59,6 +59,22 @@
             Suppliers
           </a>
         </li>
+        <hr>
+
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('matofali.index') ? 'active' : '' }}"  href="{{ route('matofali.index')}}">
+                <i class="bi bi-dice-6"></i>
+              <span data-feather="users"></span>
+              Stock ya Matofali
+            </a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('mauzoMatofali.index') ? 'active' : '' }}"  href="{{ route('mauzoMatofali.index')}}">
+                <i class="bi bi-cash-stack"></i>
+              <span data-feather="users"></span>
+              Ripoti ya Mauzo ya tofali
+            </a>
+          </li>
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('matumizi.index') ? 'active' : '' }}"  href="{{ route('matumizi.index')}}">
             <i class="bi bi-minecart-loaded"></i>
@@ -75,6 +91,8 @@
           </a>
         </li>
       </ul>
+
+      <hr>
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
         <span>Saved reports</span>
@@ -117,6 +135,7 @@
 
       </ul>
 
+      <hr>
 
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
