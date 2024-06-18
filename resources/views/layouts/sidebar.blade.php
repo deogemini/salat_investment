@@ -139,10 +139,17 @@
             Profit Per Products
           </a>
         </li>
+    <hr>
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('reports.produceInvoice') ? 'active' : '' }}" href="{{ route ('reports.produceInvoice')}}">
+          <a class="nav-link {{ request()->routeIs('invoice.index') ? 'active' : '' }}" href="{{ route ('invoice.index')}}">
             <span data-feather="file-text"></span>
-            Produce Invoice
+            Invoices
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('invoices.create') ? 'active' : '' }}" href="{{ route ('invoices.create')}}">
+            <span data-feather="file-text"></span>
+            Create Invoices
           </a>
         </li>
 

@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_name');
-            $table->string('client_name');
-            $table->string('payment_status');
+            $table->string('invoice_number')->unique();
+            $table->string('contact_person')->nullable();
+            $table->string('customer_name');
+            $table->string('customer_phone')->nullable();
+            $table->string('customer_address')->nullable();
+            $table->string('customer_tinnumber')->nullable();
+            $table->string('total_amount')->nullable();
+            $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
     }

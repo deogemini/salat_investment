@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepositionController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MashambaController;
 use App\Http\Controllers\MatumiziController;
 use App\Http\Controllers\ProductCategoryController;
@@ -42,7 +43,6 @@ Route::get('/profit_loss_report', [ReportsController::class,'profitLossReport'])
 Route::get('/export/sales/report', [ReportsController::class,'salesReport'])->name('export.sales.report');
 Route::get('/export/profitloss/report', [ReportsController::class,'profitLossReportExport'])->name('export.profitloss.report');
 Route::get('reports/salesperproduct', [ReportsController::class,'ProfitPerItem'])->name('reports.salesperproduct');
-Route::get('reports/produceInvoice', [ReportsController::class,'produceInvoice'])->name('reports.produceInvoice');
 
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 
@@ -105,3 +105,11 @@ Route::post('/mashamba/update',[MashambaController::class,'update'])->name('mash
 Route::get('/gharama_mashamba/index',[MashambaController::class,'indexGharamaZaMashamba'])->name('gharama_mashamba.index');
 Route::post('/gharama_mashamba/create',[MashambaController::class,'create'])->name('gharama_mashamba.create');
 Route::post('/gharama_mashamba/ongezaGharama',[MashambaController::class,'ongezaGharama'])->name('gharama_mashamba.ongezaGharama');
+
+
+Route::get('invoice/index', [InvoiceController::class,'index'])->name('invoice.index');
+Route::get('invoices/create', [InvoiceController::class,'create'])->name('invoices.create');
+Route::post('invoices/store', [InvoiceController::class,'store'])->name('invoices.store');
+Route::get('/invoices/{id}/pdf', [InvoiceController::class, 'generatePDF'])->name('invoices.pdf');
+
+
