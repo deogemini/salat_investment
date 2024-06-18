@@ -9,6 +9,10 @@ use App\Models\ProductPurchase;
 use App\Models\ProductSales;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Invoice;
+
+
+
 
 class ReportsController extends Controller
 {
@@ -97,8 +101,9 @@ class ReportsController extends Controller
             return view('reports.salesperproduct', ['inventorySales' => $inventorySales]);
         }
 
-        public function produceInvoice(Request $request){
-            return view('reports.invoice');
+        public function produceInvoice(){
+            $invoices = Invoice::with('items')->get();
+            return view('reports.invoice', compact('invoices'));
 
         }
 
