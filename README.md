@@ -1,6 +1,6 @@
-## The Duka System
+# The Duka System
 
-# Features 
+## Features 🚀🚀 
 - Dashboard with Sales Graph
 - Manage Inventory
 - Manage Sales
