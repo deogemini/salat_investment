@@ -66,13 +66,11 @@ class MatumiziController extends Controller
                  ]);
 
                    // Check if an entry with the given bei_rejareja exists
+                DB::transaction(function () use ($request) {
+
                 $existingCement = MatumiziCement::where('buying_price', $request->buying_price)->first();
 
-                if ($existingCement) {
-                    // If it exists, update the idadi_matofali_stock
-                    $existingCement->quantity_in += $request->idadi_cement_mifuko;
-                    $existingCement->save();
-                } else {
+
 
                     // If it does not exist, create a new entry
                     $cementMpya = new MatumiziCement();
@@ -81,7 +79,13 @@ class MatumiziController extends Controller
                     $cementMpya->buying_price = $request->buying_price;
                     $cementMpya->total_cost = ($request->buying_price *  $request->idadi_cement_mifuko) ;
                     $cementMpya->save();
-                }
+
+                    if ($existingCement) {
+                        // If it exists, update the stock
+                        $existingCement->quantity_in += $request->quantity_in;
+                        $existingCement->save();
+                    }
+                });
                  // Redirect or return a response as needed
                  return redirect()->route('cement.index')->with('success', 'Umefanikiwa kuingiza cement kwenye Stock');
         }

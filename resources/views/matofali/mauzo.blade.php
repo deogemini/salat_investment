@@ -46,7 +46,7 @@
                     <td>{{$matofali->tofali->bei_rejareja }}</td>
                     <td>{{$matofali->quantity }}</td>
                     <td>{{$matofali->total_cost}} </td>
-                    <td>{{$matofali->created_at}} </td>
+                    <td>{{$matofali->updated_at}} </td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                             onclick="populateEditModal({{ json_encode($matofali) }})">
@@ -95,7 +95,7 @@
                             <label class="form-label" for="aina">Chagua stock ya Tofali <span id="required-field">*</span></label>
                             <select name="matofali_stock_id" class="form-select">
                                 @foreach ($tofalizote as $item)
-                                    <option value="{{ $item->id }}">{{ $item->special_code }} ni Tzs {{$item->bei_rejareja}}</option>
+                                    <option value="{{ $item->id }}">{{ $item->special_code }} ni Shilingi {{$item->bei_rejareja}} yamebaki {{$item->idadi_matofali_stock - $item->idadi_matofali_soldout}}</option>
                                 @endforeach
                             </select>
                         </div>

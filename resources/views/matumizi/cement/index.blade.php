@@ -34,6 +34,7 @@
                   <th scope="col">Gharama ya Jumla</th>
                   <th scope="col">Idadi iliyotumika</th>
                   <th scope="col">Idadi iliyobakia</th>
+                  <th scope="col">Muda </th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -55,6 +56,7 @@
                     <td>{{$cement->total_cost}}</td>
                     <td>{{$cement->quantity_out}}</td>
                     <td>{{$cement->quantity_in - $cement->quantity_out}}</td>
+                    <td>{{ $cement->updated_at}}</td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                             onclick="populateEditModal({{ json_encode($cement) }})">
@@ -142,7 +144,7 @@
                             <label class="form-label" for="aina">Chagua aina ya matumizi <span id="required-field">*</span></label>
                             <select name="cement_id" class="form-select">
                                 @foreach ($cements as $item)
-                                    <option value="{{ $item->id }}">{{ $item->jina_cement }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->jina_cement }} Tzs {{$item->buying_price}} Imebaki mifuko {{$item->quantity_in - $item->quantity_out }}</option>
                                 @endforeach
                             </select>
                         </div>
