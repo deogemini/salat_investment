@@ -29,6 +29,7 @@
                   <th scope="col">Idadi ndani ya Stock</th>
                   <th scope="col">Idadi iliyouzwa</th>
                   <th scope="col">Idadi iliyobakia</th>
+                  <th scope="col">Muda</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -48,6 +49,7 @@
                     <td>{{$matofali->idadi_matofali_stock }}</td>
                     <td>{{$matofali->idadi_matofali_soldout ?? 0}} </td>
                     <td>{{ $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout }}</td>
+                    <td>{{$matofali->created_at}}</td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                             onclick="populateEditModal({{ json_encode($matofali) }})">
