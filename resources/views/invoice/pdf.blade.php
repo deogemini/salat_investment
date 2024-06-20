@@ -74,7 +74,7 @@
     <div class="header">
         <h1>DBM</h1>
         <p>Deo Building Materials</p>
-        <p>P.O.Box, Dodoma, Nkuhungu, Streaty Ndachi Mnungano</p>
+        <p>P.O.Box, Dodoma, Nkuhungu, Street Ndachi Muungano</p>
         <p>Phone: +255 713 066 193</p>
     </div>
 
