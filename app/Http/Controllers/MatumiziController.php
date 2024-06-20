@@ -33,20 +33,27 @@ class MatumiziController extends Controller
                      'bei_rejareja' => 'required|string|max:255',
                  ]);
                 // Check if an entry with the given bei_rejareja exists
-                $existingTofali = Matofali::where('bei_rejareja', $request->bei_rejareja)->first();
 
-                if ($existingTofali) {
-                    // If it exists, update the idadi_matofali_stock
-                    $existingTofali->idadi_matofali_stock += $request->idadi_matofali_stock;
-                    $existingTofali->save();
-                } else {
-                    // If it does not exist, create a new entry
+                DB::transaction(function () use ($request) {
+                    // Check if an entry with the same bei_rejareja exists
+                    $existingTofali = Matofali::where('bei_rejareja', $request->bei_rejareja)->first();
+
+                    // Determine the special code
+                    $specialCode = $existingTofali ? $existingTofali->special_code : $this->generateSpecialCode();
+
+                    // Create a new entry
                     $newTofali = new Matofali();
                     $newTofali->bei_rejareja = $request->bei_rejareja;
                     $newTofali->idadi_matofali_stock = $request->idadi_matofali_stock;
-                    $newTofali->special_code = $this->generateSpecialCode();
+                    $newTofali->special_code = $specialCode;
                     $newTofali->save();
-                            }
+
+                    if ($existingTofali) {
+                        // If it exists, update the stock
+                        $existingTofali->idadi_matofali_stock += $request->idadi_matofali_stock;
+                        $existingTofali->save();
+                    }
+                });
 
                  // Redirect or return a response as needed
                  return redirect()->route('matofali.index')->with('success', 'Umefanikiwa kuingiza Matofali kwenye Stock');
