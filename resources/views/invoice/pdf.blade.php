@@ -72,8 +72,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>DBM</h1>
-        <p>Deo Building Materials</p>
+        <h1><span>DBM</span></h1>
+        <p>Deo Building Materials and Supply</p>
         <p>P.O.Box, Dodoma, Nkuhungu, Street Ndachi Muungano</p>
         <p>Phone: +255 713 066 193</p>
     </div>
@@ -122,8 +122,9 @@
                 </tbody>
             </table>
 
-            <p><strong>VAT:</strong> </p>
-            <p><strong>NET AMOUNT:</strong> {{ $invoice->amount }}</p>
+            <p><strong>Sub Total:</strong> {{$invoice->total_amount }}</p>
+            <p><strong>VAT Amount:</strong> {{ $invoice->total_amount*0.18}}</p>
+            <p><strong>Total:</strong> {{ $invoice->total_amount + ($invoice->total_amount*0.18) }}</p>
 
             <div class="terms">
                 <p><strong>Sales Order Terms and Conditions:</strong></p>
@@ -142,7 +143,7 @@
     </div>
 
     <div class="footer">
-        <p>Deo Building Materials, P.O.Box, Dodoma, Nkuhungu, Streaty Ndachi Mnungano, Phone: +255 713 066 193</p>
+        <p>Deo Building Materials and Supply, P.O.Box, Dodoma, Nkuhungu, Street Ndachi Muungano, Phone: +255 713 066 193</p>
     </div>
 </body>
 </html>
