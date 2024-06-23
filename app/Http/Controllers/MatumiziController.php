@@ -48,12 +48,13 @@ class MatumiziController extends Controller
                     $newTofali->special_code = $specialCode;
                     $newTofali->save();
 
+                    // If an entry exists, do not update its stock
                     if ($existingTofali) {
-                        // If it exists, update the stock
-                        $existingTofali->idadi_matofali_stock += $request->idadi_matofali_stock;
-                        $existingTofali->save();
+                        // Optionally, you could log or handle the case where the entry already exists
+                        // For example, logging a message or notifying the user
                     }
                 });
+
 
                  // Redirect or return a response as needed
                  return redirect()->route('matofali.index')->with('success', 'Umefanikiwa kuingiza Matofali kwenye Stock');
