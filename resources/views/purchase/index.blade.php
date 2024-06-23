@@ -56,7 +56,6 @@
                     $grandTotalPurchasedOtherCost += $purchase->other_product_cost;
                     $grandTotalPurchasedQuantity += $purchase->quantity;
                     $grandTotalPurchasedTotal += $purchase->total_cost;
-
                     @endphp
                   </tr>
                   @endforeach

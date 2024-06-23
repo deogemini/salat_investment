@@ -36,10 +36,13 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                $id=1;
+                @endphp
                 @foreach ($inventories as $inventory)
 
                 <tr>
-                    <td>{{$inventory->id}}</td>
+                    <td>{{$id++}}</td>
                     <td>{{ $inventory->product_name .':'.' ' . $inventory->reference_number }}</td>
                     <td>{{$inventory->product_description}}</td>
                     <td>{{$inventory->productCategory->category_name}}</td>
