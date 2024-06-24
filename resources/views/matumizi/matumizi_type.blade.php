@@ -1,6 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('content')
+<div class="container">
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+
 <div class="card">
     <div class="card-header">
         <h4 class="card-title mb-0 text-center">Data za Aina ya Matumizi </h4>
@@ -41,8 +49,12 @@
                     <td>{{$matumizi->description }}</td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
-                            onclick="populateEditModal({{ json_encode($ainamatumizi) }})">
+                            onclick="populateEditModal({{ json_encode($matumizi) }})">
                             <i class="bx bx-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
+                            onclick="populateEditModal({{ json_encode($ainamatumizi) }})">
+                            <i class="bx bx-edit"></i> Delete
                         </button>
                     </td>
                      </tr>
@@ -54,9 +66,11 @@
 
     </div>
 
-</div>
+   </div>
 
 </div>
+</div>
+
 
 
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -91,58 +105,36 @@
     </div>
 
         {{-- edit modal --}}
-      <!-- Edit Modal -->
-      <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Badilisha Taarifa za mashamba</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('mashamba.update')}}" method="post">
-                    @csrf
-                    <!-- Modal Body -->
-                    <div class="modal-body">
-                        <label for="location" class="form-label">Jina la Eneo la Shamba</label>
-                        <input type="text" id="location" class="form-control" name="location" required />
-                        <input type="text" id="id" hidden class="form-control" name="id" required />
-
-                        <label for="buying_cost" class="form-label">Gharama ya kununua shamba</label>
-                        <input type="number"  id="buying_cost" class="form-control" name="buying_cost" required />
-
-                        <label for="size" class="form-label">Ukubwa wa shamba</label>
-                        <input type="number" id="size" class="form-control" name="size" required />
-
-                        <label for="date_of_buying" class="form-label">Lini Limenunuliwa</label>
-                        <input type="date" id="date_of_buying" class="form-control" name="date_of_buying" required />
+        <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update the Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-footer">
-                        <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id="update_btn"> <i class=" bx bxs-save"></i> Update</button>
+                    <form action="{{ route('ainamatumizi.update', $matumizi->id)}}" method="post">
+                        @csrf
+                        @method('PUT') <!-- Assuming you are using RESTful conventions for updating -->
+                        <div class="modal-body">
+                            <label for="name" class="form-label">Name of Expenditure</label>
+                            <input type="text" id="name" class="form-control" name="name" required value="{{$matumizi->name}}" />
+
+                            <label for="description" class="form-label">Description of Expenditure</label>
+                            <input type="text" id="description" class="form-control" name="description" required value="{{$matumizi->description}}" />
+
                         </div>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <div class="hstack gap-2 justify-content-end">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
 
-
-
-<script>
-    function populateEditModal(shambaData) {
-        // Populate modal fields with data
-        document.getElementById('id').value = shambaData.id;
-        document.getElementById('location').value = shambaData.location;
-        document.getElementById('buying_cost').value = shambaData.buying_cost;
-        document.getElementById('size').value = shambaData.size;
-        document.getElementById('date_of_buying').value = shambaData.date_of_buying;
-
-        // You can add more fields based on your shamba object properties
-    }
-</script>
 
 
 @endsection

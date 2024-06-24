@@ -86,6 +86,7 @@ Route::post('/matumizi/create', [MatumiziController::class,'create'])->name('mat
 
 Route::get('/ainamatumizi/index',[MatumiziController::class,'aina_matumizi'])->name('ainamatumizi.index');
 Route::post('/ainamatumizi/create',[MatumiziController::class,'aina_matumizi_create'])->name('ainamatumizi.create');
+Route::put('/ainamatumizi/update/{id}',[MatumiziController::class,'aina_matumizi_update'])->name('ainamatumizi.update');
 //------------------------------//
 
 Route::get('/deposition/index',[DepositionController::class,'index'])->name('deposition.index');
