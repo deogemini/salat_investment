@@ -30,6 +30,7 @@
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Cost</th>
                   <th scope="col">Time in</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,6 +52,14 @@
                     <td>{{ $purchase->quantity}}</td>
                     <td>{{ formatAmount($purchase->total_cost)}}</td>
                     <td>{{ $purchase->created_at->format('Y-m-d H:i')}}</td>
+                    <td>
+                        <form action="{{ route('purchase.destroy', $purchase->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
+                    </td>
                     @php
                     $grandTotalPurchasedCost += $purchase->product_cost;
                     $grandTotalPurchasedOtherCost += $purchase->other_product_cost;

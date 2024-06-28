@@ -55,9 +55,12 @@
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" style="margin-right: 5px;">
                             <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
                         </button>
-                        <a class="btn btn-danger btn-sm" href="#" style="margin-right: 5px;">
-                            <i class="bi bi-x-square-fill" style="margin-right: 3px;"></i> Delete
-                        </a>
+                        <form action="{{ route('inventory.destroy', $inventory->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
                     </td>
 
                   </tr>

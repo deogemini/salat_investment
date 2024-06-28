@@ -27,6 +27,7 @@
                   <th scope="col">Customer Name</th>
                   <th scope="col">Location</th>
                   <th scope="col">Contacts</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -37,6 +38,14 @@
                     <td>{{ $customer->customer_name}}</td>
                     <td>{{ $customer->customer_location}}</td>
                     <td>{{ $customer->phone_number}}</td>
+                    <td>
+                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
+                    </td>
                   </tr>
                   @endforeach
               </tbody>

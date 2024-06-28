@@ -122,9 +122,9 @@
                 </tbody>
             </table>
 
-            <p><strong>Sub Total:</strong> {{$invoice->total_amount }}</p>
-            <p><strong>VAT Amount:</strong> {{ $invoice->total_amount*0.18}}</p>
-            <p><strong>Total:</strong> {{ $invoice->total_amount + ($invoice->total_amount*0.18) }}</p>
+            <p><strong>Total:</strong> {{$invoice->total_amount }}</p>
+            {{-- <p><strong>VAT Amount:</strong> {{ $invoice->total_amount*0.18}}</p> --}}
+            {{-- <p><strong>Total:</strong> {{ $invoice->total_amount + ($invoice->total_amount*0.18) }}</p> --}}
 
             <div class="terms">
                 <p><strong>Sales Order Terms and Conditions:</strong></p>

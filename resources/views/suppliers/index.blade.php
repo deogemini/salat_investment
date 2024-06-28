@@ -27,6 +27,7 @@
                   <th scope="col">Supplier Name</th>
                   <th scope="col">Location</th>
                   <th scope="col">Contacts</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -37,6 +38,14 @@
                     <td>{{ $supplier->supplier_name}}</td>
                     <td>{{ $supplier->supplier_location}}</td>
                     <td>{{ $supplier->supplier_phone_number}}</td>
+                    <td>
+                        <form action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
+                    </td>
                   </tr>
                   @endforeach
               </tbody>

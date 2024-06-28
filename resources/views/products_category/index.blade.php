@@ -39,9 +39,14 @@
                     <td>{{ $id++}}</td>
                     <td>{{ $category->category_name}}</td>
                     <td>{{ $category->description}}</td>
-                    <td><a class="btn btn-danger" href="#">
-                        <i class="bi bi-x-square-fill"></i>
-                         Delete</a>
+                    <td>
+                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
+
                           </td>
                   </tr>
                   @endforeach

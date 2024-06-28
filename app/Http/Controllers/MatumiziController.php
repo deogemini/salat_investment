@@ -194,22 +194,25 @@ class MatumiziController extends Controller
         return redirect()->route('ainamatumizi.index')->with('success', 'Matumizi Type added successfully');
     }
 
-    public function aina_matumizi_update(Request $request)
+    public function aina_matumizi_update(Request $request, $id)
     {
-      // Validate the request data
-            $validatedData = $request->validate([
-                // Add your validation rules here, for example:
-                'name' => 'required|string|max:255',
-                'description' => 'required|string',
-            ]);
+       // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
 
-            // Find the record by id
-            $matumiziType = MatumiziType::findOrFail($request->id);
+        // Find the record by ID
+        $matumizi = MatumiziType::findOrFail($id);
 
-            // Update the record with the validated data
-            $matumiziType->update($validatedData);
+        // Update the record
+        $matumizi->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
 
-            return redirect()->route('ainamatumizi.index')->with('success', 'Matumizi Type Updated successfully');
+        // Redirect back with a success message
+        return redirect()->route('ainamatumizi.index')->with('success', 'Record updated successfully.');
 
 
 
@@ -268,8 +271,15 @@ class MatumiziController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find the record by ID
+        $matumizi = MatumiziType::findOrFail($id);
+
+        // Delete the record
+        $matumizi->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('ainamatumizi.index')->with('success', 'Record deleted successfully.');
     }
 }

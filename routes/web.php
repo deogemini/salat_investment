@@ -47,13 +47,16 @@ Route::get('reports/salesperproduct', [ReportsController::class,'ProfitPerItem']
 Route::get('/categories/index', [ProductCategoryController::class,'index'])->name('categories.index');
 
 Route::post('/categories/store',[ProductCategoryController::class,'store'])->name('categories.create');
+Route::post('/categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('categories.destroy');
 
 Route::get('/inventory/index', [InventoryController::class,'index'])->name('inventory.index');
+Route::get('/inventory/destroy/{id}', [InventoryController::class,'index'])->name('inventory.destroy');
 
 Route::post('/inventory/store',[InventoryController::class,'store'])->name('inventory.create');
 Route::get('/product/getPrices/{id}',[InventoryController::class,'getPrices']);
 
 Route::get('/purchase/index', [PurchasesController::class,'index'])->name('purchase.index');
+Route::get('/purchase/destroy', [PurchasesController::class,'destroy'])->name('purchase.destroy');
 
 Route::post('/purchase/store',[PurchasesController::class,'store'])->name('purchase.create');
 
@@ -61,16 +64,19 @@ Route::get('/sales/index', [SalesController::class,'index'])->name('sales.index'
 
 Route::post('/sales/store',[SalesController::class,'store'])->name('sales.create');
 Route::post('/sales/edit/{{$id}}',[SalesController::class,'edit'])->name('sales.edit');
+Route::post('/sales/destroy/{{$id}}',[SalesController::class,'edit'])->name('sales.destroy');
 
 
 Route::get('/customers/index', [CustomerController::class,'index'])->name('customers.index');
 
 Route::post('/customers/store',[CustomerController::class,'store'])->name('customers.create');
+Route::post('/customers/destroy/{id}',[CustomerController::class,'store'])->name('customers.destroy');
 
 
 Route::get('/suppliers/index', [SuppliersController::class,'index'])->name('suppliers.index');
 
 Route::post('/suppliers/store',[SuppliersController::class,'store'])->name('suppliers.create');
+Route::post('/suppliers/destroy/{id}',[SuppliersController::class,'store'])->name('suppliers.destroy');
 
 
 //-------------matumizi---------///
@@ -82,11 +88,17 @@ Route::post('/matofaliMauzo/create', [MatumiziController::class,'UzaMatofali'])-
 Route::post('/matofali/ingizaStock', [MatumiziController::class,'ingizaStock'])->name('matofali.ingizaStock');
 Route::post('/cement/ingizaStock', [MatumiziController::class,'ingizaStockCement'])->name('cement.ingizaStock');
 Route::post('/cement/toaStock', [MatumiziController::class,'toaStockCement'])->name('cement.toaStock');
+Route::post('/cement/destroy/{id}', [MatumiziController::class,'toaStockCement'])->name('cement.destroy');
+
 Route::post('/matumizi/create', [MatumiziController::class,'create'])->name('matumizi.create');
 
 Route::get('/ainamatumizi/index',[MatumiziController::class,'aina_matumizi'])->name('ainamatumizi.index');
 Route::post('/ainamatumizi/create',[MatumiziController::class,'aina_matumizi_create'])->name('ainamatumizi.create');
-Route::put('/ainamatumizi/update/{id}',[MatumiziController::class,'aina_matumizi_update'])->name('ainamatumizi.update');
+Route::put('/ainamatumizi/update/',[MatumiziController::class,'aina_matumizi_update'])->name('ainamatumizi.update');
+Route::post('/ainamatumizi/destroy/{id}', [MatumiziController::class, 'destroy'])->name('ainamatumizi.destroy');
+
+
+
 //------------------------------//
 
 Route::get('/deposition/index',[DepositionController::class,'index'])->name('deposition.index');

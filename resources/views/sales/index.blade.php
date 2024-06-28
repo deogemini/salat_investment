@@ -48,7 +48,15 @@
                     <td>{{ $product_sales->created_at->format('Y-m-d H:i')}}</td>
                     <td>
                         {{-- <a href="{{ route('sales.edit',$product_sales->id )}}"> --}}
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button></td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="showModal-edit"><i class="bx bx-edit"></i> Edit </button>
+                        <form action="{{ route('sales.destroy', $product_sales->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
+                    </td>
+
 
                         @php
                         $grandtotalamount += $product_sales->total_cost;
