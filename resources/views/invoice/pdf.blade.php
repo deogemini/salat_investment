@@ -138,7 +138,7 @@
             </div>
 
             <p><strong>Bank Details:</strong></p>
-            <p>CRDB BANK<br>Deograsias V Temba<br>Account Number: 01522313362400</p>
+            <p>CRDB BANK<br>Deograsias V Temba<br>Account Number: 0152231362400</p>
         </div>
     </div>
 
