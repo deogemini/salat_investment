@@ -10,17 +10,18 @@
             font-size: 12px;
         }
         .container {
-            width: 100%;
+            width: 97%;
             padding: 10px;
             border: 1px solid #000; /* Add border to container */
             border-radius: 2px; /* Add border radius */
-            margin-top: 0px; /* Add margin to separate from header */
+            margin-top: 20px; /* Add margin to separate from header */
         }
         .header {
             display: flex;
             align-items: flex-start; /* Align items at the start */
             padding: 10px 20px; /* Reduce padding to reduce space */
             position: relative;
+            margin-bottom: 50px;
         }
         .header::before {
             content: "";
@@ -40,7 +41,9 @@
             height: auto;
         }
         .header-details {
-            flex: 1; /* Take remaining space */
+            position: absolute;
+            top: 7px;
+            right: 10px;
             text-align: right; /* Align text to the right */
         }
         .header h1 {
@@ -54,7 +57,7 @@
         }
         .title {
             text-align: center;
-            margin-top: 0px; /* Add margin to separate from header */
+            margin-top: 20px; /* Add margin to separate from header */
             font-size: 16px;
             font-weight: bold;
         }
@@ -118,7 +121,7 @@
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="header" >
         <div class="header-logo">
             <img src="{{ asset('assets/images/logo.jpeg') }}" alt="Company Logo">
         </div>
@@ -132,7 +135,7 @@
 
     <div class="title">Proforma Invoice</div> <!-- Title without border -->
 
-    <div class="container">
+    <div class="container" style="margin-right: 10px">
         <div class="content">
             <table class="invoice-details">
                 <tr>
