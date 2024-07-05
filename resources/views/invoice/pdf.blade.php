@@ -11,45 +11,79 @@
         }
         .container {
             width: 100%;
-            padding: 20px;
+            padding: 10px;
+            border: 1px solid #000; /* Add border to container */
+            border-radius: 2px; /* Add border radius */
+            margin-top: 0px; /* Add margin to separate from header */
         }
         .header {
-            width: 100%;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            background-color: #004a99;
-            color: #fff;
-            padding: 10px 0;
+            display: flex;
+            align-items: flex-start; /* Align items at the start */
+            padding: 10px 20px; /* Reduce padding to reduce space */
+            position: relative;
         }
-        .footer {
+        .header::before {
+            content: "";
             width: 100%;
+            height: 5px;
+            background-color: #004a99;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .header-logo {
+            flex: 0 0 200px; /* Fixed width for the logo */
+            max-width: 200px; /* Increase logo size */
+        }
+        .header-logo img {
+            width: 100%;
+            height: auto;
+        }
+        .header-details {
+            flex: 1; /* Take remaining space */
+            text-align: right; /* Align text to the right */
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #004a99;
+        }
+        .header p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .title {
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            font-size: 10px;
-            padding: 10px 0;
-            border-top: 1px solid #000;
+            margin-top: 0px; /* Add margin to separate from header */
+            font-size: 16px;
+            font-weight: bold;
         }
         .content {
-            margin-top: 120px;
-            margin-bottom: 50px;
+            margin-top: 0px; /* Margin above content */
+            padding: 10px; /* Add padding inside content */
         }
         .invoice-details {
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-collapse: collapse;
         }
         .invoice-details td {
-            padding: 5px;
+            padding: 5px; /* Adjust padding */
+        }
+        .invoice-details tr:not(:last-child) td {
+            border-bottom: none; /* Remove border between rows */
         }
         .customer-details {
-            width: 50%;
+            width: 70%;
             float: left;
+            padding: 10px;
+            border-right: none; /* Remove right border */
         }
         .company-details {
-            width: 50%;
+            width: 30%;
             float: right;
+            padding: 10px;
+            border-left: none; /* Remove left border */
         }
         .invoice-table {
             width: 100%;
@@ -65,31 +99,49 @@
             background-color: #004a99;
             color: #fff;
         }
+        .total {
+            text-align: right;
+            margin-right: 0;
+        }
         .terms {
             margin-top: 20px;
+        }
+        .footer {
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            font-size: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #000;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1><span>DBM</span></h1>
-        <p>Deo Building Materials and Supply</p>
-        <p>P.O.Box, Dodoma, Nkuhungu, Street Ndachi Muungano</p>
-        <p>Phone: +255 713 066 193</p>
+        <div class="header-logo">
+            <img src="{{ asset('assets/images/logo.jpeg') }}" alt="Company Logo">
+        </div>
+        <div class="header-details">
+            <h1>DBM</h1>
+            <p>Deo Building Materials and Supply</p>
+            <p>P.O.Box, Dodoma, Nkuhungu, Street Ndachi Muungano</p>
+            <p>Phone: +255 713 066 193</p>
+        </div>
     </div>
+
+    <div class="title">Proforma Invoice</div> <!-- Title without border -->
 
     <div class="container">
         <div class="content">
-            <h2 class="text-center">Proforma Invoice</h2>
-
             <table class="invoice-details">
                 <tr>
                     <td class="customer-details">
                         <strong>Credited On:</strong> {{$invoice->customer_name}}<br>
-                        <strong>Address:</strong>{{$invoice->customer_address}} <br>
+                        <strong>Address:</strong> {{$invoice->customer_address}} <br>
                         <strong>Contact Person:</strong> {{$invoice->contact_person}}<br>
-                        <strong>Mobile:</strong>{{$invoice->customer_phone}}<br>
-                        <strong>TIN:</strong>{{$invoice->customer_tinnumber}} <br>
+                        <strong>Mobile:</strong> {{$invoice->customer_phone}}<br>
+                        <strong>TIN:</strong> {{$invoice->customer_tinnumber}} <br>
                     </td>
                     <td class="company-details">
                         <strong>Tin No:</strong> 131-073-356<br>
@@ -100,6 +152,8 @@
                     </td>
                 </tr>
             </table>
+
+            <h3>Description</h3> <!-- Added description title -->
 
             <table class="invoice-table">
                 <thead>
@@ -119,12 +173,12 @@
                         <td>{{ $item->quantity * $item->price }}</td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+                        <td>{{ $invoice->total_amount }}</td>
+                    </tr>
                 </tbody>
             </table>
-
-            <p><strong>Total:</strong> {{$invoice->total_amount }}</p>
-            {{-- <p><strong>VAT Amount:</strong> {{ $invoice->total_amount*0.18}}</p> --}}
-            {{-- <p><strong>Total:</strong> {{ $invoice->total_amount + ($invoice->total_amount*0.18) }}</p> --}}
 
             <div class="terms">
                 <p><strong>Sales Order Terms and Conditions:</strong></p>
