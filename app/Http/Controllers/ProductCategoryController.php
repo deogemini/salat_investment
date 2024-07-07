@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
+use App\Models\InventoryProduct;
+use App\Models\ProductSales;
 use App\Models\ProductPurchase;
 use Illuminate\Http\Request;
+
 
 class ProductCategoryController extends Controller
 {
@@ -74,6 +77,28 @@ class ProductCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
+        $category = ProductCategory::find($id);
+
+        if ($category) {
+            // Find all related inventory products
+            $inventoryProducts = InventoryProduct::where('product_category_id', $id)->get();
+
+            foreach ($inventoryProducts as $inventoryProduct) {
+                // Delete all related product sales
+                ProductSales::where('product_inventory_id', $inventoryProduct->id)->delete();
+
+                // Delete all related product purchases
+                ProductPurchase::where('product_inventory_id', $inventoryProduct->id)->delete();
+
+                // Delete the inventory product
+                $inventoryProduct->delete();
+            }
+
+            // Delete the category
+            $category->delete();
+        }
+
+    // Optionally, you can return a response indicating success or failure
+    return redirect()->route('categories.index')->with('success','Category deleted successfully');
+}
 }

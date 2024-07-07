@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <div class="card">
     <div class="card-header">
         <h4 class="card-title mb-0 text-center">Products Categories</h4>
