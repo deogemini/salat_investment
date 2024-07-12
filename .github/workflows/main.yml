@@ -3,7 +3,7 @@ name: Deploy on Merge
 on:
   push:
     branches:
-      - 'deployment'  # Branch to deploy from
+      - 'deployment'
 
 jobs:
   deploy:
@@ -16,26 +16,30 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'  # Specify the PHP version
+        php-version: '8.0'
 
     - name: Install dependencies
       run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H 5.189.168.118 >> ~/.ssh/known_hosts
 
     - name: Deploy to server
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@5.189.168.118 << 'EOF'
           cd /var/www/html/salat_investment
           git pull origin deployment
-          # composer install --no-interaction --prefer-dist --optimize-autoloader
-         # php artisan migrate --force
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          php artisan migrate --force
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
           php artisan optimize
         EOF
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
 
     - name: Notify on success
       run: echo "Deployment successful!"
