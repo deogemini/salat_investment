@@ -44,6 +44,13 @@
                     </td>
                 </tr>
                 @endforeach
+
+                <tr style="border-bottom:2px solid #F0C356;">
+                    <th> Grand Total</th>
+                    <th></th>
+                    <td>Amount</td>
+
+                </tr>
               </tbody>
 
 </table>
