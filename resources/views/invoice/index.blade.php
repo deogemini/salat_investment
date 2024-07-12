@@ -32,6 +32,7 @@
               <tbody>
 @php
     $i=1;
+    $grandtotalamount =0;
 @endphp
                 @foreach($invoices as $invoice)
                 <tr>
@@ -42,13 +43,16 @@
                     <td>
                         <a href="{{ route('invoices.pdf', $invoice->id) }}" class="btn btn-warning">Download PDF</a>
                     </td>
+                    @php
+                    $grandtotalamount += $invoice->total_amount;
+                    @endphp
                 </tr>
                 @endforeach
 
                 <tr style="border-bottom:2px solid #F0C356;">
                     <th> Grand Total</th>
                     <th></th>
-                    <td>Amount</td>
+                    <td>{{$grandtotalamount}}</td>
 
                 </tr>
               </tbody>
