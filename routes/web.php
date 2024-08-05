@@ -56,7 +56,7 @@ Route::post('/inventory/store',[InventoryController::class,'store'])->name('inve
 Route::get('/product/getPrices/{id}',[InventoryController::class,'getPrices']);
 
 Route::get('/purchase/index', [PurchasesController::class,'index'])->name('purchase.index');
-Route::get('/purchase/destroy', [PurchasesController::class,'destroy'])->name('purchase.destroy');
+Route::post('/purchase/destroy/{id}', [PurchasesController::class,'destroy'])->name('purchase.destroy');
 
 Route::post('/purchase/store',[PurchasesController::class,'store'])->name('purchase.create');
 
