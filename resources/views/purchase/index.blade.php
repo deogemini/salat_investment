@@ -1,10 +1,23 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@elseif(session('danger'))
+<div class="alert alert-danger">
+    {{ session('danger') }}
+</div>
+@endif
+
+
 <div class="card">
     <div class="card-header">
         <h4 class="card-title mb-0 text-center">Management of Purchases</h4>
     </div>
+
 
     <div class="card-body">
 
@@ -12,7 +25,7 @@
             <div class="col-sm-auto text-right">
                 <div>
                         <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
-                            <i class="ri-add-line align-bottom me-1"></i> Record Purchases
+                            <i class="bi bi-plus-lg"></i> Record Purchases
                         </button>
 
                 </div>
@@ -68,7 +81,11 @@
                     @endphp
                   </tr>
                   @endforeach
-                  <tr style="border-bottom:2px solid #F0C356;">
+
+              </tbody>
+
+              <tfoot>
+                <tr style="border-bottom:2px solid #F0C356;">
                     <th>Grand Total</th>
                     <td></td>
                     <td> {{$grandTotalPurchasedCost}}</td>
@@ -78,7 +95,8 @@
                     <td></td>
 
                   </tr>
-              </tbody>
+
+              </tfoot>
 
 
             </table>

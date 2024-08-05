@@ -70,4 +70,22 @@ class PurchasesController extends Controller
         // Redirect or return a response as needed
         return redirect()->route('purchase.index')->with('success', 'Category added successfully');
     }
+
+    public function destroy($id){
+        $purchases = ProductPurchase::find($id);
+
+        $productInventory = InventoryProduct::where('id', $purchases->product_inventory_id)->first();
+        if($productInventory->quantity_now == null){
+            $productInventory->quantity_in = $productInventory->quantity_in - $purchases->quantity;
+            $purchases->delete();
+        return redirect()->route('purchase.index')->with('success', 'Purchase deleted successfully');
+        }else{
+
+        return redirect()->route('purchase.index')->with('danger', 'This product is on sales');
+
+        }
+
+
+    }
+
 }
