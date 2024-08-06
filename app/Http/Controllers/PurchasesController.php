@@ -80,7 +80,6 @@ class PurchasesController extends Controller
             $purchases->delete();
         return redirect()->route('purchase.index')->with('success', 'Purchase deleted successfully');
         }else{
-
         return redirect()->route('purchase.index')->with('danger', 'This product is on sales');
 
         }

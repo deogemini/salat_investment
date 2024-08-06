@@ -50,8 +50,6 @@
                 @php
                     $id=1;
 
-                    $grandTotalPurchasedCost = 0;
-                    $grandTotalPurchasedOtherCost = 0;
                     $grandTotalPurchasedQuantity = 0;
                     $grandTotalPurchasedTotal =0;
                 @endphp
@@ -74,8 +72,6 @@
                         </form>
                     </td>
                     @php
-                    $grandTotalPurchasedCost += $purchase->product_cost;
-                    $grandTotalPurchasedOtherCost += $purchase->other_product_cost;
                     $grandTotalPurchasedQuantity += $purchase->quantity;
                     $grandTotalPurchasedTotal += $purchase->total_cost;
                     @endphp
@@ -88,8 +84,8 @@
                 <tr style="border-bottom:2px solid #F0C356;">
                     <th>Grand Total</th>
                     <td></td>
-                    <td> {{$grandTotalPurchasedCost}}</td>
-                    <td> {{$grandTotalPurchasedOtherCost}}</td>
+                    <td></td>
+                    <td></td>
                     <td> {{$grandTotalPurchasedQuantity}}</td>
                     <td> {{$grandTotalPurchasedTotal}}</td>
                     <td></td>
