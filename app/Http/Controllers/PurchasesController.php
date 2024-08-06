@@ -75,8 +75,9 @@ class PurchasesController extends Controller
         $purchases = ProductPurchase::find($id);
 
         $productInventory = InventoryProduct::where('id', $purchases->product_inventory_id)->first();
-        if($productInventory->quantity_now == null){
-            $productInventory->quantity_in = $productInventory->quantity_in - $purchases->quantity;
+        if(is_null($productInventory->quantity_now)){
+            $productInventory->quantity_in -= $purchases->quantity;
+            $productInventory->save();
             $purchases->delete();
         return redirect()->route('purchase.index')->with('success', 'Purchase deleted successfully');
         }else{
