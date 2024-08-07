@@ -70,15 +70,18 @@
                             </tr>
                         @endforeach
 
-                        <tr style="border-bottom:2px solid #F0C356;">
-                            <th>Grand Total</th>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $grandtotalndanistock }}</td>
-                            <td>{{ $grandtotalIliyouzwa }}</td>
-                            <td>{{ $grandtotalIliyobakia }}</td>
-                        </tr>
-                    </tbody>
+
+              </tbody>
+              <tfoot>
+                <tr style="border-bottom:2px solid #F0C356;">
+                    <th>Grand Total</th>
+                    <td></td>
+                    <td></td>
+                    <td>{{$grandtotalndanistock}}</td>
+                    <td>{{$grandtotalIliyouzwa}}</td>
+                    <td>{{$grandtotalIliyobakia}}</td>
+                  </tr>
+              </tfoot>
 
 
                 </table>
