@@ -69,6 +69,9 @@
             @endphp
         @endforeach
 
+    </tbody>
+    <tfoot>
+
         <tr style="border-bottom:2px solid #F0C356;">
             <th>Grand Total</th>
             <td></td>
@@ -78,7 +81,8 @@
             <td>{{ formatAmount($grandTotalSoldCost) }}</td>
             <td>{{ $grandTotalQuantityNow}}</td>
         </tr>
-    </tbody>
+
+    </tfoot>
 
   </table>
 </div>
