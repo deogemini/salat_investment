@@ -62,16 +62,20 @@
       </tr>
       @endforeach
 
-      <tr style="border-bottom:2px solid #F0C356;">
-        <th>Grand Total</th>
-        <td></td>
-        <td>{{ formatAmount($grandTotalPurchased)}}</td>
-        <td>{{ formatAmount($grandTotalSold) }}</td>
-        <td>{{ formatAmount($grandTotalSold - $grandTotalPurchased) }}</td>
 
-      </tr>
 
     </tbody>
+
+    <tfoot>
+        <tr style="border-bottom:2px solid #F0C356;">
+            <th>Grand Total</th>
+            <td></td>
+            <td>{{ formatAmount($grandTotalPurchased)}}</td>
+            <td>{{ formatAmount($grandTotalSold) }}</td>
+            <td>{{ formatAmount($grandTotalSold - $grandTotalPurchased) }}</td>
+
+          </tr>
+    </tfoot>
   </table>
 </div>
 @endsection
