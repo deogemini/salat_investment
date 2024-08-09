@@ -46,6 +46,9 @@
                     <td>{{ $category->category_name}}</td>
                     <td>{{ $category->description}}</td>
                     <td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" style="margin-right: 5px;">
+                            <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
+                        </button>
                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
