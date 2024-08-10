@@ -49,12 +49,13 @@
                                 class="btn btn-info btn-sm"
                                 title="Edit"
                                 data-bs-toggle="modal"
+                                data-bs-target="#editMatumizi"
                                 data-id="{{ $matumizi->id }}"
-                                data-name="{{$matumizi->name}}"
-                                data-description="{{ $matumizi->description}}"
-                                data-bs-target="#editMatumizi">
-                                    <i class="bx bx-edit"></i> Edit
-                                </button>
+                                data-name="{{ $matumizi->name }}"
+                                data-description="{{ $matumizi->description }}">
+                                <i class="bx bx-edit"></i> Edit
+                            </button>
+
 
                                 <form action="{{ route('ainamatumizi.destroy', $matumizi->id) }}" method="POST" style="display: inline;">
                                     @csrf
@@ -66,50 +67,14 @@
                             </td>
                         </tr>
                         @endforeach
-
-
-<!-- Create Modal -->
-
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editMatumizi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update the Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </tbody>
+                </table>
             </div>
-            <form action="{{ route('ainamatumizi.update')}}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="modal-body">
-                    <label for="editName" class="form-label">Name of Expenditure</label>
-                    <input type="text" id="name" class="form-control" value="{{$matumizi->name}}" name="name" required />
-                    <input type="text" id="id" class="form-control" value="{{$matumizi->id}}" name="id" required hidden />
-
-                    <label for="editDescription" class="form-label">Description of Expenditure</label>
-                    <input type="text" id="editDescription" class="form-control" value="{{$matumizi->description}}" name="description" required />
-                </div>
-                <div class="modal-footer">
-                    <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Update</button>
-                    </div>
-                </div>
-            </form>
-
         </div>
     </div>
 </div>
 
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-
-
+<!-- Create Modal -->
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -138,9 +103,53 @@
     </div>
 </div>
 
+<!-- Edit Modal -->
+<div class="modal fade" id="editMatumizi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update the Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editForm" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <label for="editName" class="form-label">Name of Expenditure</label>
+                    <input type="text" id="name" class="form-control" name="name" required />
+
+                    <label for="editDescription" class="form-label">Description of Expenditure</label>
+                    <input type="text" id="editDescription" class="form-control" name="description" required />
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 
 
+<script>
+document.getElementById('editMatumizi').addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var id = button.getAttribute('data-id');
+    var name = button.getAttribute('data-name');
+    var description = button.getAttribute('data-description');
+
+    var modal = this;
+    modal.querySelector('#name').value = name;
+    modal.querySelector('#editDescription').value = description;
+
+    var fullUrl = window.location.protocol + "//" + window.location.host + window.location.pathname.replace('/index', '');
+    modal.querySelector('#editForm').action = fullUrl + '/update/' + id;
+});
+</script>
 
 @endsection
 

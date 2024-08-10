@@ -95,7 +95,7 @@ Route::post('/matumizi/create', [MatumiziController::class,'create'])->name('mat
 
 Route::get('/ainamatumizi/index',[MatumiziController::class,'aina_matumizi'])->name('ainamatumizi.index');
 Route::post('/ainamatumizi/create',[MatumiziController::class,'aina_matumizi_create'])->name('ainamatumizi.create');
-Route::put('/ainamatumizi/update',[MatumiziController::class,'aina_matumizi_update'])->name('ainamatumizi.update');
+Route::put('/ainamatumizi/update/{id}',[MatumiziController::class,'aina_matumizi_update'])->name('ainamatumizi.update');
 Route::post('/ainamatumizi/destroy/{id}', [MatumiziController::class, 'destroy'])->name('ainamatumizi.destroy');
 
 
