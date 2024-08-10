@@ -45,7 +45,14 @@
                             <td>{{ $matumizi->description }}</td>
                             <td>
 
-                                <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
+                                <button
+                                class="btn btn-info btn-sm"
+                                title="Edit"
+                                data-bs-toggle="modal"
+                                data-id="{{ $matumizi->id }}"
+                                data-name="{{$matumizi->name}}"
+                                data-description="{{ $matumizi->description}}"
+                                data-bs-target="#editMatumizi">
                                     <i class="bx bx-edit"></i> Edit
                                 </button>
 
@@ -59,14 +66,50 @@
                             </td>
                         </tr>
                         @endforeach
-                    </tbody>
-                </table>
+
+
+<!-- Create Modal -->
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editMatumizi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update the Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="{{ route('ainamatumizi.update')}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <label for="editName" class="form-label">Name of Expenditure</label>
+                    <input type="text" id="name" class="form-control" value="{{$matumizi->name}}" name="name" required />
+                    <input type="text" id="id" class="form-control" value="{{$matumizi->id}}" name="id" required hidden />
+
+                    <label for="editDescription" class="form-label">Description of Expenditure</label>
+                    <input type="text" id="editDescription" class="form-control" value="{{$matumizi->description}}" name="description" required />
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
 
-<!-- Create Modal -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -95,32 +138,9 @@
     </div>
 </div>
 
-<!-- Edit Modal -->
-<div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update the Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="editForm" action="{{ route('ainamatumizi.update')}}" method="PUT">
-                @csrf
-                <div class="modal-body">
-                    <label for="editName" class="form-label">Name of Expenditure</label>
-                    <input type="text" id="editName" value="{{$matumizi->name}}" class="form-control" name="name" required />
 
-                    <label for="editDescription" class="form-label">Description of Expenditure</label>
-                    <input type="text" id="editDescription" value="{{$matumizi->description}}"class="form-control" name="description" required />
-                </div>
-                <div class="modal-footer">
-                    <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Update</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
+
 
 @endsection
+
