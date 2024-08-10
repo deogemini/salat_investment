@@ -121,7 +121,12 @@
                     @endphp
                   </tr>
                   @endforeach
-                  <tr style="border-bottom:2px solid #F0C356;">
+
+              </tbody>
+
+              <tfoot>
+
+                <tr style="border-bottom:2px solid #F0C356;">
                     <th>Grand Total</th>
                     <td></td>
                     <td></td>
@@ -130,7 +135,7 @@
                     <td>{{  formatAmount($grandTotalDeposited) }}</td>
                     <td></td>
                   </tr>
-              </tbody>
+              </tfoot>
 
 
             </table>
