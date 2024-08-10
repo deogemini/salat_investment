@@ -194,13 +194,14 @@ class MatumiziController extends Controller
         return redirect()->route('ainamatumizi.index')->with('success', 'Matumizi Type added successfully');
     }
 
-    public function aina_matumizi_update(Request $request, $id)
+    public function aina_matumizi_update(Request $request)
     {
        // Validate the request
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
         ]);
+        $id=$request->id;
 
         // Find the record by ID
         $matumizi = MatumiziType::findOrFail($id);
