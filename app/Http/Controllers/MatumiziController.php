@@ -214,8 +214,6 @@ class MatumiziController extends Controller
         // Redirect back with a success message
         return redirect()->route('ainamatumizi.index')->with('success', 'Record updated successfully.');
 
-
-
     }
 
     /**
