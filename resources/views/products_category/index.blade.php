@@ -46,8 +46,16 @@
                     <td>{{ $category->category_name}}</td>
                     <td>{{ $category->description}}</td>
                     <td>
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" style="margin-right: 5px;">
-                            <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
+                        <button
+                        class="btn btn-info btn-sm"
+                        title="Edit"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCategory"
+                        data-id="{{$category->id}}"
+                        data-categoryName="{{$category->category_name}}"
+                        data-categoryDescription="{{$category->description}}"
+                         style="margin-right: 5px;">
+                         <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
                         </button>
                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
                             @csrf
@@ -104,25 +112,25 @@
     </div>
 
         {{-- edit modal --}}
-        <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Product Category Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         id="close-modal"></button>
                 </div>
                 <form id="edit_form">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="email-field" class="form-label">Name</label>
-                            <input type="text" id="full_name" class="form-control" name="name" required />
+                            <label for="category_name" class="form-label">Category Name</label>
+                            <input type="text" id="category_name" class="form-control" name="category_name" required />
                         </div>
                         <div class="mb-3">
-                            <label for="email-field" class="form-label">Phone Number</label>
-                            <input type="number" id="phone_number" class="form-control" name="phone_number" required />
-                            <input type="hidden" name="user_id" id="user_id">
+                            <label for="category_description" class="form-label">Category Description</label>
+                            <input type="text" id="category_description" class="form-control" name="category_description" required />
+                            <input type="hidden" name="id" id="id">
                         </div>
                         <div class="mb-3" id="update_alert">
 
@@ -139,8 +147,23 @@
         </div>
     </div>
     </div>
-    <!-- container-fluid -->
 </div>
+
+<script>
+    document.getElementById('editCategory').addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-id');
+        var category_name = button.getAttribute('data-categoryName');
+        var category_description = button.getAttribute('data-categoryDescription');
+
+        var modal = this;
+        modal.querySelector('#category_name').value = category_name;
+        modal.querySelector('#category_description').value = category_description;
+
+        var fullUrl = window.location.protocol + "//" + window.location.host + window.location.pathname.replace('/index', '');
+        modal.querySelector('#editForm').action = fullUrl + '/update/' + id;
+    });
+    </script>
 
 @endsection
 

@@ -86,11 +86,13 @@ class DepositionController extends Controller
         // Validation
         $request->validate([
             'withdrawer_name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
             'bankaccount_id' => 'required|string|max:255',
             'amount' => 'nullable|string|max:255',
         ]);
 
         $withdrawer_name =  $request->input('withdrawer_name');
+        $description =  $request->input('description');
         $bank_account_id =  $request->input('bankaccount_id');
         $amount =  $request->input('amount');
 
@@ -98,6 +100,7 @@ class DepositionController extends Controller
         $withdraws->amount =   $amount;
         $withdraws->bank_account_id = $bank_account_id;
         $withdraws->withdrawer_name = $withdrawer_name;
+        $withdraws->description = $description;
         $withdraws->save();
 
         // Redirect or return a response as needed
