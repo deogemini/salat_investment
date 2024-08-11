@@ -98,6 +98,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Withdrawer Name</th>
+                            <th scope="col">Reason</th>
                             <th scope="col">Bank Name</th>
                             <th scope="col">Account Number</th>
                             <th scope="col">Account Name</th>
@@ -114,6 +115,7 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $withdraws->withdrawer_name }}</td>
+                                <td>{{ $withdraws->description }}</td>
                                 <td>{{ $withdraws->bankAccount->bank_name ?? '0' }}</td>
                                 <td>{{ $withdraws->bankAccount->account_number ?? '0' }}</td>
                                 <td>{{ $withdraws->bankAccount->account_name ?? '0' }}</td>
@@ -212,10 +214,16 @@
                         @csrf
                         <div>
                             <div class="mb-3">
-                                <label class="form-label" for="category_name">Withdrawer Name <span
+                                <label class="form-label" for="withdrawer_name">Withdrawer Name <span
                                         id="required-field">*</span></label>
                                 <input type="text" class="form-control" name="withdrawer_name"
                                     placeholder="Name of will with draw money">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Maelezo <span
+                                        id="required-field">*</span></label>
+                                <input type="text" class="form-control" name="description"
+                                    placeholder="andika maelezo ya kutoa pesa">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="hospital">Bank Account <span
