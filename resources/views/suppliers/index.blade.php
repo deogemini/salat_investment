@@ -39,12 +39,17 @@
                     <td>{{ $supplier->supplier_location}}</td>
                     <td>{{ $supplier->supplier_phone_number}}</td>
                     <td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" style="margin-right: 5px;">
+                            <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
+                        </button>
+
                         <form action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
                                 <i class="bx bx-trash"></i> Delete
                             </button>
                         </form>
+
                     </td>
                   </tr>
                   @endforeach
