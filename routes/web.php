@@ -81,11 +81,19 @@ Route::post('/suppliers/destroy/{id}',[SuppliersController::class,'store'])->nam
 
 //-------------matumizi---------///
 Route::get('/matumizi/index', [MatumiziController::class,'index'])->name('matumizi.index');
+
+//---------------matofali-------------//
 Route::get('/matofali/index', [MatumiziController::class,'indexMatofali'])->name('matofali.index');
-Route::get('/cement/index', [MatumiziController::class,'indexCement'])->name('cement.index');
 Route::get('/mauzoMatofali/index', [MatumiziController::class,'indexMatofaliMauzo'])->name('mauzoMatofali.index');
 Route::post('/matofaliMauzo/create', [MatumiziController::class,'UzaMatofali'])->name('matofaliMauzo.create');
 Route::post('/matofali/ingizaStock', [MatumiziController::class,'ingizaStock'])->name('matofali.ingizaStock');
+Route::post('/matofali/deleteStock/{id}', [MatumiziController::class,'deleteStock'])->name('matofali.deleteStock');
+//----------------matofali---------------//
+
+
+
+
+Route::get('/cement/index', [MatumiziController::class,'indexCement'])->name('cement.index');
 Route::post('/cement/ingizaStock', [MatumiziController::class,'ingizaStockCement'])->name('cement.ingizaStock');
 Route::post('/cement/toaStock', [MatumiziController::class,'toaStockCement'])->name('cement.toaStock');
 Route::post('/cement/destroy/{id}', [MatumiziController::class,'toaStockCement'])->name('cement.destroy');

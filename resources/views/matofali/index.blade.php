@@ -56,7 +56,7 @@
                             <i class="bx bx-edit"></i> Edit
                         </button>
 
-                        <form action="{{ route('suppliers.destroy', $matofali->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('matofali.deleteStock', $matofali->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
                                 <i class="bx bx-trash"></i> Delete
