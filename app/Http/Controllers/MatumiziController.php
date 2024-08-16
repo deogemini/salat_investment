@@ -77,6 +77,8 @@ class MatumiziController extends Controller
                     $cementMpya = new MatumiziCement();
                     $cementMpya->jina_cement = $request->cement_name;
                     $cementMpya->quantity_in = $request->idadi_cement_mifuko;
+                    $cementMpya->quantity_out = 0;
+                    $cementMpya->quantity_remaining = $request->idadi_cement_mifuko;
                     $cementMpya->buying_price = $request->buying_price;
                     $cementMpya->total_cost = ($request->buying_price *  $request->idadi_cement_mifuko) ;
                     $cementMpya->save();
@@ -97,6 +99,7 @@ class MatumiziController extends Controller
             if ($existingCement) {
                 // If it exists, update the idadi_matofali_stock
                 $existingCement->quantity_out += $request->idadi_cement_mifuko;
+                $existingCement->quantity_remaining = $existingCement->quantity_in - ($existingCement->quantity_out += $request->idadi_cement_mifuko);
                 $existingCement->save();
             }
 

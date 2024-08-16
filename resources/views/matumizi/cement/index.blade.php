@@ -54,8 +54,8 @@
                     <td>{{ $cement->buying_price}}</td>
                     <td>{{ $cement->quantity_in}}</td>
                     <td>{{$cement->total_cost}}</td>
-                    <td>{{$cement->quantity_out}}</td>
-                    <td>{{$cement->quantity_in - $cement->quantity_out}}</td>
+                    <td>{{$cement->quantity_out ?? 0}}</td>
+                    <td>{{($cement->quantity_in - $cement->quantity_out) }}</td>
                     <td>{{ $cement->updated_at}}</td>
                     <td>
                         <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
