@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="container">
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -72,7 +71,6 @@
             </div>
         </div>
     </div>
-</div>
 
 <!-- Create Modal -->
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
