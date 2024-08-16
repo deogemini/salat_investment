@@ -54,21 +54,34 @@
                                         <i class="bx bx-edit"></i> Edit
                                     </button>
 
-                                    <form action="{{ route('matofali.destroy', $matofali->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
-                                            <i class="bx bx-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                </td>
-                                @php
-                                    $grandtotalndanistock += $matofali->idadi_matofali_stock;
-                                    $grandtotalIliyouzwa += $matofali->idadi_matofali_soldout;
-                                    $grandtotalIliyobakia +=
-                                        $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout;
-                                @endphp
-                            </tr>
-                        @endforeach
+                <tr>
+                    <td>{{ $i++}}</td>
+                    <td>{{$matofali->special_code }}</td>
+                    <td>{{$matofali->bei_rejareja }}</td>
+                    <td>{{$matofali->idadi_matofali_stock }}</td>
+                    <td>{{$matofali->idadi_matofali_soldout ?? 0}} </td>
+                    <td>{{ $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout }}</td>
+                    <td>{{$matofali->created_at}}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
+                            onclick="populateEditModal({{ json_encode($matofali) }})">
+                            <i class="bx bx-edit"></i> Edit
+                        </button>
+
+                        <form action="{{ route('matofali.deleteStock', $matofali->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="bx bx-trash"></i> Delete
+                            </button>
+                        </form>
+                    </td>
+                    @php
+                    $grandtotalndanistock += $matofali->idadi_matofali_stock;
+                    $grandtotalIliyouzwa += $matofali->idadi_matofali_soldout;
+                    $grandtotalIliyobakia += ( $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout);
+                    @endphp
+                     </tr>
+                  @endforeach
 
 
               </tbody>

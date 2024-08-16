@@ -64,6 +64,17 @@
                     <td>{{ formatAmount($purchase->total_cost)}}</td>
                     <td>{{ $purchase->created_at->format('Y-m-d H:i')}}</td>
                     <td>
+                        <button
+                        class="btn btn-info btn-sm"
+                        title="Edit"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCategory"
+                        data-id="{{$purchase->id}}"
+                        data-categoryName="{{$purchase->product_cost}}"
+                        data-categoryDescription="{{$purchase->quantity}}"
+                         style="margin-right: 5px;">
+                         <i class="bx bx-edit" style="margin-right: 3px;"></i> Edit
+                        </button>
                         <form action="{{ route('purchase.destroy', $purchase->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
