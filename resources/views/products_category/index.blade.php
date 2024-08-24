@@ -132,9 +132,6 @@
                             <input type="text" id="category_description" class="form-control" name="category_description" required />
                             <input type="hidden" name="id" id="id">
                         </div>
-                        <div class="mb-3" id="update_alert">
-
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <div class="hstack gap-2 justify-content-end">
