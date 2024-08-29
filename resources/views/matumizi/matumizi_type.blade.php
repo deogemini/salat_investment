@@ -39,7 +39,7 @@
                         @endphp
                         @foreach ($ainamatumizi as $matumizi)
                         <tr>
-                            <td>{{ $i++}}</td>
+                            <td>{{ $loop->iteration}}</td>
                             <td>{{ $matumizi->name }}</td>
                             <td>{{ $matumizi->description }}</td>
                             <td>

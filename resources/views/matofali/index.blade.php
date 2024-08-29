@@ -33,14 +33,13 @@
                     </thead>
                     <tbody>
                         @php
-                            $i = 1;
                             $grandtotalndanistock = 0;
                             $grandtotalIliyouzwa = 0;
                             $grandtotalIliyobakia = 0;
                         @endphp
                         @foreach ($matofali as $matofali)
                             <tr>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $matofali->special_code }}</td>
                                 <td>{{ $matofali->bei_rejareja }}</td>
                                 <td>{{ $matofali->idadi_matofali_stock }}</td>
@@ -54,47 +53,36 @@
                                         <i class="bx bx-edit"></i> Edit
                                     </button>
 
-                <tr>
-                    <td>{{ $i++}}</td>
-                    <td>{{$matofali->special_code }}</td>
-                    <td>{{$matofali->bei_rejareja }}</td>
-                    <td>{{$matofali->idadi_matofali_stock }}</td>
-                    <td>{{$matofali->idadi_matofali_soldout ?? 0}} </td>
-                    <td>{{ $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout }}</td>
-                    <td>{{$matofali->created_at}}</td>
-                    <td>
-                        <button class="btn btn-info btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
-                            onclick="populateEditModal({{ json_encode($matofali) }})">
-                            <i class="bx bx-edit"></i> Edit
-                        </button>
-
-                        <form action="{{ route('matofali.deleteStock', $matofali->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this record?');">
-                                <i class="bx bx-trash"></i> Delete
-                            </button>
-                        </form>
-                    </td>
-                    @php
-                    $grandtotalndanistock += $matofali->idadi_matofali_stock;
-                    $grandtotalIliyouzwa += $matofali->idadi_matofali_soldout;
-                    $grandtotalIliyobakia += ( $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout);
-                    @endphp
-                     </tr>
-                  @endforeach
+                                    <form action="{{ route('matofali.deleteStock', $matofali->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this record?');">
+                                            <i class="bx bx-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                                @php
+                                    $grandtotalndanistock += $matofali->idadi_matofali_stock;
+                                    $grandtotalIliyouzwa += $matofali->idadi_matofali_soldout;
+                                    $grandtotalIliyobakia +=
+                                        $matofali->idadi_matofali_stock - $matofali->idadi_matofali_soldout;
+                                @endphp
+                            </tr>
+                        @endforeach
 
 
-              </tbody>
-              <tfoot>
-                <tr style="border-bottom:2px solid #F0C356;">
-                    <th>Grand Total</th>
-                    <td></td>
-                    <td></td>
-                    <td>{{$grandtotalndanistock}}</td>
-                    <td>{{$grandtotalIliyouzwa}}</td>
-                    <td>{{$grandtotalIliyobakia}}</td>
-                  </tr>
-              </tfoot>
+                    </tbody>
+                    <tfoot>
+                        <tr style="border-bottom:2px solid #F0C356;">
+                            <th>Grand Total</th>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $grandtotalndanistock }}</td>
+                            <td>{{ $grandtotalIliyouzwa }}</td>
+                            <td>{{ $grandtotalIliyobakia }}</td>
+                        </tr>
+                    </tfoot>
 
 
                 </table>
